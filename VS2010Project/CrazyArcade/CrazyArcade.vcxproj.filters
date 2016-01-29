@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="DUOEngine">
+      <UniqueIdentifier>{e980b48a-1554-446f-be68-50c2969761ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{4838abb0-9c3d-4a9e-b6fc-9a807994d345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Render">
+      <UniqueIdentifier>{7b48055f-c231-4888-a3a8-3d77ae9e5723}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Input">
+      <UniqueIdentifier>{6f54ff52-70e5-43a1-9d4d-a253d8d44df7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Core">
+      <UniqueIdentifier>{4258ca78-b47d-4db5-8ba2-4253fbf1e54f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Math">
+      <UniqueIdentifier>{f11ca338-01c8-4b6d-b8c4-44c6a9bb0b88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Manager">
+      <UniqueIdentifier>{d4aa462e-1291-4f7f-97ed-1875ef88a2a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Manager\Timer">
+      <UniqueIdentifier>{675fb686-c96c-4f02-9de1-4756bd095bb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Manager\Message">
+      <UniqueIdentifier>{11eac411-cc64-4145-9b5c-c4daf5addc34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Manager\State">
+      <UniqueIdentifier>{815af130-6d1c-4fc0-934e-0ae61ece8d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Level">
+      <UniqueIdentifier>{fb652d99-5d63-42f1-89d9-0a7bb91c5767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Level\Sprite">
+      <UniqueIdentifier>{51bd36de-4d8e-4a12-8f98-c197a8e0aa87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Level\Object">
+      <UniqueIdentifier>{da88bff4-6519-4204-88b6-2ba45dcc7762}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Level\Scene">
+      <UniqueIdentifier>{0bd60da1-3016-4c8d-9b71-84173445c2d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\Entry">
+      <UniqueIdentifier>{62295170-2018-48f2-985c-f07c2d2c6e97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\Level">
+      <UniqueIdentifier>{6184ac34-2e9b-4ba7-8a17-2ab639fbb3a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\Level\Scene">
+      <UniqueIdentifier>{25298697-4b87-4e07-af98-95d34e3f05b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\Level\Object">
+      <UniqueIdentifier>{70ec240d-2d13-4e64-b9f0-ac7070654805}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\Level\Attribute">
+      <UniqueIdentifier>{e782f68e-8a91-48e5-a58e-c4b39cecdf32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\Manager">
+      <UniqueIdentifier>{88713e46-dcd8-4d24-a7e5-aaea65cc898d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\Manager\State">
+      <UniqueIdentifier>{c1565ebf-f416-4dce-8996-67ad38463586}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Code\DUOEngine\VPMatrix.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\InputLayout.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\PixelShader.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\RenderTargetView.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\SamplerState.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\Shader.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\ShaderResourceView.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\SwapChain.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\VertexBuffer.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\VertexShader.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\ViewPort.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\ConstBuffer.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\BlendState.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\Context.h">
+      <Filter>DUOEngine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\DXInput.h">
+      <Filter>DUOEngine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\DXCenter.h">
+      <Filter>DUOEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\DXUtil.h">
+      <Filter>DUOEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\DXHead.h">
+      <Filter>DUOEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\Base.h">
+      <Filter>DUOEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\Point.h">
+      <Filter>DUOEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\Rect.h">
+      <Filter>DUOEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\CrudeTimer.h">
+      <Filter>DUOEngine\Manager\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\Sprite.h">
+      <Filter>DUOEngine\Level\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\Object.h">
+      <Filter>DUOEngine\Level\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\MessageDispatcher.h">
+      <Filter>DUOEngine\Manager\Message</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\Telegram.h">
+      <Filter>DUOEngine\Manager\Message</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\State.h">
+      <Filter>DUOEngine\Manager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\StateMachine.h">
+      <Filter>DUOEngine\Manager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\Scene.h">
+      <Filter>DUOEngine\Level\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\Util.h">
+      <Filter>DUOEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\Block.h">
+      <Filter>Logic\Level\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\Bubble.h">
+      <Filter>Logic\Level\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\BubbleState.h">
+      <Filter>Logic\Manager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\LGCenter.h">
+      <Filter>Logic\Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\LGHead.h">
+      <Filter>Logic\Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\RoleState.h">
+      <Filter>Logic\Manager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\PlayScene.h">
+      <Filter>Logic\Level\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\Prop.h">
+      <Filter>Logic\Level\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\Role.h">
+      <Filter>Logic\Level\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\LGUtil.h">
+      <Filter>Logic\Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\LGInput.h">
+      <Filter>Logic\Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\Ability.h">
+      <Filter>Logic\Level\Attribute</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Code\DUOEngine\InputLayout.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\PixelShader.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\RenderTargetView.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\SamplerState.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\Shader.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\ShaderResourceView.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\SwapChain.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\VertexBuffer.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\VertexShader.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\ViewPort.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\VPMatrix.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\BlendState.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\ConstBuffer.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\Context.cpp">
+      <Filter>DUOEngine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\DXInput.cpp">
+      <Filter>DUOEngine\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\DXCenter.cpp">
+      <Filter>DUOEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\DXUtil.cpp">
+      <Filter>DUOEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\Base.cpp">
+      <Filter>DUOEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\Point.cpp">
+      <Filter>DUOEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\Rect.cpp">
+      <Filter>DUOEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\CrudeTimer.cpp">
+      <Filter>DUOEngine\Manager\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\Sprite.cpp">
+      <Filter>DUOEngine\Level\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\Object.cpp">
+      <Filter>DUOEngine\Level\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\MessageDispatcher.cpp">
+      <Filter>DUOEngine\Manager\Message</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\Scene.cpp">
+      <Filter>DUOEngine\Level\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\Util.cpp">
+      <Filter>DUOEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\main.cpp">
+      <Filter>DUOEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\Block.cpp">
+      <Filter>Logic\Level\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\Bubble.cpp">
+      <Filter>Logic\Level\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\BubbleState.cpp">
+      <Filter>Logic\Manager\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\LGCenter.cpp">
+      <Filter>Logic\Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\RoleState.cpp">
+      <Filter>Logic\Manager\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\PlayScene.cpp">
+      <Filter>Logic\Level\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\Prop.cpp">
+      <Filter>Logic\Level\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\Role.cpp">
+      <Filter>Logic\Level\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\LGInput.cpp">
+      <Filter>Logic\Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\LGUtil.cpp">
+      <Filter>Logic\Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\Ability.cpp">
+      <Filter>Logic\Level\Attribute</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
