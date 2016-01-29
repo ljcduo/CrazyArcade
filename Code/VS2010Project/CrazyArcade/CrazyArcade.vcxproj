@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Ability.cpp" />
+    <ClCompile Include="Base.cpp" />
+    <ClCompile Include="BlendState.cpp" />
+    <ClCompile Include="Block.cpp" />
+    <ClCompile Include="Bubble.cpp" />
+    <ClCompile Include="BubbleState.cpp" />
+    <ClCompile Include="ConstBuffer.cpp" />
+    <ClCompile Include="Context.cpp" />
+    <ClCompile Include="CrudeTimer.cpp" />
+    <ClCompile Include="DXCenter.cpp" />
+    <ClCompile Include="DXInput.cpp" />
+    <ClCompile Include="DXUtil.cpp" />
+    <ClCompile Include="InputLayout.cpp" />
+    <ClCompile Include="LGCenter.cpp" />
+    <ClCompile Include="LGInput.cpp" />
+    <ClCompile Include="LGUtil.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MessageDispatcher.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="PixelShader.cpp" />
+    <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="Point.cpp" />
+    <ClCompile Include="Prop.cpp" />
+    <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="RenderTargetView.cpp" />
+    <ClCompile Include="Role.cpp" />
+    <ClCompile Include="RoleState.cpp" />
+    <ClCompile Include="SamplerState.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShaderResourceView.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SwapChain.cpp" />
+    <ClCompile Include="Util.cpp" />
+    <ClCompile Include="VertexBuffer.cpp" />
+    <ClCompile Include="VertexShader.cpp" />
+    <ClCompile Include="ViewPort.cpp" />
+    <ClCompile Include="VPMatrix.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ability.h" />
+    <ClInclude Include="Base.h" />
+    <ClInclude Include="BlendState.h" />
+    <ClInclude Include="Block.h" />
+    <ClInclude Include="Bubble.h" />
+    <ClInclude Include="BubbleState.h" />
+    <ClInclude Include="ConstBuffer.h" />
+    <ClInclude Include="Context.h" />
+    <ClInclude Include="CrudeTimer.h" />
+    <ClInclude Include="DXCenter.h" />
+    <ClInclude Include="DXHead.h" />
+    <ClInclude Include="DXInput.h" />
+    <ClInclude Include="DXUtil.h" />
+    <ClInclude Include="InputLayout.h" />
+    <ClInclude Include="LGCenter.h" />
+    <ClInclude Include="LGHead.h" />
+    <ClInclude Include="LGInput.h" />
+    <ClInclude Include="LGUtil.h" />
+    <ClInclude Include="MessageDispatcher.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="PixelShader.h" />
+    <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="Point.h" />
+    <ClInclude Include="Prop.h" />
+    <ClInclude Include="Rect.h" />
+    <ClInclude Include="RenderTargetView.h" />
+    <ClInclude Include="Role.h" />
+    <ClInclude Include="RoleState.h" />
+    <ClInclude Include="SamplerState.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShaderResourceView.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="SwapChain.h" />
+    <ClInclude Include="Telegram.h" />
+    <ClInclude Include="Util.h" />
+    <ClInclude Include="VertexBuffer.h" />
+    <ClInclude Include="VertexShader.h" />
+    <ClInclude Include="ViewPort.h" />
+    <ClInclude Include="VPMatrix.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CAFB0EAE-9C28-47DF-A6AD-FC353C85BE0A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>CrazyArcade</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>..\..\Microsoft DirectX SDK (June 2010)\Include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <LibraryPath>..\..\Microsoft DirectX SDK (June 2010)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>..\..\Microsoft DirectX SDK (June 2010)\Include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <LibraryPath>..\..\Microsoft DirectX SDK (June 2010)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>dxguid.lib;dinput8.lib;dxerr.lib;d3d11.lib;d3dx11.lib;d3dcompiler.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>dxguid.lib;dinput8.lib;dxerr.lib;d3d11.lib;d3dx11.lib;d3dcompiler.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

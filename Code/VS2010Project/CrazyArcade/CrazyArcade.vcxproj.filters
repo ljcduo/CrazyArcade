@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\DX11">
+      <UniqueIdentifier>{a35e9db8-ffe3-4a8b-8fc0-35987c7497c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\游戏逻辑">
+      <UniqueIdentifier>{c7adf035-d38e-4cd7-a31a-31870d750382}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DX11">
+      <UniqueIdentifier>{d43a1a1b-aac6-4263-ac97-3cd0205e4106}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\游戏逻辑">
+      <UniqueIdentifier>{ca9c5330-321f-464c-a6d0-b772e330e6fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\通用">
+      <UniqueIdentifier>{4148c6c8-735d-4718-80f0-83d76ae4f3aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\通用">
+      <UniqueIdentifier>{ae60eb39-fbb4-4a03-aa6b-5f0fb4963a30}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Ability.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="Base.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="BlendState.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="VPMatrix.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewPort.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexShader.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="SwapChain.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderResourceView.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplerState.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTargetView.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUtil.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="DXCenter.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstBuffer.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="Bubble.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleState.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="Prop.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="LGCenter.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="LGInput.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="LGUtil.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="Role.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="RoleState.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="Rect.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScene.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageDispatcher.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelShader.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="Context.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="DXInput.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="InputLayout.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
+      <Filter>源文件\通用</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="CrudeTimer.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>源文件\游戏逻辑</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ability.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="Base.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="BlendState.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="Bubble.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="Role.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="Telegram.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleState.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="Prop.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScene.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="LGCenter.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="LGInput.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="LGHead.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstBuffer.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelShader.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderResourceView.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="SwapChain.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewPort.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="VPMatrix.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexShader.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="DXCenter.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="DXHead.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="DXInput.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUtil.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="InputLayout.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTargetView.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplerState.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="Context.h">
+      <Filter>头文件\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>头文件\通用</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageDispatcher.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="RoleState.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="LGUtil.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+    <ClInclude Include="CrudeTimer.h">
+      <Filter>头文件\游戏逻辑</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
