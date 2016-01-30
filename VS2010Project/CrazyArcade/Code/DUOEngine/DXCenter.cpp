@@ -50,8 +50,6 @@ bool DXCenter::LoadContent()
 
 	m_pContext->OMSetBlendState(m_pBlendState->GetBlendState(L"BS1"));
 
-
-
 	return true;
 }
 
@@ -73,15 +71,15 @@ void DXCenter::UnloadContent()
 
 void DXCenter::DXUpdate( float dt )
 {
+	//更新输入信息
+	InputUpdate();
+
 	//更新游戏逻辑
-
-	InputControl();
-
 	g_pLGCenter->Update();
 
 	//载入场景
 	//为当前场景的游戏对象创建着色器资源视图
-	vector<Object*> UnLoadObjVec = LGCenter::Instance()->GetCurrentScene()->GetUnLoadObject();
+	vector<Object*> UnLoadObjVec = g_pLGCenter->GetCurrentScene()->GetUnLoadObject();
 
 	for (vector<Object*>::const_iterator itr = UnLoadObjVec.begin(); itr != UnLoadObjVec.end(); itr++)
 	{
@@ -97,7 +95,6 @@ void DXCenter::DXUpdate( float dt )
 
 	LGCenter::Instance()->GetCurrentScene()->DirtyRectInfect();
 	LGCenter::Instance()->GetCurrentScene()->hadLoadAll();
-	
 	
 }
 
@@ -137,9 +134,7 @@ void DXCenter::DXRender()
 				currentSprite.GetCurrentRow(), currentSprite.GetCurrentCol(), 
 				(*itrObj)->GetSpriteRect(),(*itrRect));
 
-
 			m_pContext->IASetVertexBuffers<VertexPos>(m_pVertexBuffer->GetVB(L"VB1"));
-
 
 			XMMATRIX mvp = m_pVPMatrix->CreateMVP(L"VP1",
 				XMFLOAT2((*itrRect).GetX(),(*itrRect).GetY()));
@@ -152,10 +147,7 @@ void DXCenter::DXRender()
 
 		(*itrObj)->SetDirty(false);
 
-
 	}
-
-
 
 	LGCenter::Instance()->GetCurrentScene()->ClearDirtyObject();
 	
@@ -174,23 +166,22 @@ HWND const& DXCenter::GetHWnd() const
 	return m_hwnd;
 }
 
-void DXCenter::InputControl()
+void DXCenter::InputUpdate()
 {
 	m_pDXInput->BeginInputMsg();
 
 	unsigned char DXKeyCode[] = {DIK_UP, DIK_DOWN, DIK_LEFT, DIK_RIGHT,DIK_SPACE};
-	LGInput::E_KeyName LGKeyCode[] = {LGInput::E_KeyUp, LGInput::E_KeyDown, LGInput::E_KeyLeft, LGInput::E_KeyRight,
-										LGInput::E_KeySpace};
 
 	for (int i = 0; i != LGInput::E_KeyNum; i++ )
 	{
-		SYNCKeyBoard(DXKeyCode[i],LGKeyCode[i]);
+		SYNCKeyBoard(DXKeyCode[i],i);
 	}
 
 	m_pDXInput->EndInputMsg();
 }
 
-void DXCenter::SYNCKeyBoard(unsigned char DXKeyCode, LGInput::E_KeyName LGKeyCode)
+
+void DXCenter::SYNCKeyBoard(unsigned char DXKeyCode, int LGKeyCode)
 {
 	if (m_pDXInput->GetCurrentKeyState(DXKeyCode))
 	{

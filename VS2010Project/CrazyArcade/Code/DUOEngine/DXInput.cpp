@@ -158,3 +158,4 @@ bool DXInput::GetPrevMouseState(E_Mouse mouseCode)
 		return true;
 	return false;
 }
+

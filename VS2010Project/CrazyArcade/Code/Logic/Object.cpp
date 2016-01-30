@@ -1,9 +1,8 @@
 #include "Object.h"
 #include "Scene.h"
 #include "DUOEngine.h"
+#include "PlayScene.h"
 
-const Point Object::ORIGINPIX = Point(20,39);
-const int Object::MAPPIECEPIX = 40;
 int Object::NextID = 0;
 
 Sprite const& Object::GetCurrentSprite() const
@@ -54,17 +53,12 @@ void Object::SetObjName(std::wstring val)
 
 Object::~Object()
 {
-	g_pCurrentScene->InsertDetectDirtyRect(this->GetSpriteRect());
+	g_pLGCenter->GetCurrentScene()->InsertDetectDirtyRect(this->GetSpriteRect());
 }
 
 Sprite& Object::HavaCurrentSprite()
 {
 	return m_currentSprite;
-}
-
-Point Object::CalPixelPos(int mapPosX, int mapPosY)
-{
-	return Point(ORIGINPIX.GetX() + mapPosX * MAPPIECEPIX,ORIGINPIX.GetY() + mapPosY * MAPPIECEPIX);
 }
 
 int Object::GetPixelPosX() const
@@ -75,7 +69,7 @@ int Object::GetPixelPosX() const
 void Object::SetPixelPosX(float val)
 {
 	UpdateSpriteRect();
-	g_pCurrentScene->InsertDetectDirtyRect(m_SpriteRect);
+	g_pLGCenter->GetCurrentScene()->InsertDetectDirtyRect(m_SpriteRect);
 	m_pixelPos.SetX(val);
 	UpdateSpriteRect();
 	SetDirtySource();
@@ -89,16 +83,10 @@ int Object::GetPixelPosY() const
 void Object::SetPixelPosY(float val)
 {
 	UpdateSpriteRect();
-	g_pCurrentScene->InsertDetectDirtyRect(m_SpriteRect);
+	g_pLGCenter->GetCurrentScene()->InsertDetectDirtyRect(m_SpriteRect);
 	m_pixelPos.SetY(val);
 	UpdateSpriteRect();
 	SetDirtySource();
-}
-
-Point Object::CalMapPos(Point pixelPos)
-{
-	return Point( (pixelPos.GetX() + MAPPIECEPIX/2 - ORIGINPIX.GetX()) / MAPPIECEPIX ,
-		(pixelPos.GetY() + MAPPIECEPIX/2 - ORIGINPIX.GetY()) / MAPPIECEPIX );
 }
 
 bool Object::OrderCompare(Object* const& rhs)
@@ -149,7 +137,7 @@ bool Object::UpdateAnimateFrame(float deltaTime,const int* frame /*= NULL*/, int
 	{
 		/*SetDirtySource();*/
 		UpdateSpriteRect();
-		g_pCurrentScene->InsertDetectDirtyRect(this->GetSpriteRect());
+		g_pLGCenter->GetCurrentScene()->InsertDetectDirtyRect(this->GetSpriteRect());
 		if(frame == NULL)
 		{
 			//默认动画帧事件，Col向后移动
@@ -173,14 +161,7 @@ bool Object::UpdateAnimateFrame(float deltaTime,const int* frame /*= NULL*/, int
 void Object::UpdateRectCollision(int offsetX , int offsetY, int offsetWidth, int offsetHeight )
 {
 	m_RectCollision = LGRect(m_pixelPos.GetX() + offsetX,m_pixelPos.GetY() +offsetY,
-		static_cast<float>(MAPPIECEPIX) + offsetWidth,static_cast<float>(MAPPIECEPIX) + offsetHeight);
-}
-
-void Object::UpdateMapPos()
-{
-	Point MapPos = CalMapPos(m_pixelPos);
-	m_mapPosX = static_cast<int>(MapPos.GetX());
-	m_mapPosY = static_cast<int>(MapPos.GetY());
+		static_cast<float>(Util::MAPPIECEPIX) + offsetWidth,static_cast<float>(Util::MAPPIECEPIX) + offsetHeight);
 }
 
 int const& Object::GetObjID() const
@@ -214,9 +195,6 @@ std::vector<LGRect> const& Object::GetRectDirty() const
 
 void Object::SetRectDirty(LGRect val)
 {
-
-
-	
 	for (std::vector<LGRect>::const_iterator itr = m_RectDirty.begin(); itr != m_RectDirty.end(); itr++)
 	{
 		if(Util::CollisionInsideRect(val,*itr))
@@ -245,7 +223,7 @@ void Object::SetDirtySource(bool setRectDirty)
 	{
 		SetRectDirty(m_SpriteRect);
 	}
-	g_pCurrentScene->InsertDetectDirtyObject(this); //加入脏对象检测集合
+	g_pLGCenter->GetCurrentScene()->InsertDetectDirtyObject(this); //加入脏对象检测集合
 
 }
 
@@ -280,25 +258,5 @@ bool const& Object::GetVisiable() const
 void Object::SetVisiable(bool val)
 {
 	m_visiable = val;
-}
-
-int const& Object::GetMapPosX() const
-{
-	return m_mapPosX;
-}
-
-void Object::SetMapPosX(int val)
-{
-	m_mapPosX = val;
-}
-
-int const& Object::GetMapPosY() const
-{
-	return m_mapPosY;
-}
-
-void Object::SetMapPosY(int val)
-{
-	m_mapPosY = val;
 }
 

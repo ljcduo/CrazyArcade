@@ -1,5 +1,6 @@
 #include "GameUtil.h"
 #include "prop.h"
+#include "PlayScene.h"
 
 const float ANIMATESPEED = 5.0f;
 
@@ -22,7 +23,7 @@ Prop::Prop(int mapPosX, int mapPosY, std::wstring picPath, E_PropType propType)
 
 	m_dirty = false;
 
-	m_RectCollision = LGRect(m_pixelPos.GetX(),m_pixelPos.GetY(),static_cast<float>(MAPPIECEPIX),static_cast<float>(MAPPIECEPIX));
+	m_RectCollision = LGRect(m_pixelPos.GetX(),m_pixelPos.GetY(),static_cast<float>(Util::MAPPIECEPIX),static_cast<float>(Util::MAPPIECEPIX));
 
 	m_PropType = propType;
 }

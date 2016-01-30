@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Object.h"
+#include "GameObject.h"
 
-class Prop : public Object
+class Prop : public GameObject
 {
 public:
 	enum E_PropType{E_Popo,E_Power,E_Run1};

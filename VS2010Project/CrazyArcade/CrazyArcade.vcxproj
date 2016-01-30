@@ -37,6 +37,7 @@
     <ClInclude Include="Code\Logic\Bubble.h" />
     <ClInclude Include="Code\Logic\BubbleState.h" />
     <ClInclude Include="Code\Logic\CrudeTimer.h" />
+    <ClInclude Include="Code\Logic\GameObject.h" />
     <ClInclude Include="Code\Logic\GameUtil.h" />
     <ClInclude Include="Code\Logic\LGCenter.h" />
     <ClInclude Include="Code\Logic\LGHead.h" />
@@ -83,6 +84,7 @@
     <ClCompile Include="Code\Logic\Bubble.cpp" />
     <ClCompile Include="Code\Logic\BubbleState.cpp" />
     <ClCompile Include="Code\Logic\CrudeTimer.cpp" />
+    <ClCompile Include="Code\Logic\GameObject.cpp" />
     <ClCompile Include="Code\Logic\GameUtil.cpp" />
     <ClCompile Include="Code\Logic\LGCenter.cpp" />
     <ClCompile Include="Code\Logic\LGInput.cpp" />

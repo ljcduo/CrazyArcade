@@ -8,17 +8,15 @@
 
 using std::set;
 
+ MessageDispatcher::MessageDispatcher()
+ {
+	 m_GameTimer = new CrudeTimer;
+ }
 
-
-//------------------------------ Instance -------------------------------------
-
-MessageDispatcher* MessageDispatcher::Instance()
-{
-  static MessageDispatcher instance;
-
-  return &instance;
-}
-
+  MessageDispatcher::~MessageDispatcher()
+  {
+	  delete m_GameTimer;
+  }
 
 //----------------------------- Dispatch ---------------------------------
 //  
@@ -71,7 +69,7 @@ void MessageDispatcher::DispatchMessage(double  delay,
   //else calculate the time when the telegram should be dispatched
   else
   {
-    double CurrentTime = Clock->GetCurrentTime(); 
+    double CurrentTime = m_GameTimer->GetTimePass(); 
 
     telegram.DispatchTime = CurrentTime + delay;
 
@@ -90,7 +88,7 @@ void MessageDispatcher::DispatchMessage(double  delay,
 void MessageDispatcher::DispatchDelayedMessages()
 {
   //get current time
-  double CurrentTime = Clock->GetCurrentTime();
+  double CurrentTime = m_GameTimer->GetTimePass();
 
   //now peek at the queue to see if any telegrams need dispatching.
   //remove all telegrams from the front of the queue that have gone

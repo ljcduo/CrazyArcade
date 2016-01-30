@@ -34,7 +34,7 @@ bool BubbleWait::OnMessage(Bubble* agent, const Telegram& msg)
 	{
 	case Bubble::E_Explode:
 		{
-			g_pCurrentScene->DeleteObject(agent->GetObjID());
+			g_pLGCenter->GetCurrentScene()->DeleteObject(agent->GetObjID());
 			return true;
 		}
 	default:

@@ -3,9 +3,10 @@
 
 LGCenter::LGCenter() : m_deltatime(0)
 {
+	// 设置随机数种子
 	srand(GetTickCount());
-
-	m_pStateMachine = new StateMachine<LGCenter>(this);
+	// 设置状态机
+	SetStateMachine(new StateMachine<LGCenter>(this));
 }
 
 LGCenter::~LGCenter()
@@ -31,8 +32,11 @@ void LGCenter::SetCurrentScene(Scene* currentScene)
 
 void LGCenter::Update()
 {
+	// 更新FPS
 	GetFPS();
+	// 更新状态机里面的场景
 	m_pStateMachine->Update(m_deltatime);
+	// 处理电报消息
 	Dispatch->DispatchDelayedMessages();
 }
 
@@ -48,7 +52,6 @@ void LGCenter::SetStateMachine(StateMachine<LGCenter>* val)
 
 float LGCenter::GetFPS()
 {
-
 	//定义四个静态变量
 	static float  fps = 0; //我们需要计算的FPS值
 	static int    frameCount = 0;//帧数
@@ -67,13 +70,8 @@ float LGCenter::GetFPS()
 		m_deltatime = 1 / fps;
 		lastTime = currentTime; //将当前时间currentTime赋给持续时间lastTime，作为下一秒的基准时间
 
-
 		frameCount    = 0;//将本次帧数frameCount值清零
-
-
 	}
-
-
 
 	return fps;
 }

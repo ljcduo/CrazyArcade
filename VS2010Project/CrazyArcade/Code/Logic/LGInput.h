@@ -4,19 +4,20 @@
 
 class LGInput
 {
+public:
+	enum E_KeyName {E_KeyUp, E_KeyDown, E_KeyLeft, E_KeyRight, E_KeySpace, E_KeyNum};
 private:
 	LGInput();
 	~LGInput();
 	LGInput(const LGInput& rhs);
 	LGInput& operator=(const LGInput& rhs);
 public:
-	enum E_KeyName {E_KeyUp, E_KeyDown, E_KeyLeft, E_KeyRight,E_KeySpace,E_KeyNum};
 	static LGInput* Instance();
-	void SetCurrentKey(E_KeyName name, bool status);
-	void SetPrevKey(E_KeyName name, bool status);
-	bool const& GetCurrentKey(E_KeyName name) const;
-	bool const& GetPrevKey(E_KeyName name) const;
+	void SetCurrentKey(int name, bool status);
+	void SetPrevKey(int name, bool status);
+	bool const GetCurrentKey(E_KeyName name);
+	bool const GetPrevKey(E_KeyName name);
 private:
-	bool m_CurrentKey[E_KeyNum];
-	bool m_PrevKey[E_KeyNum];
+	std::vector<bool> m_CurrentKey;
+	std::vector<bool> m_PrevKey;
 };

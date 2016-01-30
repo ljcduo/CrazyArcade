@@ -16,7 +16,6 @@ public:
 	void Enter(LGCenter*);
 	void Execute(LGCenter*, float deltaTime = 0.0f);
 	void Exit(LGCenter*);
-
 public:
 	void ChangeMap(int posX, int posY, MapType::E_MapType blockType);
 	void Explosion(int x, int y, int power);

@@ -232,6 +232,9 @@
     <ClInclude Include="Code\DUOEngine\DUOEngine.h">
       <Filter>DUOEngine\Util</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Logic\GameObject.h">
+      <Filter>Game\Level\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\DUOEngine\DXInput.cpp">
@@ -353,6 +356,9 @@
     </ClCompile>
     <ClCompile Include="Code\Logic\GameUtil.cpp">
       <Filter>Game\GameUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\GameObject.cpp">
+      <Filter>Game\Level\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

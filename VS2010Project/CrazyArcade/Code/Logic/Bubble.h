@@ -1,12 +1,12 @@
 #pragma once
 
 #include "LGHead.h"
-#include "Object.h"
+#include "GameObject.h"
 #include "StateMachine.h"
 
 class Role;
 
-class Bubble : public Object
+class Bubble : public GameObject
 {
 public:
 	static const float FRAMESPEED;

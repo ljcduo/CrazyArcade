@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Object.h"
+#include "GameObject.h"
 #include "StateMachine.h"
 #include "Ability.h"
 
 class Prop;
 
-class Role : public Object
+class Role : public GameObject
 {
 public:
 	enum E_RoleDirection {E_Up, E_Down, E_Left, E_Right};

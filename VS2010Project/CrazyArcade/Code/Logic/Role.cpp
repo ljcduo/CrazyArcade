@@ -3,7 +3,7 @@
 #include "RoleState.h"
 #include "LGInput.h"
 #include "Prop.h"
-#include "Scene.h"
+#include "PlayScene.h"
 
 int const& Role::GetMapPosX() const
 {
@@ -92,7 +92,7 @@ void Role::Move(float deltaTime)
 		case E_Up:
 			{
 				float newY = m_pixelPos.GetY() + m_WalkSpeed * deltaTime;
-				float MaxY =  m_CollsionPixelPos.GetY() + Object::MAPPIECEPIX + 2;
+				float MaxY =  m_CollsionPixelPos.GetY() + Util::MAPPIECEPIX + 2;
 				if (drift && newY >= MaxY )
 				{
 					SetPixelPosY(MaxY);
@@ -106,7 +106,7 @@ void Role::Move(float deltaTime)
 		case E_Down:
 			{
 				float newY = m_pixelPos.GetY() - m_WalkSpeed * deltaTime;
-				float MinY =  m_CollsionPixelPos.GetY() - Object::MAPPIECEPIX + 2;
+				float MinY =  m_CollsionPixelPos.GetY() - Util::MAPPIECEPIX + 2;
 				if (drift && newY <= MinY )
 				{
 					SetPixelPosY(MinY);
@@ -120,7 +120,7 @@ void Role::Move(float deltaTime)
 		case E_Left:
 			{
 				float newX = m_pixelPos.GetX() - m_WalkSpeed * deltaTime;
-				float MinX =  m_CollsionPixelPos.GetX() - Object::MAPPIECEPIX - 4;
+				float MinX =  m_CollsionPixelPos.GetX() - Util::MAPPIECEPIX - 4;
 				if (drift && newX <= MinX )
 				{
 					SetPixelPosX(MinX);
@@ -134,7 +134,7 @@ void Role::Move(float deltaTime)
 		case E_Right:
 			{
 				float newX = m_pixelPos.GetX() + m_WalkSpeed * deltaTime;
-				float MaxX =  m_CollsionPixelPos.GetX() + Object::MAPPIECEPIX - 4;
+				float MaxX =  m_CollsionPixelPos.GetX() + Util::MAPPIECEPIX - 4;
 				if (drift && newX >= MaxX )
 				{
 					SetPixelPosX(MaxX);

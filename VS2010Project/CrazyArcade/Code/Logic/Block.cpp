@@ -2,7 +2,7 @@
 #include "prop.h"
 #include "Scene.h"
 #include "PlayScene.h"
-
+#include "LGCenter.h"
 
 Prop* const& Block::GetInsideProp() const
 {
@@ -145,14 +145,14 @@ Block::Block(int mapPosX, int mapPosY,MapType::E_MapType blockType) : m_pInsideP
 		}
 
 		m_pInsideProp = new Prop(m_mapPosX,m_mapPosY,picPath,propType);
-		g_pCurrentScene->InsertObject(m_pInsideProp);
+		g_pLGCenter->GetCurrentScene()->InsertObject(m_pInsideProp);
 
 	}
 }
 
 Block::~Block()
 {
-	if (g_pCurrentScene->GetGameEnd())
+	if (g_pLGCenter->GetCurrentScene()->GetGameEnd())
 	{
 		return;
 	}
@@ -160,12 +160,12 @@ Block::~Block()
 	if (m_pInsideProp)
 	{
 		m_pInsideProp->SetVisiable(true);
-		g_pCurrentScene->InsertDetectDirtyObject(m_pInsideProp);
-		static_cast<PlayScene*>(g_pCurrentScene)->ChangeMap(m_mapPosX,m_mapPosY,MapType::E_Prop);
+		g_pLGCenter->GetCurrentScene()->InsertDetectDirtyObject(m_pInsideProp);
+		static_cast<PlayScene*>(g_pLGCenter->GetCurrentScene())->ChangeMap(m_mapPosX,m_mapPosY,MapType::E_Prop);
 	}
 	else
 	{
-		static_cast<PlayScene*>(g_pCurrentScene)->ChangeMap(m_mapPosX,m_mapPosY,MapType::E_None);
+		static_cast<PlayScene*>(g_pLGCenter->GetCurrentScene())->ChangeMap(m_mapPosX,m_mapPosY,MapType::E_None);
 	}
 }
 

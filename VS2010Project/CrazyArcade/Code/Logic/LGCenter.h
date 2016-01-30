@@ -16,7 +16,7 @@ public:
 	Scene* GetCurrentScene();
 	void SetCurrentScene(Scene* currentScene);
 	void Update();
-	float GetFPS();
+	float GetFPS(); //¸üÐÂFPS
 private:
 	StateMachine<LGCenter>*  m_pStateMachine;
 	float m_deltatime;

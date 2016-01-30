@@ -23,7 +23,7 @@ public:
 	void SetGameEnd(bool val);
 	void hadLoadAll();
 	std::vector<Object*> const& GetUnLoadObject() const;
-	
+
 	//-------------------------------脏矩形算法-begin------------------------------
 	std::vector<Object*> const& GetAllDirtyObject();
 	void InsertDetectDirtyRect(LGRect dirtyRect); //矩形加入脏矩形检测集合
@@ -41,6 +41,7 @@ private:
 	std::vector<LGRect> m_allDetectDirtyRect;
 	std::vector<Object*> m_UnLoadObject;
 	std::vector<Object*> m_allDirtyObject;
+public:
+	static Scene* m_currentScene;
 };
 
-extern Scene* g_pCurrentScene;

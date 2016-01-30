@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Scene* g_pCurrentScene = 0;
+Scene* Scene::m_currentScene = 0;
 
 Scene::Scene() : m_gameEnd(false)
 {

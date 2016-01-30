@@ -24,8 +24,6 @@ PlayScene::~PlayScene()
 
 void PlayScene::Enter(LGCenter*)
 {
-	g_pCurrentScene = this;
-
 	//生成地图
 	CreateMapBlock();
 
@@ -35,7 +33,7 @@ void PlayScene::Enter(LGCenter*)
 
 
 	//载入道路
-	Object* pRoad = new Object(L"Road",Sprite(L"Resource\\road.png"),LayoutType::E_Roads,Object::ORIGINPIX);
+	Object* pRoad = new Object(L"Road",Sprite(L"Resource\\road.png"),LayoutType::E_Roads,Util::ORIGINPIX);
 	InsertObject(pRoad);
 
 	//载入方块
@@ -71,8 +69,6 @@ void PlayScene::Execute(LGCenter* lgCenter, float deltaTime)
 		(*itr)->Update(deltaTime);
 		++itr;
 	}
-
-	/*DirtyRectInfect();*/
 }
 
 void PlayScene::Exit(LGCenter*)
@@ -315,8 +311,6 @@ void PlayScene::KeyboardControl()
 			m_pPlayer->SetStandOnBubble(true);
 			Dispatch->DispatchMessage(5.0f,m_pPlayer->GetObjID(),bubble->GetObjID(),Bubble::E_Explode,NULL);
 			m_pPlayer->GetAbility()->Decrease(Ability::E_BubbleNum);
-			//bubble->FreshRectDirty();
-			//DirtyRectInfect();
 		}
 	}
 
@@ -359,9 +353,9 @@ void PlayScene::CollisionDetection(Role* role, float deltaTime)
 
 
 	//检测是否撞墙
-	LGRect wall = LGRect(Object::ORIGINPIX.GetX(),Object::ORIGINPIX.GetY(),
-		static_cast<float>(XLENGTH*Object::MAPPIECEPIX),
-		static_cast<float>(YLENGTH*Object::MAPPIECEPIX) );
+	LGRect wall = LGRect(Util::ORIGINPIX.GetX(),Util::ORIGINPIX.GetY(),
+		static_cast<float>(XLENGTH*Util::MAPPIECEPIX),
+		static_cast<float>(YLENGTH*Util::MAPPIECEPIX) );
 
 	if( !Util::CollisionInsideRect(role->GetRectCollision(),wall) )
 	{
@@ -371,14 +365,14 @@ void PlayScene::CollisionDetection(Role* role, float deltaTime)
 			role->SetPixelPosX(wall.GetX() - 4);
 		}
 
-		if (role->GetRectCollision().GetX() > wall.GetX() + wall.GetWidth() - Object::MAPPIECEPIX)
+		if (role->GetRectCollision().GetX() > wall.GetX() + wall.GetWidth() - Util::MAPPIECEPIX)
 		{
-			role->SetPixelPosX(wall.GetX() + wall.GetWidth() - Object::MAPPIECEPIX - 4);
+			role->SetPixelPosX(wall.GetX() + wall.GetWidth() - Util::MAPPIECEPIX - 4);
 		}
 
-		if (role->GetRectCollision().GetY() > wall.GetY() + wall.GetHeight() - Object::MAPPIECEPIX )
+		if (role->GetRectCollision().GetY() > wall.GetY() + wall.GetHeight() - Util::MAPPIECEPIX )
 		{
-			role->SetPixelPosY(wall.GetY() + wall.GetHeight() - Object::MAPPIECEPIX + 2);
+			role->SetPixelPosY(wall.GetY() + wall.GetHeight() - Util::MAPPIECEPIX + 2);
 		}
 
 		if (role->GetRectCollision().GetY() < wall.GetY() )
@@ -432,7 +426,7 @@ void PlayScene::CollisionDetection(Role* role, float deltaTime)
 					{
 						if (yOffset > OFFSET)
 						{
-							role->SetPixelPosY(static_cast<float>((*itr)->GetPixelPosY() + 2 + Object::MAPPIECEPIX));
+							role->SetPixelPosY(static_cast<float>((*itr)->GetPixelPosY() + 2 + Util::MAPPIECEPIX));
 							role->SetStandOnBubble(false);
 
 						}
@@ -442,7 +436,7 @@ void PlayScene::CollisionDetection(Role* role, float deltaTime)
 					{
 						if (yOffset < -OFFSET)
 						{
-							role->SetPixelPosY(static_cast<float>((*itr)->GetPixelPosY() + 2 - Object::MAPPIECEPIX));
+							role->SetPixelPosY(static_cast<float>((*itr)->GetPixelPosY() + 2 - Util::MAPPIECEPIX));
 							role->SetStandOnBubble(false);
 
 						}
@@ -452,7 +446,7 @@ void PlayScene::CollisionDetection(Role* role, float deltaTime)
 					{
 						if (xOffset < -OFFSET)
 						{
-							role->SetPixelPosX(static_cast<float>((*itr)->GetPixelPosX() - 4 - Object::MAPPIECEPIX));
+							role->SetPixelPosX(static_cast<float>((*itr)->GetPixelPosX() - 4 - Util::MAPPIECEPIX));
 							role->SetStandOnBubble(false);
 
 						}
@@ -462,7 +456,7 @@ void PlayScene::CollisionDetection(Role* role, float deltaTime)
 					{
 						if (xOffset > OFFSET)
 						{
-							role->SetPixelPosX(static_cast<float>((*itr)->GetPixelPosX() - 4 + Object::MAPPIECEPIX));
+							role->SetPixelPosX(static_cast<float>((*itr)->GetPixelPosX() - 4 + Util::MAPPIECEPIX));
 							role->SetStandOnBubble(false);
 
 						}

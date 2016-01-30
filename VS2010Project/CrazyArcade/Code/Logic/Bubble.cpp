@@ -76,9 +76,9 @@ Bubble::~Bubble()
 {
 	SAFE_DELETE(m_pStateMachine);
 
-	PlayScene* currentScene = dynamic_cast<PlayScene*>(g_pCurrentScene);
+	PlayScene* currentScene = dynamic_cast<PlayScene*>(g_pLGCenter->GetCurrentScene());
 
-	if (m_stateType == E_Wait && !g_pCurrentScene->GetGameEnd())
+	if (m_stateType == E_Wait && !g_pLGCenter->GetCurrentScene()->GetGameEnd())
 	{
 		currentScene->Explosion(m_mapPosX,m_mapPosY,m_power);
 		currentScene->ChangeMap(m_mapPosX,m_mapPosY,MapType::E_None);
@@ -88,7 +88,7 @@ Bubble::~Bubble()
 
 bool Bubble::UpdateAnimateFrame(float deltaTime, const int* frame /*= NULL*/, int frameCount /*= 0*/)
 {
-	PlayScene* currentScene = dynamic_cast<PlayScene*>(g_pCurrentScene);
+	PlayScene* currentScene = dynamic_cast<PlayScene*>(g_pLGCenter->GetCurrentScene());
 
 	switch(m_stateType)
 	{

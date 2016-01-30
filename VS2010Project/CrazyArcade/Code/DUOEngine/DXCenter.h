@@ -35,8 +35,9 @@ public:
 
 	HINSTANCE const& GetHInstance() const;
 	HWND const& GetHWnd() const;
-	void InputControl();
-	void SYNCKeyBoard(unsigned char DXKeyCode, LGInput::E_KeyName LGKeyCode);
+	void InputUpdate();
+
+	void SYNCKeyBoard(unsigned char DXKeyCode, int LGKeyCode);
 private:
 	//DX×ÊÔ´
 	PixelShader* m_pPixelShader;

@@ -1,5 +1,5 @@
 #include "LGInput.h"
-
+using namespace std;
 LGInput* LGInput::Instance()
 {
 	static LGInput instance;
@@ -8,7 +8,8 @@ LGInput* LGInput::Instance()
 
 LGInput::LGInput()
 {
-
+	m_CurrentKey.resize(E_KeyNum);
+	m_PrevKey.resize(E_KeyNum);
 }
 
 LGInput::~LGInput()
@@ -16,22 +17,22 @@ LGInput::~LGInput()
 
 }
 
-void LGInput::SetCurrentKey(E_KeyName name, bool status)
+void LGInput::SetCurrentKey(int name, bool status)
 {
 	m_CurrentKey[name] = status;
 }
 
-void LGInput::SetPrevKey(E_KeyName name, bool status)
+void LGInput::SetPrevKey(int name, bool status)
 {
 	m_PrevKey[name] = status;
 }
 
-bool const& LGInput::GetCurrentKey(E_KeyName name) const
+bool const LGInput::GetCurrentKey(E_KeyName name)
 {
 	return m_CurrentKey[name];
 }
 
-bool const& LGInput::GetPrevKey(E_KeyName name) const
+bool const LGInput::GetPrevKey(E_KeyName name)
 {
 	return m_PrevKey[name];
 }

@@ -1,11 +1,11 @@
 #pragma once
 
 #include "GameUtil.h"
-#include "Object.h"
+#include "GameObject.h"
 
 class Prop;
 
-class Block : public Object
+class Block : public GameObject
 {
 public:
 	Block(int posX, int posY,MapType::E_MapType blockType);
