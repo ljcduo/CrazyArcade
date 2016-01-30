@@ -19,8 +19,8 @@ class Dx11DemoBase
         virtual bool LoadContent();
         virtual void UnloadContent();
 
-        virtual void Update( float dt ) = 0;
-        virtual void Render() = 0;
+        virtual void DXUpdate( float dt ) = 0;
+        virtual void DXRender() = 0;
 
     protected:
         HINSTANCE m_hInstance;

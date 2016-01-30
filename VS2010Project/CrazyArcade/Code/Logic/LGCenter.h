@@ -20,3 +20,5 @@ private:
 	StateMachine<LGCenter>*  m_pStateMachine;
 	float m_deltatime;
 };
+
+#define g_pLGCenter LGCenter::Instance()

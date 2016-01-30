@@ -13,7 +13,7 @@ public:
 
 class BubbleWait : public BubbleState
 {
-	SINGLETON(BubbleWait);
+	SINGLETON_CTOR(BubbleWait);
 public:
 	void Enter(Bubble* bubble);
 	bool OnMessage(Bubble* agent, const Telegram& msg);
@@ -21,7 +21,7 @@ public:
 
 class BubbleExplosion : public BubbleState
 {
-	SINGLETON(BubbleExplosion);
+	SINGLETON_CTOR(BubbleExplosion);
 public:
 	void Enter(Bubble* bubble);
 };

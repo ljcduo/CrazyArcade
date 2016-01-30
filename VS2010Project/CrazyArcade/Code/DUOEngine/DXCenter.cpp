@@ -9,6 +9,7 @@
 using namespace std;
 
 const wstring SHADERPATH = L"Shader\\TextureMap.fx";
+SINGLETON_INHERIT_BASE_CPP(DXCenter);
 
 DXCenter::DXCenter() : m_pInputLayout(0),m_pPixelShader(0),m_pVertexShader(0),
 	m_pShaderResourceView(0),m_pSamplerState(0),m_pVertexBuffer(0),m_pConstBuffer(0),
@@ -70,7 +71,7 @@ void DXCenter::UnloadContent()
 	SAFE_DELETE(m_pContext);
 }
 
-void DXCenter::Update( float dt )
+void DXCenter::DXUpdate( float dt )
 {
 	//更新游戏逻辑
 
@@ -100,7 +101,7 @@ void DXCenter::Update( float dt )
 	
 }
 
-void DXCenter::Render()
+void DXCenter::DXRender()
 {
 	m_pContext->IASetInputLayout(m_pInputLayout->GetIL(L"IL1"));
 	m_pContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -108,47 +109,52 @@ void DXCenter::Render()
 	m_pContext->PSSetShader(m_pPixelShader->GetPS(L"PS1"));
 	m_pContext->PSSetSamplers(m_pSamplerState->GetSampler(L"SS1"));
 
+	Render();
+
+	Scene* currentScene = LGCenter::Instance()->GetCurrentScene();
+	CHECK_TO_RETURN(currentScene);
+
 	//将当前场景的游戏对象绘制
-	vector<Object*> currentObjVec = LGCenter::Instance()->GetCurrentScene()->GetAllDirtyObject();
+	vector<Object*> currentObjVec = currentScene->GetAllDirtyObject();
 	for (vector<Object*>::const_iterator itrObj = currentObjVec.begin(); itrObj != currentObjVec.end(); ++itrObj)
 	{
-			if (!(*itrObj)->GetVisiable()) //不可见物体不需要重绘
-			{
-				continue;
-			}
+		if (!(*itrObj)->GetVisiable()) //不可见物体不需要重绘
+		{
+			continue;
+		}
 
-			std::vector<LGRect> RectVec = (*itrObj)->GetRectDirty();
+		std::vector<LGRect> RectVec = (*itrObj)->GetRectDirty();
 
-			for (std::vector<LGRect>::const_iterator itrRect = RectVec.begin(); 
-				itrRect != RectVec.end(); ++itrRect)
-			{
-				Sprite const& currentSprite = (*itrObj)->GetCurrentSprite();
+		for (std::vector<LGRect>::const_iterator itrRect = RectVec.begin(); 
+			itrRect != RectVec.end(); ++itrRect)
+		{
+			Sprite const& currentSprite = (*itrObj)->GetCurrentSprite();
 
-				wstring currentPath = currentSprite.GetPicPath();
+			wstring currentPath = currentSprite.GetPicPath();
 
-				m_pContext->PSSetShaderResources(m_pShaderResourceView->GetSRV(currentPath));
+			m_pContext->PSSetShaderResources(m_pShaderResourceView->GetSRV(currentPath));
 
-				m_pContext->FreshPic<VertexPos>(m_pVertexBuffer->GetVB(L"VB1"), 
-					currentSprite.GetPicSizeWidth(), currentSprite.GetPicSizeHeight(),
-					currentSprite.GetCurrentRow(), currentSprite.GetCurrentCol(), 
-					(*itrObj)->GetSpriteRect(),(*itrRect));
-
-
-				m_pContext->IASetVertexBuffers<VertexPos>(m_pVertexBuffer->GetVB(L"VB1"));
+			m_pContext->FreshPic<VertexPos>(m_pVertexBuffer->GetVB(L"VB1"), 
+				currentSprite.GetPicSizeWidth(), currentSprite.GetPicSizeHeight(),
+				currentSprite.GetCurrentRow(), currentSprite.GetCurrentCol(), 
+				(*itrObj)->GetSpriteRect(),(*itrRect));
 
 
-				XMMATRIX mvp = m_pVPMatrix->CreateMVP(L"VP1",
-					XMFLOAT2((*itrRect).GetX(),(*itrRect).GetY()));
+			m_pContext->IASetVertexBuffers<VertexPos>(m_pVertexBuffer->GetVB(L"VB1"));
 
-				m_pContext->UpdateSubresource(m_pConstBuffer->GetCB(L"CB1") ,&mvp);
-				m_pContext->VSSetConstantBuffers(m_pConstBuffer->GetCB(L"CB1"));
 
-				m_pContext->Draw();
-			}
+			XMMATRIX mvp = m_pVPMatrix->CreateMVP(L"VP1",
+				XMFLOAT2((*itrRect).GetX(),(*itrRect).GetY()));
 
-			(*itrObj)->SetDirty(false);
+			m_pContext->UpdateSubresource(m_pConstBuffer->GetCB(L"CB1") ,&mvp);
+			m_pContext->VSSetConstantBuffers(m_pConstBuffer->GetCB(L"CB1"));
 
-		
+			m_pContext->Draw();
+		}
+
+		(*itrObj)->SetDirty(false);
+
+
 	}
 
 
@@ -160,6 +166,16 @@ void DXCenter::Render()
 	
 }
 
+
+void DXCenter::Update()
+{
+
+}
+
+void DXCenter::Render()
+{
+	
+}
 
 HINSTANCE const& DXCenter::GetHInstance() const
 {

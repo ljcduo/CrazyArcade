@@ -27,7 +27,7 @@ public:
 
 class IdleUp : public Idle
 {
-	SINGLETON(IdleUp);
+	SINGLETON_CTOR(IdleUp);
 public:
 	void Enter(Role* role);
 };
@@ -35,7 +35,7 @@ public:
 
 class IdleDown : public Idle
 {
-	SINGLETON(IdleDown);
+	SINGLETON_CTOR(IdleDown);
 public:
 	void Enter(Role* role);
 };
@@ -43,7 +43,7 @@ public:
 
 class IdleLeft : public Idle
 {
-	SINGLETON(IdleLeft);
+	SINGLETON_CTOR(IdleLeft);
 public:
 	void Enter(Role* role);
 };
@@ -51,7 +51,7 @@ public:
 
 class IdleRight : public Idle
 {
-	SINGLETON(IdleRight);
+	SINGLETON_CTOR(IdleRight);
 public:
 	void Enter(Role* role);
 };
@@ -68,7 +68,7 @@ public:
 
 class WalkUp : public Walk
 {
-	SINGLETON(WalkUp);
+	SINGLETON_CTOR(WalkUp);
 public:
 	virtual void Enter(Role* role);
 };
@@ -76,7 +76,7 @@ public:
 
 class WalkDown : public Walk
 {
-	SINGLETON(WalkDown);
+	SINGLETON_CTOR(WalkDown);
 public:
 	virtual void Enter(Role* role);
 };
@@ -84,7 +84,7 @@ public:
 
 class WalkLeft : public Walk
 {
-	SINGLETON(WalkLeft);
+	SINGLETON_CTOR(WalkLeft);
 public:
 	virtual void Enter(Role* role);
 };
@@ -92,7 +92,7 @@ public:
 
 class WalkRight : public Walk
 {
-	SINGLETON(WalkRight);
+	SINGLETON_CTOR(WalkRight);
 public:
 	virtual void Enter(Role* role);
 };

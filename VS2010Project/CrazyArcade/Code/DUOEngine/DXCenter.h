@@ -25,13 +25,13 @@ struct VertexPos
 
 class DXCenter : public Dx11DemoBase
 {
-	SINGLETON_NOCTOR(DXCenter);
+	SINGLETON_INHERIT_BASE_HEADER(DXCenter);
 public:
 	bool LoadContent();
 	void UnloadContent();
 
-	void Update( float dt );
-	void Render();
+	void DXUpdate( float dt );
+	void DXRender();
 
 	HINSTANCE const& GetHInstance() const;
 	HWND const& GetHWnd() const;
@@ -50,6 +50,10 @@ private:
 	BlendState* m_pBlendState;
 	Context* m_pContext;
 	DXInput* m_pDXInput;
+
+protected:
+	virtual void Update();
+	virtual void Render();
 };
 
-#define g_pCenter DXCenter::Instance()
+#define g_pDXCenter DXCenter::Instance()

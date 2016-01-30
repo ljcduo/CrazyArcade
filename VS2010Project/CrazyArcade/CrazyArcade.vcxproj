@@ -53,6 +53,7 @@
     <ClInclude Include="Code\Logic\State.h" />
     <ClInclude Include="Code\Logic\StateMachine.h" />
     <ClInclude Include="Code\Logic\Telegram.h" />
+    <ClInclude Include="GameCenter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\DUOEngine\Base.cpp" />
@@ -63,7 +64,7 @@
     <ClCompile Include="Code\DUOEngine\DXInput.cpp" />
     <ClCompile Include="Code\DUOEngine\DXUtil.cpp" />
     <ClCompile Include="Code\DUOEngine\InputLayout.cpp" />
-    <ClCompile Include="Code\DUOEngine\main.cpp" />
+    <ClCompile Include="Code\DUOEngine\WinMain.cpp" />
     <ClCompile Include="Code\DUOEngine\PixelShader.cpp" />
     <ClCompile Include="Code\DUOEngine\RenderTargetView.cpp" />
     <ClCompile Include="Code\DUOEngine\SamplerState.cpp" />
@@ -93,6 +94,8 @@
     <ClCompile Include="Code\Logic\RoleState.cpp" />
     <ClCompile Include="Code\Logic\Scene.cpp" />
     <ClCompile Include="Code\Logic\Sprite.cpp" />
+    <ClCompile Include="GameCenter.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CAFB0EAE-9C28-47DF-A6AD-FC353C85BE0A}</ProjectGuid>

@@ -5,9 +5,12 @@
 
 LRESULT CALLBACK WndProc( HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam );
 
+extern int main();
 
 int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine, int cmdShow )
 {
+	main();
+
     UNREFERENCED_PARAMETER( prevInstance );
     UNREFERENCED_PARAMETER( cmdLine );
 
@@ -39,7 +42,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine
     
 
     // Demo Initialize
-    bool result = g_pCenter->Initialize( hInstance, hwnd );
+    bool result = g_pDXCenter->Initialize( hInstance, hwnd );
 
     if( result == false )
         return -1;
@@ -55,12 +58,12 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine
         }
 
         // Update and Draw
-        g_pCenter->Update( 0.0f );
-        g_pCenter->Render( );
+        g_pDXCenter->DXUpdate( 0.0f );
+        g_pDXCenter->DXRender( );
     }
 
     // Demo Shutdown
-    g_pCenter->Shutdown( );
+    g_pDXCenter->Shutdown( );
 
     return static_cast<int>( msg.wParam );
 }
