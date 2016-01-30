@@ -1,15 +1,11 @@
 #include "LGCenter.h"
 #include "PlayScene.h"
 
-
-
 LGCenter::LGCenter() : m_deltatime(0)
 {
 	srand(GetTickCount());
 
 	m_pStateMachine = new StateMachine<LGCenter>(this);
-
-	m_pStateMachine->SetCurrentState(PlayScene::Instance());
 }
 
 LGCenter::~LGCenter()
@@ -25,7 +21,12 @@ LGCenter* LGCenter::Instance()
 
 Scene* LGCenter::GetCurrentScene()
 {
-	return static_cast<Scene*>(LGCenter::Instance()->GetStateMachine()->GetCurrentState());
+	return static_cast<Scene*>(GetStateMachine()->GetCurrentState());
+}
+
+void LGCenter::SetCurrentScene(Scene* currentScene)
+{
+	m_pStateMachine->SetCurrentState(currentScene);
 }
 
 void LGCenter::Update()

@@ -10,8 +10,6 @@
 
 using namespace std;
 
-
-
 PlayScene::PlayScene() 
 {
 
@@ -19,39 +17,15 @@ PlayScene::PlayScene()
 
 PlayScene::~PlayScene()
 {
-	m_gameEnd = true;
-	UnloadScene();
+	SetGameEnd(true);
 }
+
+
 
 void PlayScene::Enter(LGCenter*)
 {
 	g_pCurrentScene = this;
-	LoadScene();
-}
 
-void PlayScene::Execute(LGCenter* lgCenter, float deltaTime)
-{
-	KeyboardControl();
-	CollisionDetection(m_pPlayer, deltaTime);
-
-	vector<Object*> tempVec = m_allObject;
-
-	for (vector<Object*>::const_iterator itr = tempVec.begin(); itr != tempVec.end();)
-	{
-		(*itr)->Update(deltaTime);
-		++itr;
-	}
-
-	/*DirtyRectInfect();*/
-}
-
-void PlayScene::Exit(LGCenter*)
-{
-	UnloadScene();
-}
-
-void PlayScene::LoadScene()
-{
 	//生成地图
 	CreateMapBlock();
 
@@ -81,13 +55,29 @@ void PlayScene::LoadScene()
 
 	//载入角色
 	m_pPlayer = new Role(L"Player",4,5,Role::E_RedBaby);
-	InsertObject(m_pPlayer);
 
+	InsertObject(m_pPlayer);
 }
 
-void PlayScene::UnloadScene()
+void PlayScene::Execute(LGCenter* lgCenter, float deltaTime)
 {
-	Scene::UnloadScene();
+	KeyboardControl();
+	CollisionDetection(m_pPlayer, deltaTime);
+
+	vector<Object*> tempVec = HaveAllObject();
+
+	for (vector<Object*>::const_iterator itr = tempVec.begin(); itr != tempVec.end();)
+	{
+		(*itr)->Update(deltaTime);
+		++itr;
+	}
+
+	/*DirtyRectInfect();*/
+}
+
+void PlayScene::Exit(LGCenter*)
+{
+	
 }
 
 
@@ -405,7 +395,7 @@ void PlayScene::CollisionDetection(Role* role, float deltaTime)
 		return;
 	}
 
-	for (vector<Object*>::iterator itr = m_allObject.begin(); itr != m_allObject.end(); itr++)
+	for (vector<Object*>::iterator itr = HaveAllObject().begin(); itr != HaveAllObject().end(); itr++)
 	{
 		
 		

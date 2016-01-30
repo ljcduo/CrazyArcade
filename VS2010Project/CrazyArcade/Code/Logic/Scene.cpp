@@ -3,7 +3,6 @@
 #include <xfunctional>
 #include "Object.h"
 
-
 using namespace std;
 
 Scene* g_pCurrentScene = 0;
@@ -12,7 +11,6 @@ Scene::Scene() : m_gameEnd(false)
 {
 	
 }
-
 
 bool Scene::SameName(Object* const& lhs, wstring const& name)
 {
@@ -30,11 +28,6 @@ void Scene::InsertObject(Object* pInsertObj)
 }
 
 Scene::~Scene()
-{
-	UnloadScene();
-}
-
-void Scene::UnloadScene()
 {
 	vector<Object*> copyObjVec = m_allObject;
 	for (vector<Object*>::const_iterator itr = copyObjVec.begin(); itr != copyObjVec.end(); itr++)
@@ -69,9 +62,19 @@ Object* Scene::HavaObject(int objID)
 }
 
 
-std::vector<Object*> const& Scene::GetAllObject()
+std::vector<Object*> const& Scene::GetAllObject_Sort()
 {
 	sort(m_allObject.begin(),m_allObject.end(),mem_fun(&Object::OrderCompare));
+	return GetAllObject();
+}
+
+std::vector<Object*> const& Scene::GetAllObject()
+{
+	return m_allObject;
+}
+
+std::vector<Object*>& Scene::HaveAllObject()
+{
 	return m_allObject;
 }
 

@@ -1,3 +1,4 @@
+#include "GameUtil.h"
 #include "Role.h"
 #include "RoleState.h"
 #include "LGInput.h"

@@ -14,6 +14,7 @@ public:
 	StateMachine<LGCenter>* const& GetStateMachine() const;
 	void SetStateMachine(StateMachine<LGCenter>* val);
 	Scene* GetCurrentScene();
+	void SetCurrentScene(Scene* currentScene);
 	void Update();
 	float GetFPS();
 private:

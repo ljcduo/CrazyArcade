@@ -1,6 +1,8 @@
 #pragma once
 
+#include "GameUtil.h"
 #include "Object.h"
+
 class Prop;
 
 class Block : public Object

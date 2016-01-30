@@ -56,16 +56,7 @@ bool Util::isCollsionWithRect(LGRect rect1, LGRect rect2)
 	return true;  
 }  
 
-std::wstring Util::CreateMapName(int x, int y, std::wstring Obj)
-{
-	wchar_t buffer[30];
-	memset(buffer,0,sizeof(buffer));
-	int rolePosX = x;
-	int rolePoxY = y;
-	Obj += L"(%d,%d)";
-	wsprintfW(buffer, Obj.c_str(), rolePosX,rolePoxY);
-	return buffer;
-}
+
 
 bool CollisionInsideRect(LGRect inside, LGRect outside)
 {

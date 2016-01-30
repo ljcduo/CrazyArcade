@@ -1,6 +1,7 @@
 #include "Bubble.h"
 #include "BubbleState.h"
 #include "PlayScene.h"
+#include "DUOEngine.h"
 
 
 Bubble::Bubble(int mapPosX, int mapPosY, 

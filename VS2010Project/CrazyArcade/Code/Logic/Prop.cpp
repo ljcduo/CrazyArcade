@@ -1,3 +1,4 @@
+#include "GameUtil.h"
 #include "prop.h"
 
 const float ANIMATESPEED = 5.0f;

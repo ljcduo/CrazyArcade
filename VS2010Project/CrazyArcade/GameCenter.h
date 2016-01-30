@@ -8,5 +8,5 @@ SINGLETON_INHERIT_DERIVE(GameCenter);
 
 protected:
 	void Render();
-	void Update();
+	void Updte();
 };

@@ -8,9 +8,6 @@
     <Filter Include="DUOEngine">
       <UniqueIdentifier>{e980b48a-1554-446f-be68-50c2969761ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DUOEngine\Core">
-      <UniqueIdentifier>{4258ca78-b47d-4db5-8ba2-4253fbf1e54f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{4838abb0-9c3d-4a9e-b6fc-9a807994d345}</UniqueIdentifier>
     </Filter>
@@ -83,6 +80,21 @@
     <Filter Include="DUOEngine\Logic\Core">
       <UniqueIdentifier>{96bc4793-031c-46ab-811b-26961fc2fdd7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DUOEngine\Logic\Input">
+      <UniqueIdentifier>{f5be4825-1025-4a6e-bc35-e66773d04835}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\DirectX\DXUtil">
+      <UniqueIdentifier>{284b1df2-793a-44bf-af10-44aea5b05425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Util">
+      <UniqueIdentifier>{fc1253bc-b7bf-4573-8bbc-90968acbdb6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameUtil">
+      <UniqueIdentifier>{291ede58-ed77-42b1-af3d-0d318ecfcd65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\Entry">
+      <UniqueIdentifier>{4258ca78-b47d-4db5-8ba2-4253fbf1e54f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\DUOEngine\DXInput.h">
@@ -118,9 +130,6 @@
     <ClInclude Include="Code\Logic\Scene.h">
       <Filter>DUOEngine\Logic\Level\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\Util.h">
-      <Filter>DUOEngine\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Logic\Block.h">
       <Filter>Game\Level\Object</Filter>
     </ClInclude>
@@ -129,9 +138,6 @@
     </ClInclude>
     <ClInclude Include="Code\Logic\BubbleState.h">
       <Filter>Game\Manager\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\LGHead.h">
-      <Filter>Game\Entry</Filter>
     </ClInclude>
     <ClInclude Include="Code\Logic\RoleState.h">
       <Filter>Game\Manager\State</Filter>
@@ -145,16 +151,9 @@
     <ClInclude Include="Code\Logic\Role.h">
       <Filter>Game\Level\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Logic\LGUtil.h">
-      <Filter>Game\Entry</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\LGInput.h">
-      <Filter>Game\Entry</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Logic\Ability.h">
       <Filter>Game\Level\Attribute</Filter>
     </ClInclude>
-    <ClInclude Include="GameCenter.h" />
     <ClInclude Include="Code\DUOEngine\VPMatrix.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
@@ -197,13 +196,7 @@
     <ClInclude Include="Code\DUOEngine\ViewPort.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\DXUtil.h">
-      <Filter>DUOEngine\DirectX\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Code\DUOEngine\DXCenter.h">
-      <Filter>DUOEngine\DirectX\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\DUOEngine\DXHead.h">
       <Filter>DUOEngine\DirectX\Core</Filter>
     </ClInclude>
     <ClInclude Include="Code\DUOEngine\Base.h">
@@ -211,6 +204,33 @@
     </ClInclude>
     <ClInclude Include="Code\Logic\LGCenter.h">
       <Filter>DUOEngine\Logic\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\LGInput.h">
+      <Filter>DUOEngine\Logic\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\LGUtil.h">
+      <Filter>DUOEngine\Logic\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\DXUtil.h">
+      <Filter>DUOEngine\DirectX\DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\DXHead.h">
+      <Filter>DUOEngine\DirectX\DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\Util.h">
+      <Filter>DUOEngine\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\GameUtil.h">
+      <Filter>Game\GameUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\LGHead.h">
+      <Filter>Game\GameUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="Type.h">
+      <Filter>Game\GameUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DUOEngine\DUOEngine.h">
+      <Filter>DUOEngine\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -238,9 +258,6 @@
     <ClCompile Include="Code\Logic\Scene.cpp">
       <Filter>DUOEngine\Logic\Level\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Code\DUOEngine\Util.cpp">
-      <Filter>DUOEngine\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Code\Logic\Block.cpp">
       <Filter>Game\Level\Object</Filter>
     </ClCompile>
@@ -262,23 +279,11 @@
     <ClCompile Include="Code\Logic\Role.cpp">
       <Filter>Game\Level\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\LGInput.cpp">
-      <Filter>Game\Entry</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Logic\LGUtil.cpp">
-      <Filter>Game\Entry</Filter>
-    </ClCompile>
     <ClCompile Include="Code\Logic\Ability.cpp">
       <Filter>Game\Level\Attribute</Filter>
     </ClCompile>
     <ClCompile Include="Code\DUOEngine\WinMain.cpp">
-      <Filter>DUOEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Game\Entry</Filter>
-    </ClCompile>
-    <ClCompile Include="GameCenter.cpp">
-      <Filter>Game\Entry</Filter>
+      <Filter>DUOEngine\Entry</Filter>
     </ClCompile>
     <ClCompile Include="Code\DUOEngine\BlendState.cpp">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
@@ -325,14 +330,29 @@
     <ClCompile Include="Code\DUOEngine\DXCenter.cpp">
       <Filter>DUOEngine\DirectX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Code\DUOEngine\DXUtil.cpp">
-      <Filter>DUOEngine\DirectX\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Code\DUOEngine\Base.cpp">
       <Filter>DUOEngine\DirectX\Core</Filter>
     </ClCompile>
     <ClCompile Include="Code\Logic\LGCenter.cpp">
       <Filter>DUOEngine\Logic\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\LGInput.cpp">
+      <Filter>DUOEngine\Logic\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\main.cpp">
+      <Filter>Game\Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\LGUtil.cpp">
+      <Filter>DUOEngine\Logic\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\DXUtil.cpp">
+      <Filter>DUOEngine\DirectX\DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DUOEngine\Util.cpp">
+      <Filter>DUOEngine\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Logic\GameUtil.cpp">
+      <Filter>Game\GameUtil</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

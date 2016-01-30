@@ -9,7 +9,7 @@
 using namespace std;
 
 const wstring SHADERPATH = L"Shader\\TextureMap.fx";
-SINGLETON_INHERIT_BASE_CPP(DXCenter);
+
 
 DXCenter::DXCenter() : m_pInputLayout(0),m_pPixelShader(0),m_pVertexShader(0),
 	m_pShaderResourceView(0),m_pSamplerState(0),m_pVertexBuffer(0),m_pConstBuffer(0),
@@ -77,7 +77,7 @@ void DXCenter::DXUpdate( float dt )
 
 	InputControl();
 
-	LGCenter::Instance()->Update();
+	g_pLGCenter->Update();
 
 	//载入场景
 	//为当前场景的游戏对象创建着色器资源视图
@@ -108,8 +108,6 @@ void DXCenter::DXRender()
 	m_pContext->VSSetShader(m_pVertexShader->GetVS(L"VS1"));
 	m_pContext->PSSetShader(m_pPixelShader->GetPS(L"PS1"));
 	m_pContext->PSSetSamplers(m_pSamplerState->GetSampler(L"SS1"));
-
-	Render();
 
 	Scene* currentScene = LGCenter::Instance()->GetCurrentScene();
 	CHECK_TO_RETURN(currentScene);
@@ -163,17 +161,6 @@ void DXCenter::DXRender()
 	
 
 	m_pSwapChain->Present(L"SC1");
-	
-}
-
-
-void DXCenter::Update()
-{
-
-}
-
-void DXCenter::Render()
-{
 	
 }
 

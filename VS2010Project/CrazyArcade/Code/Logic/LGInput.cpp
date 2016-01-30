@@ -1,8 +1,5 @@
 #include "LGInput.h"
 
-
-
-
 LGInput* LGInput::Instance()
 {
 	static LGInput instance;

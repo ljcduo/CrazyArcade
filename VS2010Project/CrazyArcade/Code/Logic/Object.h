@@ -10,7 +10,7 @@ public:
 	static const Point ORIGINPIX;	//方块原点的像素位置
 	static const int MAPPIECEPIX;	//地图块的像素大小
 	Object(std::wstring objName, Sprite currentSprite,int layout, Point pixelPos, 
-		ObjectType::E_ObjectType objType = ObjectType::E_ObjCommon);
+		int objType = 0);
 	Object();
 	virtual ~Object();
 	Sprite const& GetCurrentSprite() const;
@@ -31,8 +31,8 @@ public:
 	void SetPixelPosY(float val);
 	bool OrderCompare(Object* const& rhs);
 	LGRect const& GetRectCollision() const;
-	ObjectType::E_ObjectType const& GetObjectType() const;
-	void SetObjectType(ObjectType::E_ObjectType val);
+	int const& GetObjectType() const;
+	void SetObjectType(int val);
 	virtual void Update(float deltaTime);
 	virtual bool UpdateAnimateFrame(float deltaTime, const int* frame = NULL, int frameCount = 0);	//当动画循环一遍，返回true
 	void UpdateRectCollision(int offsetX = 0, int offsetY = 0, int offsetWidth = 0, int offsetHeight = 0);
@@ -62,7 +62,7 @@ protected:
 	std::wstring m_objName;
 	Point m_pixelPos;
 	LGRect m_RectCollision;
-	ObjectType::E_ObjectType m_ObjectType;
+	int m_ObjectType;
 	static int NextID;
 	int m_ID;
 	bool m_dirty;

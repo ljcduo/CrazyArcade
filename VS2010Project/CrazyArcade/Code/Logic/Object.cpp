@@ -1,5 +1,6 @@
 #include "Object.h"
 #include "Scene.h"
+#include "DUOEngine.h"
 
 const Point Object::ORIGINPIX = Point(20,39);
 const int Object::MAPPIECEPIX = 40;
@@ -16,7 +17,7 @@ void Object::SetCurrentSprite(IN Sprite val)
 }
 
 Object::Object(std::wstring objName, Sprite currentSprite,int layout, Point pixelPos, 
-	ObjectType::E_ObjectType objType /*= E_Common*/) : 
+	int objType /*= 0*/) : 
 m_objName(objName),m_currentSprite(currentSprite),m_Layout(layout),
 	m_pixelPos(pixelPos),m_ObjectType(objType),m_addToOneSum(0.0f),m_frameIndex(0),m_ID(NextID),m_dirty(true),
 	m_hasInit(false),m_visiable(true)
@@ -122,12 +123,12 @@ LGRect const& Object::GetRectCollision() const
 	return m_RectCollision;
 }
 
-ObjectType::E_ObjectType const& Object::GetObjectType() const
+int const& Object::GetObjectType() const
 {
 	return m_ObjectType;
 }
 
-void Object::SetObjectType(ObjectType::E_ObjectType val)
+void Object::SetObjectType(int val)
 {
 	m_ObjectType = val;
 }
