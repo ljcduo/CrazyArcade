@@ -309,7 +309,7 @@ void PlayScene::KeyboardControl()
 			InsertObject(bubble);
 			ChangeMap(rolePosX,rolePosY,MapType::E_Bubble);
 			m_pPlayer->SetStandOnBubble(true);
-			MessageMachine->MakeMessage(5.0f,m_pPlayer->GetObjID(),bubble->GetObjID(),Bubble::E_Explode,NULL);
+			g_pMessageMachine->MakeMessage(5.0f,m_pPlayer->GetObjID(),bubble->GetObjID(),Bubble::E_Explode,NULL);
 			m_pPlayer->GetAbility()->Decrease(Ability::E_BubbleNum);
 		}
 	}

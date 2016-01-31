@@ -54,7 +54,7 @@ Object* Scene::HavaObject(int objID)
 
 void Scene::SortObject(std::vector<Object*>* objVec)
 {
-	sort(objVec.begin(),objVec.end(),mem_fun(&Object::OrderCompare));
+	sort(objVec->begin(),objVec->end(),mem_fun(&Object::OrderCompare));
 }
 
 std::vector<Object*> const& Scene::GetAllObject()
@@ -145,27 +145,10 @@ void Scene::SetGameEnd(bool val)
 
 void Scene::DirtyObject()
 {
-	if (m_DitryRectVec.size() == 0 /*&& m_allDirtyObject.size() == 0*/)
+	if (m_DitryRectVec.size() == 0)
 	{
 		return;
 	}
-
-	//vector<Object*> allCleanObject;
-
-	//检测未脏对象
-	//for (vector<Object*>::const_iterator itr = m_allObject.begin(); itr != m_allObject.end(); itr++)
-	//{
-	//	if (!(*itr)->GetDirty())
-	//	{
-	//		allCleanObject.push_back((*itr));
-	//	}
-	//}
-
-	//将脏对象的精灵矩形导出到脏矩形检测列表
-	//for (vector<Object*>::const_iterator itr = m_allDirtyObject.begin(); itr != m_allDirtyObject.end(); itr++)
-	//{
-	//	InsertDetectDirtyRect((*itr)->GetSpriteRect());
-	//}
 
 	//现在要将含有脏矩形列表中的矩形“污染”所有对象
 	for (vector<Object*>::const_iterator itr = HaveAllObject().begin(); itr != HaveAllObject().end(); itr++)
