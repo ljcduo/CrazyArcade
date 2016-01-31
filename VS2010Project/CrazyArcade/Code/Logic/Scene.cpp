@@ -2,23 +2,13 @@
 #include <algorithm>
 #include <xfunctional>
 #include "Object.h"
+#include "LGCenter.h"
 
 using namespace std;
-
-Scene* Scene::m_currentScene = 0;
 
 Scene::Scene() : m_gameEnd(false)
 {
 	
-}
-
-bool Scene::SameName(Object* const& lhs, wstring const& name)
-{
-	if (lhs->GetObjName() == name)
-	{
-		return true;
-	}
-	return false;
 }
 
 void Scene::InsertObject(Object* pInsertObj)
@@ -62,10 +52,9 @@ Object* Scene::HavaObject(int objID)
 }
 
 
-std::vector<Object*> const& Scene::GetAllObject_Sort()
+void Scene::SortObject(std::vector<Object*>* objVec)
 {
-	sort(m_allObject.begin(),m_allObject.end(),mem_fun(&Object::OrderCompare));
-	return GetAllObject();
+	sort(objVec.begin(),objVec.end(),mem_fun(&Object::OrderCompare));
 }
 
 std::vector<Object*> const& Scene::GetAllObject()
@@ -154,60 +143,66 @@ void Scene::SetGameEnd(bool val)
 	m_gameEnd = val;
 }
 
-void Scene::DirtyRectInfect()
+void Scene::DirtyObject()
 {
-	if (m_allDetectDirtyRect.size() == 0 && m_allDirtyObject.size() == 0)
+	if (m_DitryRectVec.size() == 0 /*&& m_allDirtyObject.size() == 0*/)
 	{
 		return;
 	}
 
-	vector<Object*> allCleanObject;
+	//vector<Object*> allCleanObject;
 
 	//检测未脏对象
-	for (vector<Object*>::const_iterator itr = m_allObject.begin(); itr != m_allObject.end(); itr++)
-	{
-		if (!(*itr)->GetDirty())
-		{
-			allCleanObject.push_back((*itr));
-		}
-	}
+	//for (vector<Object*>::const_iterator itr = m_allObject.begin(); itr != m_allObject.end(); itr++)
+	//{
+	//	if (!(*itr)->GetDirty())
+	//	{
+	//		allCleanObject.push_back((*itr));
+	//	}
+	//}
 
 	//将脏对象的精灵矩形导出到脏矩形检测列表
-	for (vector<Object*>::const_iterator itr = m_allDirtyObject.begin(); itr != m_allDirtyObject.end(); itr++)
-	{
-		InsertDetectDirtyRect((*itr)->GetSpriteRect());
-	}
+	//for (vector<Object*>::const_iterator itr = m_allDirtyObject.begin(); itr != m_allDirtyObject.end(); itr++)
+	//{
+	//	InsertDetectDirtyRect((*itr)->GetSpriteRect());
+	//}
 
-	//现在要将含有脏矩形列表中的矩形“感染”未脏对象
-	for (vector<Object*>::const_iterator itr = allCleanObject.begin(); itr != allCleanObject.end(); itr++)
+	//现在要将含有脏矩形列表中的矩形“污染”所有对象
+	for (vector<Object*>::const_iterator itr = HaveAllObject().begin(); itr != HaveAllObject().end(); itr++)
 	{
 		bool dirtyObj = false;
-		for (vector<LGRect>::const_iterator itr2 = m_allDetectDirtyRect.begin();
-			itr2 != m_allDetectDirtyRect.end();
+		for (vector<LGRect>::const_iterator itr2 = m_DitryRectVec.begin();
+			itr2 != m_DitryRectVec.end();
 			++itr2)
 		{
 			if (Util::isCollsionWithRect((*itr)->GetSpriteRect(),*itr2))
 			{
-				(*itr)->SetRectDirty(Util::CalCrossRect(*itr2,(*itr)->GetSpriteRect()));
+				(*itr)->ReceiveDirty(Util::CalCrossRect(*itr2,(*itr)->GetSpriteRect()));
 				dirtyObj = true;
 			}
 		}
 		if (dirtyObj)
 		{
-			InsertDetectDirtyObject(*itr);
+			InsertDirtyObject(*itr);
 		}
 	}
 
-	ClearDirtyRect();
 }
 
-void Scene::ClearDirtyRect()
+void Scene::ClearDirty()
 {
-	m_allDetectDirtyRect.clear();
-}
-
-void Scene::ClearDirtyObject()
-{
+	// 清除场景中的脏矩形
+	m_DitryRectVec.clear();
+	// 清除脏对象自身的脏部位
+	if (g_pLGCenter->GetCurrentScene())
+	{
+		vector<Object*> currentObjVec = g_pLGCenter->GetCurrentScene()->GetAllDirtyObject();
+		for (vector<Object*>::const_iterator itrObj = currentObjVec.begin(); itrObj != currentObjVec.end(); ++itrObj)
+		{
+			(*itrObj)->clearDirty();
+		}
+	}
+	// 清除标记的脏对象
 	m_allDirtyObject.clear();
 }
 
@@ -223,19 +218,19 @@ void Scene::hadLoadAll()
 
 std::vector<Object*> const& Scene::GetAllDirtyObject()
 {
-	sort(m_allDirtyObject.begin(),m_allDirtyObject.end(),mem_fun(&Object::OrderCompare));
+	SortObject(&m_allDirtyObject);
 	return m_allDirtyObject;
 }
 
-void Scene::InsertDetectDirtyObject(Object* obj)
+void Scene::InsertDirtyObject(Object* obj)
 {
 	m_allDirtyObject.push_back(obj);
 }
 
-void Scene::InsertDetectDirtyRect(LGRect dirtyRect)
+void Scene::DirtyScene(LGRect dirtyRect)
 {
 	
-	for (std::vector<LGRect>::const_iterator itr = m_allDetectDirtyRect.begin(); itr != m_allDetectDirtyRect.end(); )
+	for (std::vector<LGRect>::const_iterator itr = m_DitryRectVec.begin(); itr != m_DitryRectVec.end(); )
 	{
 		if(Util::CollisionInsideRect(dirtyRect,*itr))
 		{
@@ -243,8 +238,8 @@ void Scene::InsertDetectDirtyRect(LGRect dirtyRect)
 		}
 		else if(Util::CollisionInsideRect(*itr,dirtyRect))
 		{
-			m_allDetectDirtyRect.erase(itr);
-			itr = m_allDetectDirtyRect.begin();
+			m_DitryRectVec.erase(itr);
+			itr = m_DitryRectVec.begin();
 		}
 		else
 		{
@@ -252,5 +247,5 @@ void Scene::InsertDetectDirtyRect(LGRect dirtyRect)
 		}
 	}
 
-	m_allDetectDirtyRect.push_back(dirtyRect);
+	m_DitryRectVec.push_back(dirtyRect);
 }

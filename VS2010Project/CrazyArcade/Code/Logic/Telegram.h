@@ -1,47 +1,21 @@
-#ifndef TELEGRAM_H
-#define TELEGRAM_H
-//------------------------------------------------------------------------
-//
-//  Name:   Telegram.h
-//
-//  Desc:   This defines a telegram. A telegram is a data structure that
-//          records information required to dispatch messages. Messages 
-//          are used by game agents to communicate with each other.
-//
-//  Author: Mat Buckland (fup@ai-junkie.com)
-//
-//------------------------------------------------------------------------
+#pragma once
 #include <iostream>
 #include <math.h>
 #include "LGHead.h"
 
 struct Telegram
 {
-	//the entity that sent this telegram
 	int          Sender;
-
-	//the entity that is to receive this telegram
 	int          Receiver;
-
-	//the message itself. These are all enumerated in the file
-	//"MessageTypes.h"
 	int          Msg;
-
-	//messages can be dispatched immediately or delayed for a specified amount
-	//of time. If a delay is necessary this field is stamped with the time 
-	//the message should be dispatched.
-	double       DispatchTime;
-
-	//any additional information that may accompany the message
-	void*        ExtraInfo;
-
+	double       DispatchTime;	// 设置消息发送的时间，可以是立即也可以是多久之后的时间点
+	void*        ExtraInfo;		// 额外的消息
 
 	Telegram():DispatchTime(-1),
 		Sender(-1),
 		Receiver(-1),
 		Msg(-1)
 	{}
-
 
 	Telegram(double time,
 		int    sender,
@@ -56,13 +30,8 @@ struct Telegram
 
 };
 
-
-//these telegrams will be stored in a priority queue. Therefore the >
-//operator needs to be overloaded so that the PQ can sort the telegrams
-//by time priority. Note how the times must be smaller than
-//SmallestDelay apart before two Telegrams are considered unique.
+// 电报被储存在优先队列，当重载比较操作符时，这个值决定了电报的时间是否是相等的
 const double SmallestDelay = 0.25;
-
 
 inline bool operator==(const Telegram& t1, const Telegram& t2)
 {
@@ -78,20 +47,8 @@ inline bool operator<(const Telegram& t1, const Telegram& t2)
 	{
 		return false;
 	}
-
 	else
 	{
 		return  (t1.DispatchTime < t2.DispatchTime);
 	}
 }
-
-//handy helper function for dereferencing the ExtraInfo field of the Telegram 
-//to the required type.
-template <class T>
-inline T DereferenceToType(void* p)
-{
-	return *(T*)(p);
-}
-
-
-#endif

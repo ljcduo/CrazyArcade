@@ -29,12 +29,6 @@ public:
 	int const& GetPower() const;
 	void SetPower(int val);
 
-	int const& GetMapPosX() const;
-	void SetMapPosX(int val);
-
-	int const& GetMapPosY() const;
-	void SetMapPosY(int val);
-
 	Role* const& GetRole() const;
 	void SetRole(Role* val);
 private:

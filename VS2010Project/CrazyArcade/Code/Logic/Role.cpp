@@ -5,32 +5,10 @@
 #include "Prop.h"
 #include "PlayScene.h"
 
-int const& Role::GetMapPosX() const
-{
-	return m_mapPosX;
-}
-
-void Role::SetMapPosX(int val)
-{
-	m_mapPosX = val;
-}
-
-int const& Role::GetMapPosY() const
-{
-	return m_mapPosY;
-}
-
-void Role::SetMapPosY(int val)
-{
-	m_mapPosY = val;
-}
-
 Role::Role(std::wstring objName, int mapPosX, int mapPosY, E_RoleSpriteType spriteType)
-	:m_direction(E_Down),m_CanMove(true)
+	:GameObject(mapPosX,mapPosY),m_direction(E_Down),m_CanMove(true)
 {
-	m_mapPosX = mapPosX;
-	m_mapPosY = mapPosY;
-
+	
 	m_objName = objName;
 
 	switch(spriteType)
@@ -197,7 +175,7 @@ void Role::SetStandOnBubble(bool val)
 {
 	if (val == true)
 	{
-		m_standOnBubble = Point(m_mapPosX,m_mapPosY);
+		m_standOnBubble = Point(GetMapPosX(),GetMapPosY());
 	}
 	else
 	{

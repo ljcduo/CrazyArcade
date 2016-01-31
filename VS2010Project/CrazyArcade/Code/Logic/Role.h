@@ -21,12 +21,6 @@ public:
 	bool const& GetCanMove() const;
 	void SetCanMove(bool val);
 
-	int const& GetMapPosX() const;
-	void SetMapPosX(int val);
-
-	int const& GetMapPosY() const;
-	void SetMapPosY(int val);
-
 	float const& GetWalkSpeed() const;
 	void SetWalkSpeed(float val);
 

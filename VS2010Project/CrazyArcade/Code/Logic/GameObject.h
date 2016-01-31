@@ -4,12 +4,19 @@
 class GameObject : public Object
 {
 public:
+	GameObject();
+	GameObject(int mapPosX, int mapPoxY);
 	Point CalPixelPos(int mapPosX, int mapPosY);
 	Point CalMapPos(Point pixelPos);
 	void UpdateMapPos();
-	virtual int const& GetMapPosX() const;
-	virtual void SetMapPosX(int val);
-	virtual int const& GetMapPosY() const;
-	virtual void SetMapPosY(int val);
+	int const& GetMapPosX() const;
+	void SetMapPosX(int val);
+	int const& GetMapPosY() const;
+	void SetMapPosY(int val);
+	
+private:
+	//原点在左下角
+	int m_mapPosX;
+	int m_mapPosY;
 };
 

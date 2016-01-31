@@ -13,15 +13,11 @@ using std::set;
 	 m_GameTimer = new CrudeTimer;
  }
 
-  MessageDispatcher::~MessageDispatcher()
-  {
-	  delete m_GameTimer;
-  }
+ MessageDispatcher::~MessageDispatcher()
+ {
+	delete m_GameTimer;
+ }
 
-//----------------------------- Dispatch ---------------------------------
-//  
-//  see description in header
-//------------------------------------------------------------------------
 void MessageDispatcher::Discharge(Object* pReceiver,
                                   const Telegram& telegram)
 {
@@ -38,7 +34,7 @@ void MessageDispatcher::Discharge(Object* pReceiver,
 //  routes the message to the correct agent (if no delay) or stores
 //  in the message queue to be dispatched at the correct time
 //------------------------------------------------------------------------
-void MessageDispatcher::DispatchMessage(double  delay,
+void MessageDispatcher::MakeMessage(double  delay,
                                         int    sender,
                                         int    receiver,
                                         int    msg,
@@ -85,9 +81,8 @@ void MessageDispatcher::DispatchMessage(double  delay,
 //  This function dispatches any telegrams with a timestamp that has
 //  expired. Any dispatched telegrams are removed from the queue
 //------------------------------------------------------------------------
-void MessageDispatcher::DispatchDelayedMessages()
+void MessageDispatcher::Update()
 {
-  //get current time
   double CurrentTime = m_GameTimer->GetTimePass();
 
   //now peek at the queue to see if any telegrams need dispatching.

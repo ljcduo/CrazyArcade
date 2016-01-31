@@ -6,7 +6,7 @@
 
 Bubble::Bubble(int mapPosX, int mapPosY, 
 	E_StateType bubbleType /*= E_Wait*/ , E_Direction direction /*= E_None*/,int power /*= 0*/, Role* role /*= NULL*/) 
-	:m_stateType(bubbleType),m_power(power),m_direction(direction),m_role(role)
+	:GameObject(mapPosX,mapPosY),m_stateType(bubbleType),m_power(power),m_direction(direction),m_role(role)
 {
 	std::wstring bubbleName = Util::CreateMapName(mapPosX,mapPosY,L"Bubble");
 
@@ -80,8 +80,8 @@ Bubble::~Bubble()
 
 	if (m_stateType == E_Wait && !g_pLGCenter->GetCurrentScene()->GetGameEnd())
 	{
-		currentScene->Explosion(m_mapPosX,m_mapPosY,m_power);
-		currentScene->ChangeMap(m_mapPosX,m_mapPosY,MapType::E_None);
+		currentScene->Explosion(GetMapPosX(),GetMapPosY(),m_power);
+		currentScene->ChangeMap(GetMapPosX(),GetMapPosY(),MapType::E_None);
 		m_role->GetAbility()->Crease(Ability::E_BubbleNum);
 	}
 }
@@ -102,7 +102,7 @@ bool Bubble::UpdateAnimateFrame(float deltaTime, const int* frame /*= NULL*/, in
 			const int frame[] = {0,1,2,3,0,1,2,3,0,4,4,4};
 			if(Object::UpdateAnimateFrame(deltaTime,frame,ARRAYSIZE(frame)))
 			{
-				currentScene->ChangeMap(m_mapPosX,m_mapPosY,MapType::E_None);
+				currentScene->ChangeMap(GetMapPosX(),GetMapPosY(),MapType::E_None);
 				currentScene->DeleteObject(this->GetObjID());
 				
 				return true;
@@ -114,7 +114,7 @@ bool Bubble::UpdateAnimateFrame(float deltaTime, const int* frame /*= NULL*/, in
 			const int frame[] = {3,4,3,4,3,4,8,9,10,11,12,13};
 			if(Object::UpdateAnimateFrame(deltaTime,frame,ARRAYSIZE(frame)))
 			{
-				currentScene->ChangeMap(m_mapPosX,m_mapPosY,MapType::E_None);
+				currentScene->ChangeMap(GetMapPosX(),GetMapPosY(),MapType::E_None);
 				currentScene->DeleteObject(this->GetObjID());
 				return true;
 			}
@@ -125,7 +125,7 @@ bool Bubble::UpdateAnimateFrame(float deltaTime, const int* frame /*= NULL*/, in
 			const int frame[] = {0,1,2,5,6,7,8,9,10,11,12,13};
 			if(Object::UpdateAnimateFrame(deltaTime,frame,ARRAYSIZE(frame)))
 			{
-				currentScene->ChangeMap(m_mapPosX,m_mapPosY,MapType::E_None);
+				currentScene->ChangeMap(GetMapPosX(),GetMapPosY(),MapType::E_None);
 				currentScene->DeleteObject(this->GetObjID());
 				return true;
 			}
@@ -178,26 +178,6 @@ int const& Bubble::GetPower() const
 void Bubble::SetPower(int val)
 {
 	m_power = val;
-}
-
-int const& Bubble::GetMapPosX() const
-{
-	return m_mapPosX;
-}
-
-void Bubble::SetMapPosX(int val)
-{
-	m_mapPosX = val;
-}
-
-int const& Bubble::GetMapPosY() const
-{
-	return m_mapPosY;
-}
-
-void Bubble::SetMapPosY(int val)
-{
-	m_mapPosY = val;
 }
 
 Role* const& Bubble::GetRole() const

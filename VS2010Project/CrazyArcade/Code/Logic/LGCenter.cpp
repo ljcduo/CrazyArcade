@@ -37,7 +37,7 @@ void LGCenter::Update()
 	// 更新状态机里面的场景
 	m_pStateMachine->Update(m_deltatime);
 	// 处理电报消息
-	Dispatch->DispatchDelayedMessages();
+	MessageMachine->Update();
 }
 
 StateMachine<LGCenter>* const& LGCenter::GetStateMachine() const

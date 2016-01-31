@@ -78,22 +78,20 @@ void DXCenter::DXUpdate( float dt )
 	g_pLGCenter->Update();
 
 	//载入场景
-	//为当前场景的游戏对象创建着色器资源视图
+
 	vector<Object*> UnLoadObjVec = g_pLGCenter->GetCurrentScene()->GetUnLoadObject();
 
 	for (vector<Object*>::const_iterator itr = UnLoadObjVec.begin(); itr != UnLoadObjVec.end(); itr++)
 	{
+		//为当前场景的游戏对象创建着色器资源视图
 		m_pShaderResourceView->CreateSRV((*itr)->GetCurrentSprite().GetPicPath());
-		XMFLOAT2 picSize = m_pShaderResourceView->CalPicSize((*itr)->GetCurrentSprite().GetPicPath());//计算图片大小
-		(*itr)->HavaCurrentSprite().SetPicSize(Point(picSize.x,picSize.y));
-		(*itr)->UpdateSpriteRect();
-		if ((*itr)->GetVisiable())
-		{
-			(*itr)->SetDirtySource();
-		}
+		//计算图片大小
+		XMFLOAT2 picSize = m_pShaderResourceView->CalPicSize((*itr)->GetCurrentSprite().GetPicPath());
+		//载入对象
+		(*itr)->LoadMe(Point(picSize.x,picSize.y));
 	}
 
-	LGCenter::Instance()->GetCurrentScene()->DirtyRectInfect();
+	LGCenter::Instance()->GetCurrentScene()->DirtyObject();
 	LGCenter::Instance()->GetCurrentScene()->hadLoadAll();
 	
 }
@@ -113,10 +111,10 @@ void DXCenter::DXRender()
 	vector<Object*> currentObjVec = currentScene->GetAllDirtyObject();
 	for (vector<Object*>::const_iterator itrObj = currentObjVec.begin(); itrObj != currentObjVec.end(); ++itrObj)
 	{
-		if (!(*itrObj)->GetVisiable()) //不可见物体不需要重绘
-		{
-			continue;
-		}
+		//if (!(*itrObj)->GetVisiable()) //不可见物体不需要重绘
+		//{
+		//	continue;
+		//}
 
 		std::vector<LGRect> RectVec = (*itrObj)->GetRectDirty();
 
@@ -145,11 +143,9 @@ void DXCenter::DXRender()
 			m_pContext->Draw();
 		}
 
-		(*itrObj)->SetDirty(false);
-
 	}
 
-	LGCenter::Instance()->GetCurrentScene()->ClearDirtyObject();
+	g_pLGCenter->GetCurrentScene()->ClearDirty();
 	
 
 	m_pSwapChain->Present(L"SC1");

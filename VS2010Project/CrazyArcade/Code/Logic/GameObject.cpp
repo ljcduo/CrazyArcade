@@ -1,6 +1,17 @@
 #include "GameObject.h"
 #include "GameUtil.h"
 
+GameObject::GameObject(int mapPosX, int mapPoxY)
+{
+	SetMapPosX(mapPosX);
+	SetMapPosY(mapPoxY);
+}
+
+GameObject::GameObject()
+{
+
+}
+
 Point GameObject::CalPixelPos(int mapPosX, int mapPosY)
 {
 	return Point(Util::ORIGINPIX.GetX() + mapPosX * Util::MAPPIECEPIX,Util::ORIGINPIX.GetY() + mapPosY * Util::MAPPIECEPIX);
