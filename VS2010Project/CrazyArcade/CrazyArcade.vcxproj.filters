@@ -86,279 +86,279 @@
     <Filter Include="DUOEngine\DirectX\DXUtil">
       <UniqueIdentifier>{284b1df2-793a-44bf-af10-44aea5b05425}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DUOEngine\Util">
-      <UniqueIdentifier>{fc1253bc-b7bf-4573-8bbc-90968acbdb6d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\GameUtil">
       <UniqueIdentifier>{291ede58-ed77-42b1-af3d-0d318ecfcd65}</UniqueIdentifier>
     </Filter>
     <Filter Include="DUOEngine\Entry">
       <UniqueIdentifier>{4258ca78-b47d-4db5-8ba2-4253fbf1e54f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DUOEngine\Logic\LogicUtil">
+      <UniqueIdentifier>{5c3fec86-11aa-4419-907b-731a83efe081}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUOEngine\EngineUtil">
+      <UniqueIdentifier>{fc1253bc-b7bf-4573-8bbc-90968acbdb6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Code\DUOEngine\DXInput.h">
+    <ClInclude Include="..\..\DUOEngine\Base.h">
+      <Filter>DUOEngine\DirectX\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\DXCenter.h">
+      <Filter>DUOEngine\DirectX\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\DXHead.h">
+      <Filter>DUOEngine\DirectX\DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\DXUtil.h">
+      <Filter>DUOEngine\DirectX\DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\DXInput.h">
       <Filter>DUOEngine\DirectX\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Logic\Point.h">
-      <Filter>DUOEngine\Logic\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\Rect.h">
-      <Filter>DUOEngine\Logic\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\CrudeTimer.h">
-      <Filter>DUOEngine\Logic\Manager\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\Sprite.h">
-      <Filter>DUOEngine\Logic\Level\Sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\Object.h">
-      <Filter>DUOEngine\Logic\Level\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\MessageDispatcher.h">
-      <Filter>DUOEngine\Logic\Manager\Message</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\Telegram.h">
-      <Filter>DUOEngine\Logic\Manager\Message</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\State.h">
-      <Filter>DUOEngine\Logic\Manager\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\StateMachine.h">
-      <Filter>DUOEngine\Logic\Manager\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\Scene.h">
-      <Filter>DUOEngine\Logic\Level\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\Block.h">
-      <Filter>Game\Level\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\Bubble.h">
-      <Filter>Game\Level\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\BubbleState.h">
-      <Filter>Game\Manager\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\RoleState.h">
-      <Filter>Game\Manager\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\PlayScene.h">
-      <Filter>Game\Level\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\Prop.h">
-      <Filter>Game\Level\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\Role.h">
-      <Filter>Game\Level\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Logic\Ability.h">
-      <Filter>Game\Level\Attribute</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\DUOEngine\VPMatrix.h">
+    <ClInclude Include="..\..\DUOEngine\VertexBuffer.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\BlendState.h">
+    <ClInclude Include="..\..\DUOEngine\VertexShader.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\ConstBuffer.h">
+    <ClInclude Include="..\..\DUOEngine\ViewPort.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\Context.h">
+    <ClInclude Include="..\..\DUOEngine\VPMatrix.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\InputLayout.h">
+    <ClInclude Include="..\..\DUOEngine\BlendState.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\PixelShader.h">
+    <ClInclude Include="..\..\DUOEngine\ConstBuffer.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\RenderTargetView.h">
+    <ClInclude Include="..\..\DUOEngine\Context.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\SamplerState.h">
+    <ClInclude Include="..\..\DUOEngine\InputLayout.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\Shader.h">
+    <ClInclude Include="..\..\DUOEngine\PixelShader.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\ShaderResourceView.h">
+    <ClInclude Include="..\..\DUOEngine\RenderTargetView.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\SwapChain.h">
+    <ClInclude Include="..\..\DUOEngine\SamplerState.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\VertexBuffer.h">
+    <ClInclude Include="..\..\DUOEngine\Shader.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\VertexShader.h">
+    <ClInclude Include="..\..\DUOEngine\ShaderResourceView.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\ViewPort.h">
+    <ClInclude Include="..\..\DUOEngine\SwapChain.h">
       <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\DXCenter.h">
-      <Filter>DUOEngine\DirectX\Core</Filter>
+    <ClInclude Include="..\..\DUOEngine\DUOEngine.h">
+      <Filter>DUOEngine\EngineUtil</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\Base.h">
-      <Filter>DUOEngine\DirectX\Core</Filter>
+    <ClInclude Include="..\..\DUOEngine\Util.h">
+      <Filter>DUOEngine\EngineUtil</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Logic\LGCenter.h">
+    <ClInclude Include="..\..\DUOEngine\LGCenter.h">
       <Filter>DUOEngine\Logic\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Logic\LGInput.h">
+    <ClInclude Include="..\..\DUOEngine\LGInput.h">
       <Filter>DUOEngine\Logic\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Logic\LGUtil.h">
-      <Filter>DUOEngine\Logic\Core</Filter>
+    <ClInclude Include="..\..\DUOEngine\Object.h">
+      <Filter>DUOEngine\Logic\Level\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\DXUtil.h">
-      <Filter>DUOEngine\DirectX\DXUtil</Filter>
+    <ClInclude Include="..\..\DUOEngine\Scene.h">
+      <Filter>DUOEngine\Logic\Level\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\DXHead.h">
-      <Filter>DUOEngine\DirectX\DXUtil</Filter>
+    <ClInclude Include="..\..\DUOEngine\Sprite.h">
+      <Filter>DUOEngine\Logic\Level\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\Util.h">
-      <Filter>DUOEngine\Util</Filter>
+    <ClInclude Include="..\..\DUOEngine\LGUtil.h">
+      <Filter>DUOEngine\Logic\LogicUtil</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Logic\GameUtil.h">
+    <ClInclude Include="..\..\DUOEngine\Telegram.h">
+      <Filter>DUOEngine\Logic\Manager\Message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\MessageDispatcher.h">
+      <Filter>DUOEngine\Logic\Manager\Message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\State.h">
+      <Filter>DUOEngine\Logic\Manager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\StateMachine.h">
+      <Filter>DUOEngine\Logic\Manager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\CrudeTimer.h">
+      <Filter>DUOEngine\Logic\Manager\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\Point.h">
+      <Filter>DUOEngine\Logic\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\Rect.h">
+      <Filter>DUOEngine\Logic\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameUtil.h">
       <Filter>Game\GameUtil</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Logic\LGHead.h">
+    <ClInclude Include="Code\Type.h">
       <Filter>Game\GameUtil</Filter>
     </ClInclude>
-    <ClInclude Include="Code\DUOEngine\DUOEngine.h">
-      <Filter>DUOEngine\Util</Filter>
+    <ClInclude Include="Code\Ability.h">
+      <Filter>Game\Level\Attribute</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Logic\GameObject.h">
+    <ClInclude Include="Code\Prop.h">
       <Filter>Game\Level\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Logic\Type.h">
-      <Filter>Game\GameUtil</Filter>
+    <ClInclude Include="Code\Role.h">
+      <Filter>Game\Level\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Block.h">
+      <Filter>Game\Level\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Bubble.h">
+      <Filter>Game\Level\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameObject.h">
+      <Filter>Game\Level\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\PlayScene.h">
+      <Filter>Game\Level\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\RoleState.h">
+      <Filter>Game\Manager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\BubbleState.h">
+      <Filter>Game\Manager\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Code\DUOEngine\DXInput.cpp">
+    <ClCompile Include="..\..\DUOEngine\Base.cpp">
+      <Filter>DUOEngine\DirectX\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DUOEngine\DXCenter.cpp">
+      <Filter>DUOEngine\DirectX\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DUOEngine\DXUtil.cpp">
+      <Filter>DUOEngine\DirectX\DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DUOEngine\DXInput.cpp">
       <Filter>DUOEngine\DirectX\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\Point.cpp">
-      <Filter>DUOEngine\Logic\Math</Filter>
+    <ClCompile Include="..\..\DUOEngine\VertexShader.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\Rect.cpp">
-      <Filter>DUOEngine\Logic\Math</Filter>
+    <ClCompile Include="..\..\DUOEngine\ViewPort.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\CrudeTimer.cpp">
-      <Filter>DUOEngine\Logic\Manager\Timer</Filter>
+    <ClCompile Include="..\..\DUOEngine\VPMatrix.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\Sprite.cpp">
-      <Filter>DUOEngine\Logic\Level\Sprite</Filter>
+    <ClCompile Include="..\..\DUOEngine\BlendState.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\Object.cpp">
-      <Filter>DUOEngine\Logic\Level\Object</Filter>
+    <ClCompile Include="..\..\DUOEngine\ConstBuffer.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\MessageDispatcher.cpp">
-      <Filter>DUOEngine\Logic\Manager\Message</Filter>
+    <ClCompile Include="..\..\DUOEngine\Context.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\Scene.cpp">
-      <Filter>DUOEngine\Logic\Level\Scene</Filter>
+    <ClCompile Include="..\..\DUOEngine\InputLayout.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\Block.cpp">
-      <Filter>Game\Level\Object</Filter>
+    <ClCompile Include="..\..\DUOEngine\PixelShader.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\Bubble.cpp">
-      <Filter>Game\Level\Object</Filter>
+    <ClCompile Include="..\..\DUOEngine\RenderTargetView.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\BubbleState.cpp">
-      <Filter>Game\Manager\State</Filter>
+    <ClCompile Include="..\..\DUOEngine\SamplerState.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\RoleState.cpp">
-      <Filter>Game\Manager\State</Filter>
+    <ClCompile Include="..\..\DUOEngine\Shader.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\PlayScene.cpp">
-      <Filter>Game\Level\Scene</Filter>
+    <ClCompile Include="..\..\DUOEngine\ShaderResourceView.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\Prop.cpp">
-      <Filter>Game\Level\Object</Filter>
+    <ClCompile Include="..\..\DUOEngine\SwapChain.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\Role.cpp">
-      <Filter>Game\Level\Object</Filter>
+    <ClCompile Include="..\..\DUOEngine\VertexBuffer.cpp">
+      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\Ability.cpp">
-      <Filter>Game\Level\Attribute</Filter>
+    <ClCompile Include="..\..\DUOEngine\Util.cpp">
+      <Filter>DUOEngine\EngineUtil</Filter>
     </ClCompile>
-    <ClCompile Include="Code\DUOEngine\WinMain.cpp">
+    <ClCompile Include="..\..\DUOEngine\WinMain.cpp">
       <Filter>DUOEngine\Entry</Filter>
     </ClCompile>
-    <ClCompile Include="Code\DUOEngine\BlendState.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\ConstBuffer.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\Context.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\InputLayout.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\PixelShader.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\RenderTargetView.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\SamplerState.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\Shader.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\ShaderResourceView.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\SwapChain.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\VertexBuffer.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\VertexShader.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\ViewPort.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\VPMatrix.cpp">
-      <Filter>DUOEngine\DirectX\Render\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\DXCenter.cpp">
-      <Filter>DUOEngine\DirectX\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\Base.cpp">
-      <Filter>DUOEngine\DirectX\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Logic\LGCenter.cpp">
+    <ClCompile Include="..\..\DUOEngine\LGCenter.cpp">
       <Filter>DUOEngine\Logic\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\LGInput.cpp">
+    <ClCompile Include="..\..\DUOEngine\LGInput.cpp">
       <Filter>DUOEngine\Logic\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\main.cpp">
+    <ClCompile Include="..\..\DUOEngine\Object.cpp">
+      <Filter>DUOEngine\Logic\Level\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DUOEngine\Scene.cpp">
+      <Filter>DUOEngine\Logic\Level\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DUOEngine\Sprite.cpp">
+      <Filter>DUOEngine\Logic\Level\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DUOEngine\LGUtil.cpp">
+      <Filter>DUOEngine\Logic\LogicUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DUOEngine\MessageDispatcher.cpp">
+      <Filter>DUOEngine\Logic\Manager\Message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DUOEngine\CrudeTimer.cpp">
+      <Filter>DUOEngine\Logic\Manager\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DUOEngine\Point.cpp">
+      <Filter>DUOEngine\Logic\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DUOEngine\Rect.cpp">
+      <Filter>DUOEngine\Logic\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\main.cpp">
       <Filter>Game\Entry</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\LGUtil.cpp">
-      <Filter>DUOEngine\Logic\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\DXUtil.cpp">
-      <Filter>DUOEngine\DirectX\DXUtil</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\DUOEngine\Util.cpp">
-      <Filter>DUOEngine\Util</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Logic\GameUtil.cpp">
+    <ClCompile Include="Code\GameUtil.cpp">
       <Filter>Game\GameUtil</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logic\GameObject.cpp">
+    <ClCompile Include="Code\Ability.cpp">
+      <Filter>Game\Level\Attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Prop.cpp">
       <Filter>Game\Level\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Role.cpp">
+      <Filter>Game\Level\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Block.cpp">
+      <Filter>Game\Level\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Bubble.cpp">
+      <Filter>Game\Level\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\GameObject.cpp">
+      <Filter>Game\Level\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\PlayScene.cpp">
+      <Filter>Game\Level\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\RoleState.cpp">
+      <Filter>Game\Manager\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\BubbleState.cpp">
+      <Filter>Game\Manager\State</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
