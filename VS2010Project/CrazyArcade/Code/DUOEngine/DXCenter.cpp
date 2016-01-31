@@ -77,18 +77,20 @@ void DXCenter::DXUpdate( float dt )
 	//更新游戏逻辑
 	g_pLGCenter->Update();
 
-	//载入场景
+	//载入场景中未初始化的对象
 
 	vector<Object*> UnLoadObjVec = g_pLGCenter->GetCurrentScene()->GetUnLoadObject();
 
 	for (vector<Object*>::const_iterator itr = UnLoadObjVec.begin(); itr != UnLoadObjVec.end(); itr++)
 	{
 		//为当前场景的游戏对象创建着色器资源视图
-		m_pShaderResourceView->CreateSRV((*itr)->GetCurrentSprite().GetPicPath());
-		//计算图片大小
-		XMFLOAT2 picSize = m_pShaderResourceView->CalPicSize((*itr)->GetCurrentSprite().GetPicPath());
-		//载入对象
-		(*itr)->LoadMe(Point(picSize.x,picSize.y));
+		if(m_pShaderResourceView->CreateSRV((*itr)->GetCurrentSprite().GetPicPath()))
+		{
+			//计算图片大小
+			XMFLOAT2 picSize = m_pShaderResourceView->CalPicSize((*itr)->GetCurrentSprite().GetPicPath());
+			//载入对象
+			(*itr)->LoadMe(Point(picSize.x,picSize.y));
+		}
 	}
 
 	LGCenter::Instance()->GetCurrentScene()->DirtyObject();
@@ -111,35 +113,33 @@ void DXCenter::DXRender()
 	vector<Object*> currentObjVec = currentScene->GetAllDirtyObject();
 	for (vector<Object*>::const_iterator itrObj = currentObjVec.begin(); itrObj != currentObjVec.end(); ++itrObj)
 	{
-		//if (!(*itrObj)->GetVisiable()) //不可见物体不需要重绘
-		//{
-		//	continue;
-		//}
-
 		std::vector<LGRect> RectVec = (*itrObj)->GetRectDirty();
 
 		for (std::vector<LGRect>::const_iterator itrRect = RectVec.begin(); 
 			itrRect != RectVec.end(); ++itrRect)
 		{
 			Sprite const& currentSprite = (*itrObj)->GetCurrentSprite();
-
 			wstring currentPath = currentSprite.GetPicPath();
 
+			//更新图片（本质是设置着色器资源视图）
 			m_pContext->PSSetShaderResources(m_pShaderResourceView->GetSRV(currentPath));
 
+			//更新精灵位置和动画（本质是更新顶点位置和UV坐标）
 			m_pContext->FreshPic<VertexPos>(m_pVertexBuffer->GetVB(L"VB1"), 
 				currentSprite.GetPicSizeWidth(), currentSprite.GetPicSizeHeight(),
 				currentSprite.GetCurrentRow(), currentSprite.GetCurrentCol(), 
 				(*itrObj)->GetSpriteRect(),(*itrRect));
 
+			//设置顶点
 			m_pContext->IASetVertexBuffers<VertexPos>(m_pVertexBuffer->GetVB(L"VB1"));
 
+			//更新模型-世界-视图矩阵
 			XMMATRIX mvp = m_pVPMatrix->CreateMVP(L"VP1",
 				XMFLOAT2((*itrRect).GetX(),(*itrRect).GetY()));
-
 			m_pContext->UpdateSubresource(m_pConstBuffer->GetCB(L"CB1") ,&mvp);
 			m_pContext->VSSetConstantBuffers(m_pConstBuffer->GetCB(L"CB1"));
 
+			//绘制当前对象
 			m_pContext->Draw();
 		}
 
@@ -147,7 +147,6 @@ void DXCenter::DXRender()
 
 	g_pLGCenter->GetCurrentScene()->ClearDirty();
 	
-
 	m_pSwapChain->Present(L"SC1");
 	
 }

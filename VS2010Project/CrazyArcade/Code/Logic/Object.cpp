@@ -198,8 +198,6 @@ void Object::SpreadDirty()
 {
 	UpdateSpriteRect();
 	g_pLGCenter->GetCurrentScene()->DirtyScene(m_SpriteRect);
-	//SetRectDirty(m_SpriteRect);
-	//g_pLGCenter->GetCurrentScene()->InsertDetectDirtyObject(this); //加入脏对象检测集合
 }
 
 void Object::LoadMe(Point picSize)

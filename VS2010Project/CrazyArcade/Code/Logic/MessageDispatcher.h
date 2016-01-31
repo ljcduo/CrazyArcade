@@ -22,11 +22,12 @@ class MessageDispatcher
 	SINGLETON(MessageDispatcher);
 private:  
 
+	// 处理一个消息
 	void SendMessage(Object* pReceiver, const Telegram& msg);
 
 public:
 
-	// 产生一个消息
+	// 产生一个待处理的消息
 	void MakeMessage(double delay,
 		int    sender,
 		int    receiver,
@@ -37,8 +38,7 @@ public:
 	void Update();
 
 private:
-	std::set<Telegram> PriorityQ;
-
+	std::set<Telegram> m_MsgPriorityQueue;
 	CrudeTimer* m_GameTimer;
 };
 

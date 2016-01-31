@@ -226,14 +226,14 @@
     <ClInclude Include="Code\Logic\LGHead.h">
       <Filter>Game\GameUtil</Filter>
     </ClInclude>
-    <ClInclude Include="Type.h">
-      <Filter>Game\GameUtil</Filter>
-    </ClInclude>
     <ClInclude Include="Code\DUOEngine\DUOEngine.h">
       <Filter>DUOEngine\Util</Filter>
     </ClInclude>
     <ClInclude Include="Code\Logic\GameObject.h">
       <Filter>Game\Level\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Logic\Type.h">
+      <Filter>Game\GameUtil</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -174,9 +174,9 @@ void Scene::DirtyObject()
 
 void Scene::ClearDirty()
 {
-	// 清除场景中的脏矩形
+	// 清除场景中的脏矩形位置
 	m_DitryRectVec.clear();
-	// 清除脏对象自身的脏部位
+	// 清除每一个脏对象自身的脏部位
 	if (g_pLGCenter->GetCurrentScene())
 	{
 		vector<Object*> currentObjVec = g_pLGCenter->GetCurrentScene()->GetAllDirtyObject();

@@ -17,7 +17,7 @@ PlayScene::PlayScene()
 
 PlayScene::~PlayScene()
 {
-	SetGameEnd(true);
+	
 }
 
 
@@ -30,7 +30,6 @@ void PlayScene::Enter(LGCenter*)
 	//载入框架背景图
 	Object* pBackGround = new Object(L"BackGround",Sprite(L"Resource\\BG.png"), LayoutType::E_GUIs, Point(0.0f,0.0f));
 	InsertObject(pBackGround);
-
 
 	//载入道路
 	Object* pRoad = new Object(L"Road",Sprite(L"Resource\\road.png"),LayoutType::E_Roads,Util::ORIGINPIX);
@@ -48,8 +47,6 @@ void PlayScene::Enter(LGCenter*)
 			}
 		}
 	}
-
-
 
 	//载入角色
 	m_pPlayer = new Role(L"Player",4,5,Role::E_RedBaby);
@@ -73,7 +70,7 @@ void PlayScene::Execute(LGCenter* lgCenter, float deltaTime)
 
 void PlayScene::Exit(LGCenter*)
 {
-	
+	SetGameEnd(true);
 }
 
 
@@ -175,8 +172,6 @@ void PlayScene::CreateMapBlock()
 
 
 }
-
-
 
 
 void PlayScene::KeyboardControl()

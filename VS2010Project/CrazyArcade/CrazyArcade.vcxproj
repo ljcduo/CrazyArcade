@@ -56,7 +56,7 @@
     <ClInclude Include="Code\Logic\State.h" />
     <ClInclude Include="Code\Logic\StateMachine.h" />
     <ClInclude Include="Code\Logic\Telegram.h" />
-    <ClInclude Include="Type.h" />
+    <ClInclude Include="Code\Logic\Type.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\DUOEngine\Base.cpp" />

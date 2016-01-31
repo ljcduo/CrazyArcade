@@ -35,8 +35,9 @@ public:
 
 	HINSTANCE const& GetHInstance() const;
 	HWND const& GetHWnd() const;
-	void InputUpdate();
 
+private:
+	void InputUpdate();
 	void SYNCKeyBoard(unsigned char DXKeyCode, int LGKeyCode);
 private:
 	//DX×ÊÔ´

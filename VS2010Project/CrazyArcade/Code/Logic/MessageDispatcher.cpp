@@ -52,7 +52,7 @@ void MessageDispatcher::MakeMessage(double delay,
 		telegram.DispatchTime = CurrentTime + delay;
 
 		// 然后放进队列里
-		PriorityQ.insert(telegram);   
+		m_MsgPriorityQueue.insert(telegram);   
 
 	}
 }
@@ -62,10 +62,10 @@ void MessageDispatcher::Update()
 {
 	double CurrentTime = m_GameTimer->GetTimePass();
 
-	while( !PriorityQ.empty() &&
-		(PriorityQ.begin()->DispatchTime < CurrentTime) )
+	while( !m_MsgPriorityQueue.empty() &&
+		(m_MsgPriorityQueue.begin()->DispatchTime < CurrentTime) )
 	{
-		const Telegram& telegram = *PriorityQ.begin();
+		const Telegram& telegram = *m_MsgPriorityQueue.begin();
 
 		Object* pReceiver = LGCenter::Instance()->GetCurrentScene()->HavaObject(telegram.Receiver);
 
@@ -74,7 +74,7 @@ void MessageDispatcher::Update()
 			SendMessage(pReceiver, telegram);
 		}
 
-		PriorityQ.erase(PriorityQ.begin());
+		m_MsgPriorityQueue.erase(m_MsgPriorityQueue.begin());
 	}
 }
 
