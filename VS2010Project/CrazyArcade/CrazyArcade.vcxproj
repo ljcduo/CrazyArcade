@@ -11,40 +11,40 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\DUOEngine\Base.h" />
-    <ClInclude Include="..\..\DUOEngine\BlendState.h" />
-    <ClInclude Include="..\..\DUOEngine\ConstBuffer.h" />
-    <ClInclude Include="..\..\DUOEngine\Context.h" />
-    <ClInclude Include="..\..\DUOEngine\CrudeTimer.h" />
-    <ClInclude Include="..\..\DUOEngine\DUOEngine.h" />
-    <ClInclude Include="..\..\DUOEngine\DXCenter.h" />
-    <ClInclude Include="..\..\DUOEngine\DXHead.h" />
-    <ClInclude Include="..\..\DUOEngine\DXInput.h" />
-    <ClInclude Include="..\..\DUOEngine\DXUtil.h" />
-    <ClInclude Include="..\..\DUOEngine\InputLayout.h" />
-    <ClInclude Include="..\..\DUOEngine\LGCenter.h" />
-    <ClInclude Include="..\..\DUOEngine\LGInput.h" />
-    <ClInclude Include="..\..\DUOEngine\LGUtil.h" />
-    <ClInclude Include="..\..\DUOEngine\MessageDispatcher.h" />
-    <ClInclude Include="..\..\DUOEngine\Object.h" />
-    <ClInclude Include="..\..\DUOEngine\PixelShader.h" />
-    <ClInclude Include="..\..\DUOEngine\Point.h" />
-    <ClInclude Include="..\..\DUOEngine\Rect.h" />
-    <ClInclude Include="..\..\DUOEngine\RenderTargetView.h" />
-    <ClInclude Include="..\..\DUOEngine\SamplerState.h" />
-    <ClInclude Include="..\..\DUOEngine\Scene.h" />
-    <ClInclude Include="..\..\DUOEngine\Shader.h" />
-    <ClInclude Include="..\..\DUOEngine\ShaderResourceView.h" />
-    <ClInclude Include="..\..\DUOEngine\Sprite.h" />
-    <ClInclude Include="..\..\DUOEngine\State.h" />
-    <ClInclude Include="..\..\DUOEngine\StateMachine.h" />
-    <ClInclude Include="..\..\DUOEngine\SwapChain.h" />
-    <ClInclude Include="..\..\DUOEngine\Telegram.h" />
-    <ClInclude Include="..\..\DUOEngine\Util.h" />
-    <ClInclude Include="..\..\DUOEngine\VertexBuffer.h" />
-    <ClInclude Include="..\..\DUOEngine\VertexShader.h" />
-    <ClInclude Include="..\..\DUOEngine\ViewPort.h" />
-    <ClInclude Include="..\..\DUOEngine\VPMatrix.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\Base.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\BlendState.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\ConstBuffer.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\Context.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\DXCenter.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\DXHead.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\DXInput.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\DXUtil.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\InputLayout.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\PixelShader.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\RenderTargetView.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\SamplerState.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\Shader.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\ShaderResourceView.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\SwapChain.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\VertexBuffer.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\VertexShader.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\ViewPort.h" />
+    <ClInclude Include="..\..\DUOEngine\DirectX\VPMatrix.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\CrudeTimer.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\DUOEngine.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\LGCenter.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\LGInput.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\LGUtil.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\MessageDispatcher.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\Object.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\Point.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\Rect.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\Scene.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\Sprite.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\State.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\StateMachine.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\Telegram.h" />
+    <ClInclude Include="..\..\DUOEngine\Util\Util.h" />
     <ClInclude Include="Code\Ability.h" />
     <ClInclude Include="Code\Block.h" />
     <ClInclude Include="Code\Bubble.h" />
@@ -58,36 +58,36 @@
     <ClInclude Include="Code\Type.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\DUOEngine\Base.cpp" />
-    <ClCompile Include="..\..\DUOEngine\BlendState.cpp" />
-    <ClCompile Include="..\..\DUOEngine\ConstBuffer.cpp" />
-    <ClCompile Include="..\..\DUOEngine\Context.cpp" />
-    <ClCompile Include="..\..\DUOEngine\CrudeTimer.cpp" />
-    <ClCompile Include="..\..\DUOEngine\DXCenter.cpp" />
-    <ClCompile Include="..\..\DUOEngine\DXInput.cpp" />
-    <ClCompile Include="..\..\DUOEngine\DXUtil.cpp" />
-    <ClCompile Include="..\..\DUOEngine\InputLayout.cpp" />
-    <ClCompile Include="..\..\DUOEngine\LGCenter.cpp" />
-    <ClCompile Include="..\..\DUOEngine\LGInput.cpp" />
-    <ClCompile Include="..\..\DUOEngine\LGUtil.cpp" />
-    <ClCompile Include="..\..\DUOEngine\MessageDispatcher.cpp" />
-    <ClCompile Include="..\..\DUOEngine\Object.cpp" />
-    <ClCompile Include="..\..\DUOEngine\PixelShader.cpp" />
-    <ClCompile Include="..\..\DUOEngine\Point.cpp" />
-    <ClCompile Include="..\..\DUOEngine\Rect.cpp" />
-    <ClCompile Include="..\..\DUOEngine\RenderTargetView.cpp" />
-    <ClCompile Include="..\..\DUOEngine\SamplerState.cpp" />
-    <ClCompile Include="..\..\DUOEngine\Scene.cpp" />
-    <ClCompile Include="..\..\DUOEngine\Shader.cpp" />
-    <ClCompile Include="..\..\DUOEngine\ShaderResourceView.cpp" />
-    <ClCompile Include="..\..\DUOEngine\Sprite.cpp" />
-    <ClCompile Include="..\..\DUOEngine\SwapChain.cpp" />
-    <ClCompile Include="..\..\DUOEngine\Util.cpp" />
-    <ClCompile Include="..\..\DUOEngine\VertexBuffer.cpp" />
-    <ClCompile Include="..\..\DUOEngine\VertexShader.cpp" />
-    <ClCompile Include="..\..\DUOEngine\ViewPort.cpp" />
-    <ClCompile Include="..\..\DUOEngine\VPMatrix.cpp" />
-    <ClCompile Include="..\..\DUOEngine\WinMain.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\Base.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\BlendState.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\ConstBuffer.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\Context.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\DXCenter.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\DXInput.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\DXUtil.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\InputLayout.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\PixelShader.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\RenderTargetView.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\SamplerState.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\Shader.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\ShaderResourceView.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\SwapChain.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\VertexBuffer.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\VertexShader.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\ViewPort.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\VPMatrix.cpp" />
+    <ClCompile Include="..\..\DUOEngine\DirectX\WinMain.cpp" />
+    <ClCompile Include="..\..\DUOEngine\Logic\CrudeTimer.cpp" />
+    <ClCompile Include="..\..\DUOEngine\Logic\LGCenter.cpp" />
+    <ClCompile Include="..\..\DUOEngine\Logic\LGInput.cpp" />
+    <ClCompile Include="..\..\DUOEngine\Logic\LGUtil.cpp" />
+    <ClCompile Include="..\..\DUOEngine\Logic\MessageDispatcher.cpp" />
+    <ClCompile Include="..\..\DUOEngine\Logic\Object.cpp" />
+    <ClCompile Include="..\..\DUOEngine\Logic\Point.cpp" />
+    <ClCompile Include="..\..\DUOEngine\Logic\Rect.cpp" />
+    <ClCompile Include="..\..\DUOEngine\Logic\Scene.cpp" />
+    <ClCompile Include="..\..\DUOEngine\Logic\Sprite.cpp" />
+    <ClCompile Include="..\..\DUOEngine\Util\Util.cpp" />
     <ClCompile Include="Code\Ability.cpp" />
     <ClCompile Include="Code\Block.cpp" />
     <ClCompile Include="Code\Bubble.cpp" />
@@ -129,7 +129,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>.\Code;..\..\DUOEngine;..\..\Microsoft DirectX SDK (June 2010)\Include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include</IncludePath>
+    <IncludePath>.\Code;..\..\DUOEngine\Util;..\..\DUOEngine\Logic;..\..\DUOEngine\DirectX;..\..\DUOEngine;..\..\Microsoft DirectX SDK (June 2010)\Include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include</IncludePath>
     <LibraryPath>..\..\Microsoft DirectX SDK (June 2010)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
