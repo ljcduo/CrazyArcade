@@ -22,7 +22,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine
     wndClass.hCursor = LoadCursor( NULL, IDC_ARROW );
     wndClass.hbrBackground = ( HBRUSH )( COLOR_WINDOW + 1 );
     wndClass.lpszMenuName = NULL;
-    wndClass.lpszClassName = "PopoGame";
+    wndClass.lpszClassName = "Game";
 
     if( !RegisterClassEx( &wndClass ) )
         return -1;
@@ -30,7 +30,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine
     RECT rc = { 0, 0, 800, 600 };
     AdjustWindowRect( &rc, WS_OVERLAPPEDWINDOW, FALSE );
 
-    HWND hwnd = CreateWindowA( "PopoGame", "泡泡堂Demo v1.0 By 赖静朝 东莞理工学院14级软件工程", WS_OVERLAPPEDWINDOW,
+    HWND hwnd = CreateWindowA( "Game", g_pLGCenter->WindowsTitle().c_str(), WS_OVERLAPPEDWINDOW,
                                 CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top,
                                 NULL, NULL, hInstance, NULL );
 

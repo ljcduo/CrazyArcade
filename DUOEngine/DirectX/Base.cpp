@@ -2,6 +2,7 @@
 #include"Base.h"
 #include "ViewPort.h"
 
+int (WINAPIV * __vsnprintf)(char *, size_t, const char*, va_list) = _vsnprintf;
 
 Dx11DemoBase::Dx11DemoBase( ) : m_driverType( D3D_DRIVER_TYPE_NULL ), m_featureLevel( D3D_FEATURE_LEVEL_11_0 ),
                                 m_pID3DDevice( 0 ), m_pID3DContext( 0 ), m_pSwapChain( 0 ), m_pRenderTargetView( 0 )

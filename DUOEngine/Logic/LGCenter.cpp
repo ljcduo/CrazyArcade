@@ -1,7 +1,7 @@
 #include "LGCenter.h"
 #include "PlayScene.h"
 
-LGCenter::LGCenter() : m_deltatime(0)
+LGCenter::LGCenter() : m_Deltatime(0)
 {
 	// 设置随机数种子
 	srand(GetTickCount());
@@ -35,7 +35,7 @@ void LGCenter::Update()
 	// 更新FPS
 	GetFPS();
 	// 更新状态机里面的场景
-	m_pStateMachine->Update(m_deltatime);
+	m_pStateMachine->Update(m_Deltatime);
 	// 处理电报消息
 	g_pMessageMachine->Update();
 }
@@ -67,7 +67,7 @@ float LGCenter::GetFPS()
 	{
 		fps = (float)frameCount /(currentTime - lastTime);//计算这1秒钟的FPS值
 
-		m_deltatime = 1 / fps;
+		m_Deltatime = 1 / fps;
 		lastTime = currentTime; //将当前时间currentTime赋给持续时间lastTime，作为下一秒的基准时间
 
 		frameCount    = 0;//将本次帧数frameCount值清零

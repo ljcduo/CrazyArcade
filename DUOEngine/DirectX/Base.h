@@ -6,7 +6,6 @@
 #include "DXHead.h"
 #include "SwapChain.h"
 #include "RenderTargetView.h"
-
 class Dx11DemoBase
 {
     public:
