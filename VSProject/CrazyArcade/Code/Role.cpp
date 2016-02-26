@@ -6,23 +6,23 @@
 #include "PlayScene.h"
 
 Role::Role(std::wstring objName, int mapPosX, int mapPosY, E_RoleSpriteType spriteType)
-	:GameObject(mapPosX,mapPosY),m_direction(E_Down),m_CanMove(true)
+	:GameObject(mapPosX, mapPosY), m_direction(E_Down), m_CanMove(true)
 {
-	
+
 	m_objName = objName;
 
-	switch(spriteType)
+	switch (spriteType)
 	{
 	case E_RedBaby:
-		{
-			m_currentSprite = Sprite(L"Resource\\Role1.png",4,6,0,0,24.0f);
-			break;
-		}
+	{
+		m_currentSprite = Sprite(L"Resource\\Role1.png", 4, 6, 0, 0, 24.0f);
+		break;
+	}
 	case E_BrownPirate:
-		{
-			m_currentSprite = Sprite(L"Resource\\Role2.png",4,6,0,0,24.0f); 
-			break;
-		}
+	{
+		m_currentSprite = Sprite(L"Resource\\Role2.png", 4, 6, 0, 0, 24.0f);
+		break;
+	}
 	}
 
 	m_Layout = LayoutType::E_Roles;
@@ -31,9 +31,9 @@ Role::Role(std::wstring objName, int mapPosX, int mapPosY, E_RoleSpriteType spri
 
 	m_pStateMachine = new StateMachine<Role>(this);
 	m_pStateMachine->SetCurrentState(IdleDown::Instance());
-	Point tempPoint = CalPixelPos(mapPosX,mapPosY);
-	m_pixelPos = Point(tempPoint.GetX() - 4,tempPoint.GetY() + 2);
-	UpdateRectCollision(4,-2);
+	Point tempPoint = CalPixelPos(mapPosX, mapPosY);
+	m_pixelPos = Point(tempPoint.GetX() - 4, tempPoint.GetY() + 2);
+	UpdateRectCollision(4, -2);
 	m_pAbility = new Ability();
 	m_WalkSpeed = 200.0f + m_pAbility->GetRunSpeed() * 50;
 }
@@ -68,69 +68,69 @@ void Role::Move(float deltaTime)
 		drift = true;
 	}
 
-	if(m_CanMove)
+	if (m_CanMove)
 	{
-		switch(m_direction)
+		switch (m_direction)
 		{
 		case E_Up:
+		{
+			float newY = m_pixelPos.GetY() + m_WalkSpeed * deltaTime;
+			float MaxY = m_CollsionPixelPos.GetY() + Util::MAPPIECEPIX + 2;
+			if (drift && newY >= MaxY)
 			{
-				float newY = m_pixelPos.GetY() + m_WalkSpeed * deltaTime;
-				float MaxY =  m_CollsionPixelPos.GetY() + Util::MAPPIECEPIX + 2;
-				if (drift && newY >= MaxY )
-				{
-					SetPixelPosY(MaxY);
-				}
-				else
-				{
-					SetPixelPosY(newY);
-				}
-				break;
+				SetPixelPosY(MaxY);
 			}
+			else
+			{
+				SetPixelPosY(newY);
+			}
+			break;
+		}
 		case E_Down:
+		{
+			float newY = m_pixelPos.GetY() - m_WalkSpeed * deltaTime;
+			float MinY = m_CollsionPixelPos.GetY() - Util::MAPPIECEPIX + 2;
+			if (drift && newY <= MinY)
 			{
-				float newY = m_pixelPos.GetY() - m_WalkSpeed * deltaTime;
-				float MinY =  m_CollsionPixelPos.GetY() - Util::MAPPIECEPIX + 2;
-				if (drift && newY <= MinY )
-				{
-					SetPixelPosY(MinY);
-				}
-				else
-				{
-					SetPixelPosY(newY);
-				}
-				break;
+				SetPixelPosY(MinY);
 			}
+			else
+			{
+				SetPixelPosY(newY);
+			}
+			break;
+		}
 		case E_Left:
+		{
+			float newX = m_pixelPos.GetX() - m_WalkSpeed * deltaTime;
+			float MinX = m_CollsionPixelPos.GetX() - Util::MAPPIECEPIX - 4;
+			if (drift && newX <= MinX)
 			{
-				float newX = m_pixelPos.GetX() - m_WalkSpeed * deltaTime;
-				float MinX =  m_CollsionPixelPos.GetX() - Util::MAPPIECEPIX - 4;
-				if (drift && newX <= MinX )
-				{
-					SetPixelPosX(MinX);
-				}
-				else
-				{
-					SetPixelPosX(newX);
-				}
-				break;
+				SetPixelPosX(MinX);
 			}
+			else
+			{
+				SetPixelPosX(newX);
+			}
+			break;
+		}
 		case E_Right:
+		{
+			float newX = m_pixelPos.GetX() + m_WalkSpeed * deltaTime;
+			float MaxX = m_CollsionPixelPos.GetX() + Util::MAPPIECEPIX - 4;
+			if (drift && newX >= MaxX)
 			{
-				float newX = m_pixelPos.GetX() + m_WalkSpeed * deltaTime;
-				float MaxX =  m_CollsionPixelPos.GetX() + Util::MAPPIECEPIX - 4;
-				if (drift && newX >= MaxX )
-				{
-					SetPixelPosX(MaxX);
-				}
-				else
-				{
-					SetPixelPosX(newX);
-				}
-				break;
+				SetPixelPosX(MaxX);
 			}
+			else
+			{
+				SetPixelPosX(newX);
+			}
+			break;
+		}
 		}
 		UpdateMapPos();
-		UpdateRectCollision(4,-2);
+		UpdateRectCollision(4, -2);
 	}
 
 }
@@ -180,11 +180,11 @@ void Role::SetStandOnBubble(bool val)
 {
 	if (val == true)
 	{
-		m_standOnBubble = Point(GetMapPosX(),GetMapPosY());
+		m_standOnBubble = Point(MapPosX(), MapPosY());
 	}
 	else
 	{
-		m_standOnBubble = Point(-1,-1);
+		m_standOnBubble = Point(-1, -1);
 	}
 }
 
@@ -207,23 +207,23 @@ Role::~Role()
 
 void Role::EatProp(Prop* prop)
 {
-	switch(prop->GetPropType())
+	switch (prop->GetPropType())
 	{
 	case Prop::E_Popo:
-		{
-			m_pAbility->Crease(Ability::E_BubbleNum);
-			break;
-		}
+	{
+		m_pAbility->Crease(Ability::E_BubbleNum);
+		break;
+	}
 	case Prop::E_Power:
-		{
-			m_pAbility->Crease(Ability::E_Power);
-			break;
-		}
+	{
+		m_pAbility->Crease(Ability::E_Power);
+		break;
+	}
 	case Prop::E_Run1:
-		{
-			m_pAbility->Crease(Ability::E_RunSpeed);
-			break;
-		}
+	{
+		m_pAbility->Crease(Ability::E_RunSpeed);
+		break;
+	}
 	}
 }
 
@@ -231,26 +231,59 @@ void Role::StopWalk()
 {
 	switch (this->GetDirection())
 	{
-		case E_RoleDirection::E_Up:
-		{
-			this->GetStateMachine()->ChangeState(IdleUp::Instance());
-			break;
-		}
-		case E_RoleDirection::E_Down:
-		{
-			this->GetStateMachine()->ChangeState(IdleDown::Instance());
-			break;
-		}
-		case E_RoleDirection::E_Left:
-		{
-			this->GetStateMachine()->ChangeState(IdleLeft::Instance());
-			break;
-		}
-		case E_RoleDirection::E_Right:
-		{
-			this->GetStateMachine()->ChangeState(IdleRight::Instance());
-			break;
-		}
+	case E_RoleDirection::E_Up:
+	{
+		this->GetStateMachine()->ChangeState(IdleUp::Instance());
+		break;
+	}
+	case E_RoleDirection::E_Down:
+	{
+		this->GetStateMachine()->ChangeState(IdleDown::Instance());
+		break;
+	}
+	case E_RoleDirection::E_Left:
+	{
+		this->GetStateMachine()->ChangeState(IdleLeft::Instance());
+		break;
+	}
+	case E_RoleDirection::E_Right:
+	{
+		this->GetStateMachine()->ChangeState(IdleRight::Instance());
+		break;
+	}
+	}
+}
+
+bool Role::IsFullyArrive()
+{
+	return (GetPixelPosY() == Util::ORIGINPIX.GetX() + MapPosX()*Util::MAPPIECEPIX
+		&& GetPixelPosY() == Util::ORIGINPIX.GetY() + MapPosY()*Util::MAPPIECEPIX);
+}
+
+void Role::FullyArrive()
+{
+	switch (this->GetDirection())
+	{
+	case E_RoleDirection::E_Up:
+	{
+		SetDirection(Role::E_Left);
+		return;
+	}
+	case E_RoleDirection::E_Down:
+	{
+		SetPixelPosY(Util::ORIGINPIX.GetY() + MapPosY()*Util::MAPPIECEPIX);
+		break;
+	}
+	case E_RoleDirection::E_Left:
+	{
+		SetPixelPosX(Util::ORIGINPIX.GetX() + MapPosX()*Util::MAPPIECEPIX);
+		break;
+	}
+	case E_RoleDirection::E_Right:
+	{
+		SetPixelPosX(Util::ORIGINPIX.GetX() + MapPosX()*Util::MAPPIECEPIX);
+		break;
+	}
 	}
 }
 

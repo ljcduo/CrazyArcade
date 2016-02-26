@@ -18,6 +18,8 @@ public:
 	bool HandleMessage(const Telegram& telegram);
 	void EatProp(Prop* prop);
 	void StopWalk();
+	bool IsFullyArrive();
+	void FullyArrive();
 	//！！！！！！！！！！！！！！！！！！！！！！！！GetAndSet
 	bool const& GetCanMove() const;
 	void SetCanMove(bool val);

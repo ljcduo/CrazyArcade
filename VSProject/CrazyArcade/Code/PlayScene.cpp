@@ -49,8 +49,8 @@ void PlayScene::Enter(LGCenter*)
 	}
 
 	//载入角色
-	m_pPlayer = new Role(L"Player", 1, 11, Role::E_RedBaby);
-	m_pEnemy = new AI(L"Enemy", 6, 1, Role::E_BrownPirate);
+	m_pPlayer = new Role(L"Player", 13, 1, Role::E_RedBaby);
+	m_pEnemy = new AI(L"Enemy", 13, 1, Role::E_BrownPirate);
 	InsertObject(m_pPlayer);
 	InsertObject(m_pEnemy);
 }
@@ -294,10 +294,10 @@ void PlayScene::KeyboardControl()
 		m_pPlayer->IsStandOnBubble())
 	{
 		LGInput* test = LGInput::Instance();
-		int rolePosX = m_pPlayer->GetMapPosX();
-		int rolePosY = m_pPlayer->GetMapPosY();
-		wstring bubbleName = Util::CreateMapName(m_pPlayer->GetMapPosX(),
-			m_pPlayer->GetMapPosY(),L"Bubble");
+		int rolePosX = m_pPlayer->MapPosX();
+		int rolePosY = m_pPlayer->MapPosY();
+		wstring bubbleName = Util::CreateMapName(m_pPlayer->MapPosX(),
+			m_pPlayer->MapPosY(),L"Bubble");
 		if(m_pPlayer->GetAbility()->GetBubbleNum() >= 1)
 		{
 			Bubble* bubble = new Bubble(rolePosX,rolePosY,Bubble::E_Wait,Bubble::E_None,
@@ -309,7 +309,6 @@ void PlayScene::KeyboardControl()
 			m_pPlayer->GetAbility()->Decrease(Ability::E_BubbleNum);
 		}
 	}
-
 }
 
 void PlayScene::CollisionDetection(Role* role, float deltaTime)
@@ -339,41 +338,41 @@ void PlayScene::CollisionDetection(Role* role, float deltaTime)
 		role->SetDirection(Role::E_Right);
 		RoleMoveRect.SetX(RoleMoveRect.GetX() + role->GetWalkSpeed() * deltaTime);
 	}
-
-
+	
+	Util::DebugOut() << role->GetWalkSpeed() << " * " << deltaTime << " = " << role->GetWalkSpeed() * deltaTime;
 
 	bool collision = false;
 	wstring standOnBubble = Util::CreateMapName(
-		m_pPlayer->GetStandOnBubble().GetXInt(),
-		m_pPlayer->GetStandOnBubble().GetYInt(),L"Bubble");
+		role->GetStandOnBubble().GetXInt(),
+		role->GetStandOnBubble().GetYInt(),L"Bubble");
 
 
 	//检测是否撞墙
-	LGRect wall = LGRect(Util::ORIGINPIX.GetX(),Util::ORIGINPIX.GetY(),
+	LGRect wall = LGRect(Util::ORIGINPIX.GetX(),Util::ORIGINPIX.GetY() - 6,
 		static_cast<float>(XLENGTH*Util::MAPPIECEPIX),
-		static_cast<float>(YLENGTH*Util::MAPPIECEPIX) );
+		static_cast<float>(YLENGTH*Util::MAPPIECEPIX+6));
 
 	if( !Util::CollisionInsideRect(role->GetRectCollision(),wall) )
 	{
 		//如果卡在墙里，修正位置
 		if (role->GetRectCollision().GetX() < wall.GetX() )
 		{
-			role->SetPixelPosX(wall.GetX() - 4);
+			role->SetDirection(Role::E_Right);
 		}
 
 		if (role->GetRectCollision().GetX() > wall.GetX() + wall.GetWidth() - Util::MAPPIECEPIX)
 		{
-			role->SetPixelPosX(wall.GetX() + wall.GetWidth() - Util::MAPPIECEPIX - 4);
+			role->SetDirection(Role::E_Left);
 		}
 
 		if (role->GetRectCollision().GetY() > wall.GetY() + wall.GetHeight() - Util::MAPPIECEPIX )
 		{
-			role->SetPixelPosY(wall.GetY() + wall.GetHeight() - Util::MAPPIECEPIX + 2);
+			role->SetDirection(Role::E_Down);
 		}
 
 		if (role->GetRectCollision().GetY() < wall.GetY() )
 		{
-			role->SetPixelPosY(wall.GetY() + 2);
+			role->SetDirection(Role::E_Up);
 		}
 		return;
 	}
@@ -381,7 +380,7 @@ void PlayScene::CollisionDetection(Role* role, float deltaTime)
 	if( !Util::CollisionInsideRect(RoleMoveRect,wall) )
 	{
 		role->SetCanMove(false);
-		m_pPlayer->SetCollsionPixelPos(Point());
+		//role->SetCollsionPixelPos(Point());
 		return;
 	}
 
@@ -464,7 +463,7 @@ void PlayScene::CollisionDetection(Role* role, float deltaTime)
 			{
 				//检查是否能够平移转弯
 
-				m_pPlayer->SetCollsionPixelPos(Point((*itr)->GetPixelPosX(),(*itr)->GetPixelPosY()));
+				role->SetCollsionPixelPos(Point((*itr)->GetPixelPosX(),(*itr)->GetPixelPosY()));
 
 				float xOffset = static_cast<float>(role->GetPixelPosX() - (*itr)->GetPixelPosX());
 				float yOffset = static_cast<float>(role->GetPixelPosY() - (*itr)->GetPixelPosY());
@@ -514,10 +513,10 @@ void PlayScene::CollisionDetection(Role* role, float deltaTime)
 		//检测是否吃道具
 		if((*itr)->GetObjectType() == ObjectType::E_Prop && Util::isCollsionWithRect(RoleMoveRect,(*itr)->GetRectCollision()))
 		{
-			Prop* prop = dynamic_cast<Prop*>(HavaObject(Util::CreateMapName(m_pPlayer->GetMapPosX(),m_pPlayer->GetMapPosY(),L"Prop")));
+			Prop* prop = dynamic_cast<Prop*>(HavaObject(Util::CreateMapName(role->MapPosX(),role->MapPosY(),L"Prop")));
 			if (prop != NULL)
 			{
-				m_pPlayer->EatProp(prop);
+				role->EatProp(prop);
 				DeleteObject(prop->GetObjID());
 				return;
 			}
@@ -530,7 +529,7 @@ void PlayScene::CollisionDetection(Role* role, float deltaTime)
 	if(collision)
 		return;
 
-	m_pPlayer->SetCollsionPixelPos(Point());
+	role->SetCollsionPixelPos(Point());
 	role->SetStandOnBubble(false);
 	role->SetCanMove(true);
 

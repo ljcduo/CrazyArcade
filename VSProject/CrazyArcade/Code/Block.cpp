@@ -17,7 +17,7 @@ void Block::SetInsideProp(Prop* val)
 Block::Block(int mapPosX, int mapPosY, MapType::E_MapType blockType) : GameObject(mapPosX,mapPosY),m_pInsideProp(NULL), m_Animate(false)
 {
 	m_objName = Util::CreateMapName(mapPosX,mapPosY,L"Block");
-	m_pixelPos = CalPixelPos(GetMapPosX(),GetMapPosY());
+	m_pixelPos = CalPixelPos(MapPosX(),MapPosY());
 	m_ObjectType = ObjectType::E_ObjBlock;
 	UpdateRectCollision();
 
@@ -86,7 +86,7 @@ Block::Block(int mapPosX, int mapPosY, MapType::E_MapType blockType) : GameObjec
 	case MapType::E_TownWindmill:
 		{
 			m_currentSprite = Sprite(L"Resource\\TownWindmill.png");
-			Point tempPoint = CalPixelPos(GetMapPosX(),GetMapPosY()-1);
+			Point tempPoint = CalPixelPos(MapPosX(),MapPosY()-1);
 			m_pixelPos = Point(tempPoint.GetX(),tempPoint.GetY() + 15);
 			m_Layout = LayoutType::E_UnderBubbles;
 			m_ObjectType = ObjectType::E_Build;
@@ -95,7 +95,7 @@ Block::Block(int mapPosX, int mapPosY, MapType::E_MapType blockType) : GameObjec
 	case MapType::E_TownWindmillAni:
 		{
 			m_currentSprite = Sprite(L"Resource\\TownWindmillAni.png",1,2,0,0,2);
-			Point tempPoint = CalPixelPos(GetMapPosX()-1,GetMapPosY());
+			Point tempPoint = CalPixelPos(MapPosX()-1,MapPosY());
 			m_pixelPos = Point(tempPoint.GetX(),tempPoint.GetY()+ 37);
 			m_Animate = true;
 			m_Layout = LayoutType::E_Soild;
@@ -142,7 +142,7 @@ Block::Block(int mapPosX, int mapPosY, MapType::E_MapType blockType) : GameObjec
 			}
 		}
 
-		m_pInsideProp = new Prop(GetMapPosX(),GetMapPosY(),picPath,propType);
+		m_pInsideProp = new Prop(MapPosX(),MapPosY(),picPath,propType);
 		g_pLGCenter->GetCurrentScene()->InsertObject(m_pInsideProp);
 
 	}
@@ -159,11 +159,11 @@ Block::~Block()
 	{
 		m_pInsideProp->SetVisiable(true);
 		m_pInsideProp->SpreadDirty();
-		static_cast<PlayScene*>(g_pLGCenter->GetCurrentScene())->ChangeMap(GetMapPosX(),GetMapPosY(),MapType::E_Prop);
+		static_cast<PlayScene*>(g_pLGCenter->GetCurrentScene())->ChangeMap(MapPosX(),MapPosY(),MapType::E_Prop);
 	}
 	else
 	{
-		static_cast<PlayScene*>(g_pLGCenter->GetCurrentScene())->ChangeMap(GetMapPosX(),GetMapPosY(),MapType::E_None);
+		static_cast<PlayScene*>(g_pLGCenter->GetCurrentScene())->ChangeMap(MapPosX(),MapPosY(),MapType::E_None);
 	}
 }
 

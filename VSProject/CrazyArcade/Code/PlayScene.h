@@ -23,7 +23,6 @@ public:
 	void Explosion(int x, int y, int power);
 private:
 	void CreateMapBlock();
-	void CreateRoad(const int& x, const int& y, const std::wstring& picPath, const int& col);
 	void KeyboardControl();
 	void CollisionDetection(Role* obj, float deltaTime);
 	bool OnMessage(LGCenter* agent, const Telegram& msg);

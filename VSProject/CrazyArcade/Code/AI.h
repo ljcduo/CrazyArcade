@@ -11,7 +11,7 @@ public:
 
 	GraphSearcher* AISearcher() const { return m_AISearcher; }
 	void AISearcher(GraphSearcher* val) { m_AISearcher = val; }
-	bool GoToDest(int x, int y);
+	bool StepToDest(int x, int y);
 protected:
 	bool IsGraphChange();
 	void UpdateAISearcher();

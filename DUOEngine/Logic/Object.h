@@ -15,7 +15,6 @@ public:
 	void LoadMe(Point picSize);
 
 	Sprite const& GetCurrentSprite() const;
-	Point const& GetClientPos() const;
 	int const& GetLayout() const;
 	std::wstring const& GetObjName() const;
 	int GetPixelPosX() const;
@@ -27,7 +26,6 @@ public:
 	int const& GetObjectType() const;
 
 	void SetCurrentSprite(IN Sprite val);
-	void SetClientPos(Point val);
 	void SetLayout(int val);
 	void SetObjName(std::wstring val);
 	void SetPixelPosX(float val);

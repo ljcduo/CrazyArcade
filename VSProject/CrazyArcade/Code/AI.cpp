@@ -25,12 +25,12 @@ bool AI::IsGraphChange()
 
 void AI::UpdateAISearcher()
 {
-	GoToDest(14, 0);
+	StepToDest(14, 0);
 }
 
-bool AI::GoToDest(int x, int y)
+bool AI::StepToDest(int x, int y)
 {
-	int xOffset = this->GetMapPosX() - x, yOffset = this->GetMapPosY() - y;
+	int xOffset = this->MapPosX() - x, yOffset = this->MapPosY() - y;
 	Util::DebugOut() << xOffset << "," << yOffset;
 	if (xOffset != 0)
 	{
@@ -46,9 +46,12 @@ bool AI::GoToDest(int x, int y)
 		else
 			this->GetStateMachine()->ChangeState(WalkUp::Instance());
 	}
-	else
+	else if(GetPixelPosX() - CalPixelPos(x,y).GetX() <= 0
+		&& GetPixelPosY() - CalPixelPos(x,y).GetY() <= 0 
+		|| !this->GetCanMove()) //Åö×²Æ«²î
 	{
 		this->StopWalk();
+		this->SpreadDirty();
 	}
 	return true;
 }

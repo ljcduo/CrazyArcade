@@ -3,8 +3,8 @@
 
 GameObject::GameObject(int mapPosX, int mapPoxY)
 {
-	SetMapPosX(mapPosX);
-	SetMapPosY(mapPoxY);
+	MapPosX(mapPosX);
+	MapPosY(mapPoxY);
 }
 
 GameObject::GameObject()
@@ -31,22 +31,22 @@ void GameObject::UpdateMapPos()
 	m_mapPosY = static_cast<int>(MapPos.GetY());
 }
 
-int const& GameObject::GetMapPosX() const
+int const& GameObject::MapPosX() const
 {
 	return m_mapPosX;
 }
 
-void GameObject::SetMapPosX(int val)
+void GameObject::MapPosX(int val)
 {
 	m_mapPosX = val;
 }
 
-int const& GameObject::GetMapPosY() const
+int const& GameObject::MapPosY() const
 {
 	return m_mapPosY;
 }
 
-void GameObject::SetMapPosY(int val)
+void GameObject::MapPosY(int val)
 {
 	m_mapPosY = val;
 }
