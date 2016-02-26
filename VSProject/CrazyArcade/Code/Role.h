@@ -10,13 +10,14 @@ class Role : public GameObject
 {
 public:
 	enum E_RoleDirection {E_Up, E_Down, E_Left, E_Right};
-	enum E_RoleSpriteType {E_RedBaby};
+	enum E_RoleSpriteType {E_RedBaby, E_BrownPirate};
 	Role(std::wstring objName, int mapPosX, int mapPosY, E_RoleSpriteType spriteType);
-	~Role();
-	void Update(float deltaTime);
+	virtual ~Role();
+	virtual void Update(float deltaTime);
 	void Move(float deltaTime);
 	bool HandleMessage(const Telegram& telegram);
 	void EatProp(Prop* prop);
+	void StopWalk();
 	//！！！！！！！！！！！！！！！！！！！！！！！！GetAndSet
 	bool const& GetCanMove() const;
 	void SetCanMove(bool val);

@@ -18,6 +18,11 @@ Role::Role(std::wstring objName, int mapPosX, int mapPosY, E_RoleSpriteType spri
 			m_currentSprite = Sprite(L"Resource\\Role1.png",4,6,0,0,24.0f);
 			break;
 		}
+	case E_BrownPirate:
+		{
+			m_currentSprite = Sprite(L"Resource\\Role2.png",4,6,0,0,24.0f); 
+			break;
+		}
 	}
 
 	m_Layout = LayoutType::E_Roles;
@@ -217,6 +222,33 @@ void Role::EatProp(Prop* prop)
 	case Prop::E_Run1:
 		{
 			m_pAbility->Crease(Ability::E_RunSpeed);
+			break;
+		}
+	}
+}
+
+void Role::StopWalk()
+{
+	switch (this->GetDirection())
+	{
+		case E_RoleDirection::E_Up:
+		{
+			this->GetStateMachine()->ChangeState(IdleUp::Instance());
+			break;
+		}
+		case E_RoleDirection::E_Down:
+		{
+			this->GetStateMachine()->ChangeState(IdleDown::Instance());
+			break;
+		}
+		case E_RoleDirection::E_Left:
+		{
+			this->GetStateMachine()->ChangeState(IdleLeft::Instance());
+			break;
+		}
+		case E_RoleDirection::E_Right:
+		{
+			this->GetStateMachine()->ChangeState(IdleRight::Instance());
 			break;
 		}
 	}

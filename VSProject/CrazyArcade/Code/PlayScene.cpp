@@ -49,16 +49,17 @@ void PlayScene::Enter(LGCenter*)
 	}
 
 	//‘ÿ»ÎΩ«…´
-	m_pPlayer = new Role(L"Player",4,5,Role::E_RedBaby);
-
+	m_pPlayer = new Role(L"Player", 1, 11, Role::E_RedBaby);
+	m_pEnemy = new AI(L"Enemy", 6, 1, Role::E_BrownPirate);
 	InsertObject(m_pPlayer);
+	InsertObject(m_pEnemy);
 }
 
 void PlayScene::Execute(LGCenter* lgCenter, float deltaTime)
 {
 	KeyboardControl();
 	CollisionDetection(m_pPlayer, deltaTime);
-
+	CollisionDetection(m_pEnemy, deltaTime);
 	vector<Object*> tempVec = HaveAllObject();
 
 	for (vector<Object*>::const_iterator itr = tempVec.begin(); itr != tempVec.end();)

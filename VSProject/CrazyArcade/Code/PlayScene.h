@@ -5,6 +5,7 @@
 #include "Block.h"
 #include "Role.h"
 #include "Bubble.h"
+#include "AI.h"
 
 const int XLENGTH = 15;
 const int YLENGTH = 13;
@@ -30,4 +31,5 @@ private:
 private:
 	MapType::E_MapType m_MapBlock[XLENGTH][YLENGTH]; //方块地图，原点在左下角
 	Role* m_pPlayer;
+	AI* m_pEnemy;
 };

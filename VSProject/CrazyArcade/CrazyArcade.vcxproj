@@ -32,6 +32,10 @@
     <ClInclude Include="..\..\DUOEngine\DirectX\VPMatrix.h" />
     <ClInclude Include="..\..\DUOEngine\Logic\CrudeTimer.h" />
     <ClInclude Include="..\..\DUOEngine\Logic\DUOEngine.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\GraphAlgorithm.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\GraphEdge.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\GraphNode.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\GraphNodeType.h" />
     <ClInclude Include="..\..\DUOEngine\Logic\LGCenter.h" />
     <ClInclude Include="..\..\DUOEngine\Logic\LGInput.h" />
     <ClInclude Include="..\..\DUOEngine\Logic\LGUtil.h" />
@@ -40,12 +44,14 @@
     <ClInclude Include="..\..\DUOEngine\Logic\Point.h" />
     <ClInclude Include="..\..\DUOEngine\Logic\Rect.h" />
     <ClInclude Include="..\..\DUOEngine\Logic\Scene.h" />
+    <ClInclude Include="..\..\DUOEngine\Logic\SparseGraph.h" />
     <ClInclude Include="..\..\DUOEngine\Logic\Sprite.h" />
     <ClInclude Include="..\..\DUOEngine\Logic\State.h" />
     <ClInclude Include="..\..\DUOEngine\Logic\StateMachine.h" />
     <ClInclude Include="..\..\DUOEngine\Logic\Telegram.h" />
     <ClInclude Include="..\..\DUOEngine\Util\Util.h" />
     <ClInclude Include="Code\Ability.h" />
+    <ClInclude Include="Code\AI.h" />
     <ClInclude Include="Code\Block.h" />
     <ClInclude Include="Code\Bubble.h" />
     <ClInclude Include="Code\BubbleState.h" />
@@ -89,6 +95,7 @@
     <ClCompile Include="..\..\DUOEngine\Logic\Sprite.cpp" />
     <ClCompile Include="..\..\DUOEngine\Util\Util.cpp" />
     <ClCompile Include="Code\Ability.cpp" />
+    <ClCompile Include="Code\AI.cpp" />
     <ClCompile Include="Code\Block.cpp" />
     <ClCompile Include="Code\Bubble.cpp" />
     <ClCompile Include="Code\BubbleState.cpp" />

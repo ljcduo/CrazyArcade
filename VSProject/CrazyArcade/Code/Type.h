@@ -16,3 +16,4 @@ namespace ObjectType
 {
 	enum E_ObjectType {E_ObjCommon, E_ObjBlock, E_ObjRole, E_Bubble, E_Prop,E_Build};
 }
+

@@ -98,6 +98,9 @@
     <Filter Include="Game\GameUtil">
       <UniqueIdentifier>{2d99bb94-3dfe-4c04-96ac-25b1886881c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DUOEngine\Logic\Graph">
+      <UniqueIdentifier>{6c63dc8c-593e-4c03-b401-b098b900ee85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\DUOEngine\DirectX\Base.h">
@@ -235,6 +238,24 @@
     <ClInclude Include="Code\GameUtil.h">
       <Filter>Game\GameUtil</Filter>
     </ClInclude>
+    <ClInclude Include="Code\AI.h">
+      <Filter>Game\Level\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\Logic\GraphAlgorithm.h">
+      <Filter>DUOEngine\Logic\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\Logic\GraphEdge.h">
+      <Filter>DUOEngine\Logic\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\Logic\GraphNode.h">
+      <Filter>DUOEngine\Logic\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\Logic\GraphNodeType.h">
+      <Filter>DUOEngine\Logic\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DUOEngine\Logic\SparseGraph.h">
+      <Filter>DUOEngine\Logic\Graph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\DUOEngine\DirectX\Base.cpp">
@@ -359,6 +380,9 @@
     </ClCompile>
     <ClCompile Include="Code\GameUtil.cpp">
       <Filter>Game\GameUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\AI.cpp">
+      <Filter>Game\Level\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
