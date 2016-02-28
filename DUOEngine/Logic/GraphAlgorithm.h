@@ -14,10 +14,12 @@ public:
 	typedef typename GraphType::GraphAdjListVec GraphAdjListVec;
 
 	GraphSearcher(GraphType* graph) :m_pGraph(graph), m_Route(m_pGraph->NodeVec().size(), -1) {}
+	virtual ~GraphSearcher() { SAFE_DELETE(m_pGraph); }
 	virtual bool Search() = 0;
-	
+
 	GraphType* Graph() const { return m_pGraph; }
 	GraphEdgeList Path() const { return m_Path; }
+	GraphEdgeList& HavePath() { return m_Path; }
 protected:
 	void Graph(GraphType* val) { m_pGraph = val; }
 	void Path(GraphEdgeList val) { m_Path = val; }
@@ -35,6 +37,11 @@ template<typename GraphType>
 void GraphSearcher<GraphType>::CreatePath()
 {
 	int curIndex = m_pGraph->DestNode()->Index();
+	if (curIndex == m_pGraph->SourceNode()->Index()) //源和目标一致
+	{
+		m_Path.push_front(GraphEdge(curIndex, curIndex));
+		return;
+	}
 	while (curIndex != m_pGraph->SourceNode()->Index() && curIndex != -1)
 	{
 		int parentIndex = m_Route[curIndex];
@@ -73,6 +80,7 @@ bool BFSearcher<GraphType>::Search()
 		return false;
 	Graph()->SourceNode()->Visited(true);
 	GraphEdgeList SearchEdgeList;
+	SearchEdgeList.push_back(GraphEdge(Graph()->SourceNode()->Index(), Graph()->SourceNode()->Index())); //添加哑边
 	AddRelateEdge(GraphEdge(Graph()->SourceNode()->Index(), Graph()->SourceNode()->Index()), &SearchEdgeList);
 	while (SearchEdgeList.size() != 0)
 	{

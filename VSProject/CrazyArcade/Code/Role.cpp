@@ -33,6 +33,7 @@ Role::Role(std::wstring objName, int mapPosX, int mapPosY, E_RoleSpriteType spri
 	m_pStateMachine->SetCurrentState(IdleDown::Instance());
 	Point tempPoint = CalPixelPos(mapPosX, mapPosY);
 	m_pixelPos = Point(tempPoint.GetX() - 4, tempPoint.GetY() + 2);
+	UpdateMapPos();
 	UpdateRectCollision(4, -2);
 	m_pAbility = new Ability();
 	m_WalkSpeed = 200.0f + m_pAbility->GetRunSpeed() * 50;
@@ -76,9 +77,14 @@ void Role::Move(float deltaTime)
 		{
 			float newY = m_pixelPos.GetY() + m_WalkSpeed * deltaTime;
 			float MaxY = m_CollsionPixelPos.GetY() + Util::MAPPIECEPIX + 2;
+			float MapY = CalPixelPos(MapPosX(), MapPosY()).GetY();
 			if (drift && newY >= MaxY)
 			{
 				SetPixelPosY(MaxY);
+			}
+			else if (MapY > m_pixelPos.GetY() && MapY < newY) //使得角色刚刚好进入一个矩形
+			{
+				SetPixelPosY(MapY);
 			}
 			else
 			{
@@ -90,9 +96,14 @@ void Role::Move(float deltaTime)
 		{
 			float newY = m_pixelPos.GetY() - m_WalkSpeed * deltaTime;
 			float MinY = m_CollsionPixelPos.GetY() - Util::MAPPIECEPIX + 2;
+			float MapY = CalPixelPos(MapPosX(), MapPosY()).GetY();
 			if (drift && newY <= MinY)
 			{
 				SetPixelPosY(MinY);
+			}
+			else if (MapY < m_pixelPos.GetY() && MapY > newY) //使得角色刚刚好进入一个矩形
+			{
+				SetPixelPosY(MapY);
 			}
 			else
 			{
@@ -104,9 +115,14 @@ void Role::Move(float deltaTime)
 		{
 			float newX = m_pixelPos.GetX() - m_WalkSpeed * deltaTime;
 			float MinX = m_CollsionPixelPos.GetX() - Util::MAPPIECEPIX - 4;
+			float MapX = CalPixelPos(MapPosX(),MapPosY()).GetX();
 			if (drift && newX <= MinX)
 			{
 				SetPixelPosX(MinX);
+			}
+			else if(MapX < m_pixelPos.GetX() && MapX > newX) //使得角色刚刚好进入一个矩形
+			{
+				SetPixelPosX(MapX);
 			}
 			else
 			{
@@ -118,9 +134,14 @@ void Role::Move(float deltaTime)
 		{
 			float newX = m_pixelPos.GetX() + m_WalkSpeed * deltaTime;
 			float MaxX = m_CollsionPixelPos.GetX() + Util::MAPPIECEPIX - 4;
+			float MapX = CalPixelPos(MapPosX(), MapPosY()).GetX();
 			if (drift && newX >= MaxX)
 			{
 				SetPixelPosX(MaxX);
+			}
+			else if (MapX > m_pixelPos.GetX() && MapX < newX)
+			{
+				SetPixelPosX(MapX);
 			}
 			else
 			{

@@ -7,17 +7,19 @@
 #include "Bubble.h"
 #include "MessageDispatcher.h"
 #include "Prop.h"
+#include "AI.h"
 
 using namespace std;
 
-PlayScene::PlayScene() 
+PlayScene::PlayScene()
+	:m_MapBlock(XLENGTH,vector<MapType::E_MapType>(YLENGTH))
 {
 
 }
 
 PlayScene::~PlayScene()
 {
-	
+	SetGameEnd(true);
 }
 
 
@@ -67,6 +69,13 @@ void PlayScene::Execute(LGCenter* lgCenter, float deltaTime)
 		(*itr)->Update(deltaTime);
 		++itr;
 	}
+
+	//角色位置移动引起地图位置改变，以便AI搜索到角色
+	if (m_pPlayer->MapPosChanged())
+	{
+		MapChanged(true);
+		m_pPlayer->MapPosChanged(false);
+	}
 }
 
 void PlayScene::Exit(LGCenter*)
@@ -77,7 +86,6 @@ void PlayScene::Exit(LGCenter*)
 
 void PlayScene::CreateMapBlock()
 {
-	memset(&m_MapBlock,0,sizeof(m_MapBlock));
 
 	int copyMap[XLENGTH][YLENGTH] = 
 	{
@@ -89,7 +97,7 @@ void PlayScene::CreateMapBlock()
 		6,4,6,9,9,6,5,6,9,9,6,4,6,
 		0,0,9,9,6,4,7,4,6,9,9,0,0,
 		6,0,6,4,5,4,8,0,0,4,6,0,6,
-		0,0,9,9,6,4,10,4,6,9,9,0,0,
+		0,0,9,9,6,4,10,0,0,0,9,0,0,
 		6,4,6,9,9,6,5,6,9,9,6,4,6,
 		4,5,4,6,9,0,0,0,9,6,4,5,4,
 		3,4,3,4,6,0,6,0,6,4,2,4,2,
@@ -171,6 +179,7 @@ void PlayScene::CreateMapBlock()
 		}
 	}
 
+	MapChanged(true);
 
 }
 
@@ -305,6 +314,7 @@ void PlayScene::KeyboardControl()
 			InsertObject(bubble);
 			ChangeMap(rolePosX,rolePosY,MapType::E_Bubble);
 			m_pPlayer->SetStandOnBubble(true);
+			m_pEnemy->SetStandOnBubble(true);
 			g_pMessageMachine->MakeMessage(5.0f,m_pPlayer->GetObjID(),bubble->GetObjID(),Bubble::E_Explode,NULL);
 			m_pPlayer->GetAbility()->Decrease(Ability::E_BubbleNum);
 		}
@@ -339,8 +349,6 @@ void PlayScene::CollisionDetection(Role* role, float deltaTime)
 		RoleMoveRect.SetX(RoleMoveRect.GetX() + role->GetWalkSpeed() * deltaTime);
 	}
 	
-	Util::DebugOut() << role->GetWalkSpeed() << " * " << deltaTime << " = " << role->GetWalkSpeed() * deltaTime;
-
 	bool collision = false;
 	wstring standOnBubble = Util::CreateMapName(
 		role->GetStandOnBubble().GetXInt(),
@@ -543,7 +551,8 @@ bool PlayScene::OnMessage(LGCenter* agent, const Telegram& msg)
 
 void PlayScene::ChangeMap(int posX, int posY, MapType::E_MapType blockType)
 {
-	m_MapBlock[posX][posY] = blockType;
+	if(!GetGameEnd())
+		m_MapBlock[posX][posY] = blockType;
 }
 
 void PlayScene::Explosion(int x, int y, int power)

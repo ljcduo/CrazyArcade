@@ -11,7 +11,7 @@
 
 #define CHECK_TO_RETURN(point) if (!point)	return;
 
-#define SAFE_DELETE(point) delete (point); (point) = 0;
+#define SAFE_DELETE(point) if (point) {delete (point); (point) = 0;}
 
 namespace Util
 {

@@ -29,6 +29,12 @@ void GameObject::UpdateMapPos()
 	Point MapPos = CalMapPos(m_pixelPos);
 	m_mapPosX = static_cast<int>(MapPos.GetX());
 	m_mapPosY = static_cast<int>(MapPos.GetY());
+	if (m_mapPosX != m_LastMapPosX || m_mapPosY != m_LastMapPosY)
+	{
+		m_LastMapPosX = m_mapPosX;
+		m_LastMapPosY = m_mapPosY;
+		MapPosChanged(true);
+	}
 }
 
 int const& GameObject::MapPosX() const

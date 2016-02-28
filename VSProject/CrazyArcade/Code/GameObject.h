@@ -13,9 +13,14 @@ public:
 	void MapPosX(int val);
 	int const& MapPosY() const;
 	void MapPosY(int val);
+	bool MapPosChanged() const { return m_mapPosChanged; }
+	void MapPosChanged(bool val) { m_mapPosChanged = val; }
 private:
 	//原点在左下角
 	int m_mapPosX;
 	int m_mapPosY;
+	int m_LastMapPosX;
+	int m_LastMapPosY;
+	bool m_mapPosChanged;
 };
 

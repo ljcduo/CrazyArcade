@@ -123,3 +123,14 @@ LGRect CalCrossRect(LGRect rect1, LGRect rect2)
 }
 
 }
+
+int Util::Convert2Dto1D(int x, int y, int colNum)
+{
+	return x*colNum + y;
+}
+
+void Util::Convert1Dto2D(int index, int colNum, int* x, int* y)
+{
+	*x = index / colNum;
+	*y = index % colNum;
+}

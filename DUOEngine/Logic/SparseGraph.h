@@ -22,7 +22,7 @@ public:
 	const vector<GraphNode>& NodeVec() const { return m_NodeVec; }
 	void NodeVec(const vector<GraphNode>&  val) { m_NodeVec = val; } 
 	const GraphAdjListVec& AdjListVec() const { return m_AdjListVec; }
-	GraphAdjListVec AdjListVec() { return m_AdjListVec; }
+	GraphAdjListVec& AdjListVec() { return m_AdjListVec; }
 	void AdjListVec(const GraphAdjListVec& val) { m_AdjListVec = val; }
 	GraphNode* SourceNode() const { return m_SourceNode; }
 	void SourceNode(GraphNode* val) { m_SourceNode = val; }
