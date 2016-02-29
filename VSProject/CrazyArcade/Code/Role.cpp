@@ -4,9 +4,14 @@
 #include "LGInput.h"
 #include "Prop.h"
 #include "PlayScene.h"
+#include "LGCenter.h"
+#include <string>
+using namespace std;
+
+Point Role::m_standOnBubble = Point(-1,-1);
 
 Role::Role(std::wstring objName, int mapPosX, int mapPosY, E_RoleSpriteType spriteType)
-	:GameObject(mapPosX, mapPosY), m_direction(E_Down), m_CanMove(true)
+	:GameObject(mapPosX, mapPosY), m_direction(E_Down), m_CanMove(true), m_FullyEnter(false)
 {
 
 	m_objName = objName;
@@ -32,9 +37,9 @@ Role::Role(std::wstring objName, int mapPosX, int mapPosY, E_RoleSpriteType spri
 	m_pStateMachine = new StateMachine<Role>(this);
 	m_pStateMachine->SetCurrentState(IdleDown::Instance());
 	Point tempPoint = CalPixelPos(mapPosX, mapPosY);
-	m_pixelPos = Point(tempPoint.GetX() - 4, tempPoint.GetY() + 2);
+	m_pixelPos = Point(tempPoint.GetX() - 4, tempPoint.GetY() - 2);
 	UpdateMapPos();
-	UpdateRectCollision(4, -2);
+	UpdateRectCollision();
 	m_pAbility = new Ability();
 	m_WalkSpeed = 200.0f + m_pAbility->GetRunSpeed() * 50;
 }
@@ -62,96 +67,205 @@ StateMachine<Role>* const& Role::GetStateMachine() const
 
 void Role::Move(float deltaTime)
 {
-	bool drift = false;
+	//1、进行碰撞检测
 
-	if (m_direction != m_currentSprite.GetCurrentRow()) //判断是否“漂移”中，进而防止漂移过度
+	//当前贴合方格位置
+	Point curFullyMap = CalPixelPos(MapPosX(), MapPosY());
+	PlayScene* currentScene = static_cast<PlayScene*>(g_pLGCenter->GetCurrentScene());
+	PlayScene::Map2DVec map = currentScene->MapBlock();
+	const int DriftOffset = 20; //漂移偏差
+	//判断前面障碍物
+	switch (m_direction)
 	{
-		drift = true;
+	case Role::E_Up:
+	{
+		if (GetRectCollision().GetYInt() == curFullyMap.GetYInt()) //贴合
+		{
+			RecoveDirect(); //结束上次漂移
+			if(MapPosY() + 1 >= YLENGTH || (map[MapPosX()][MapPosY()+1] != MapType::E_None && map[MapPosX()][MapPosY()+1] != MapType::E_Prop)) //撞墙不移动	
+				return;
+
+			int XOffset = GetRectCollision().GetXInt() - curFullyMap.GetXInt();
+			
+			if ( MapPosX() + 1 < XLENGTH && MapPosY() + 1 < YLENGTH &&
+				map[MapPosX()+1][MapPosY()+1] != MapType::E_None 
+				&& XOffset > 0 && XOffset <= DriftOffset && XOffset != 0 ) //符合左漂移
+			{
+				SetDirection(Role::E_Left);
+			}
+			else if ( MapPosX() - 1 >= 0 && MapPosY() + 1 < YLENGTH &&
+				map[MapPosX() - 1][MapPosY() + 1] != MapType::E_None
+				&& -XOffset > 0 && -XOffset <= DriftOffset && XOffset != 0) //符合右漂移
+			{
+				SetDirection(Role::E_Right);
+			}
+
+		}
+		break;
+	}
+	case Role::E_Down:
+	{
+		if (GetRectCollision().GetYInt() == curFullyMap.GetYInt()) //贴合
+		{
+			RecoveDirect(); //结束上次漂移
+			if(MapPosY() - 1 < 0 ||(map[MapPosX()][MapPosY()-1] != MapType::E_None && map[MapPosX()][MapPosY()-1] != MapType::E_Prop)) //撞墙不移动	
+				return;
+
+			int XOffset = GetRectCollision().GetXInt() - curFullyMap.GetXInt();
+
+			if (MapPosX() + 1 < XLENGTH && MapPosY() - 1 >= 0 &&
+				map[MapPosX() + 1][MapPosY() - 1] != MapType::E_None
+				&& XOffset > 0 && XOffset <= DriftOffset && XOffset != 0) //符合左漂移
+			{
+				SetDirection(Role::E_Left);
+			}
+			else if (MapPosX() - 1 >= 0 && MapPosY() - 1 >= 0 &&
+				map[MapPosX() - 1][MapPosY() - 1] != MapType::E_None
+				&& -XOffset > 0 && -XOffset <= DriftOffset && XOffset != 0) //符合右漂移
+			{
+				SetDirection(Role::E_Right);
+			}
+
+		}
+
+		break;
+	}
+	case Role::E_Left:
+	{	
+		if (GetRectCollision().GetXInt() == curFullyMap.GetXInt() )//贴合		
+		{
+			RecoveDirect(); //结束上次漂移
+			if(MapPosX() - 1 < 0  || (map[MapPosX()-1][MapPosY()] != MapType::E_None && map[MapPosX()-1][MapPosY()] != MapType::E_Prop))	//撞墙不移动
+				return;
+
+			int YOffset = GetRectCollision().GetYInt() - curFullyMap.GetYInt();
+
+			if (MapPosX() - 1 >= 0 && MapPosY() + 1 < YLENGTH &&
+				map[MapPosX() - 1][MapPosY() + 1] != MapType::E_None
+				&& YOffset > 0 && YOffset <= DriftOffset && YOffset != 0) //符合下漂移
+			{
+				SetDirection(Role::E_Down);
+			}
+			else if (MapPosX() - 1 >= 0 && MapPosY() - 1 >= 0 &&
+				map[MapPosX() - 1][MapPosY() - 1] != MapType::E_None
+				&& -YOffset > 0 && -YOffset <= DriftOffset && YOffset != 0) //符合上漂移
+			{
+				SetDirection(Role::E_Up);
+			}
+
+		}
+		break;
+	}
+	case Role::E_Right:
+	{
+		if (GetRectCollision().GetXInt() == curFullyMap.GetXInt())  //贴合
+		{
+			RecoveDirect(); //结束上次漂移
+			if (MapPosX() + 1 >= XLENGTH || (map[MapPosX()+1][MapPosY()] != MapType::E_None && map[MapPosX()+1][MapPosY()] != MapType::E_Prop) != MapType::E_None)	//撞墙不移动	
+			{
+				return;
+			}
+
+			int YOffset = GetRectCollision().GetYInt() - curFullyMap.GetYInt();
+
+			if (MapPosX() + 1 < XLENGTH && MapPosY() + 1 < YLENGTH &&
+				map[MapPosX() + 1][MapPosY() + 1] != MapType::E_None
+				&& YOffset > 0 && YOffset <= DriftOffset && YOffset != 0) //符合下漂移
+			{
+				SetDirection(Role::E_Down);
+			}
+			else if (MapPosX() + 1 < XLENGTH && MapPosY() - 1 >= 0 &&
+				map[MapPosX() + 1][MapPosY() - 1] != MapType::E_None
+				&& -YOffset > 0 && -YOffset <= DriftOffset && YOffset != 0) //符合上漂移
+			{
+				SetDirection(Role::E_Up);
+			}
+		}
+		break;
+	}
+	default:
+		break;
 	}
 
-	if (m_CanMove)
+
+
+	//2、进行移动
+	int move = m_WalkSpeed * deltaTime;
+
+	switch (m_direction)
 	{
-		switch (m_direction)
+	case Role::E_Up:
+	{
+		int newY = GetRectCollision().GetY() + move;
+		if (newY > curFullyMap.GetYInt() && curFullyMap.GetYInt() > GetRectCollision().GetYInt()) //临界进行贴合
 		{
-		case E_Up:
+			SetPixelPosY(GetPixelPosY() + (curFullyMap.GetYInt() - GetRectCollision().GetYInt()));
+			Util::DebugOut() << "向上贴合！" << GetRectCollision().GetXInt();
+		}
+		else //非临界任意移动
 		{
-			float newY = m_pixelPos.GetY() + m_WalkSpeed * deltaTime;
-			float MaxY = m_CollsionPixelPos.GetY() + Util::MAPPIECEPIX + 2;
-			float MapY = CalPixelPos(MapPosX(), MapPosY()).GetY();
-			if (drift && newY >= MaxY)
-			{
-				SetPixelPosY(MaxY);
-			}
-			else if (MapY > m_pixelPos.GetY() && MapY < newY) //使得角色刚刚好进入一个矩形
-			{
-				SetPixelPosY(MapY);
-			}
-			else
-			{
-				SetPixelPosY(newY);
-			}
-			break;
+			SetPixelPosY(GetPixelPosY() + move);
+			FullyEnter(false);
 		}
-		case E_Down:
+		break;
+	}
+	case Role::E_Down:
+	{
+		int newY = GetRectCollision().GetY() - move;
+		if (newY < curFullyMap.GetYInt() && curFullyMap.GetYInt() < GetRectCollision().GetYInt()) //临界进行贴合
 		{
-			float newY = m_pixelPos.GetY() - m_WalkSpeed * deltaTime;
-			float MinY = m_CollsionPixelPos.GetY() - Util::MAPPIECEPIX + 2;
-			float MapY = CalPixelPos(MapPosX(), MapPosY()).GetY();
-			if (drift && newY <= MinY)
-			{
-				SetPixelPosY(MinY);
-			}
-			else if (MapY < m_pixelPos.GetY() && MapY > newY) //使得角色刚刚好进入一个矩形
-			{
-				SetPixelPosY(MapY);
-			}
-			else
-			{
-				SetPixelPosY(newY);
-			}
-			break;
+			SetPixelPosY(GetPixelPosY() - (GetRectCollision().GetYInt() - curFullyMap.GetYInt()));
+			Util::DebugOut() << "向下贴合！" << GetRectCollision().GetXInt();
 		}
-		case E_Left:
+		else //非临界任意移动
 		{
-			float newX = m_pixelPos.GetX() - m_WalkSpeed * deltaTime;
-			float MinX = m_CollsionPixelPos.GetX() - Util::MAPPIECEPIX - 4;
-			float MapX = CalPixelPos(MapPosX(),MapPosY()).GetX();
-			if (drift && newX <= MinX)
-			{
-				SetPixelPosX(MinX);
-			}
-			else if(MapX < m_pixelPos.GetX() && MapX > newX) //使得角色刚刚好进入一个矩形
-			{
-				SetPixelPosX(MapX);
-			}
-			else
-			{
-				SetPixelPosX(newX);
-			}
-			break;
+			SetPixelPosY(GetPixelPosY() - move);
+			FullyEnter(false);
 		}
-		case E_Right:
+		break;
+	}
+	case Role::E_Left:
+	{
+		int newX = GetRectCollision().GetX() - move;
+		if (newX < curFullyMap.GetXInt() && curFullyMap.GetXInt() < GetRectCollision().GetXInt()) //临界进行贴合
 		{
-			float newX = m_pixelPos.GetX() + m_WalkSpeed * deltaTime;
-			float MaxX = m_CollsionPixelPos.GetX() + Util::MAPPIECEPIX - 4;
-			float MapX = CalPixelPos(MapPosX(), MapPosY()).GetX();
-			if (drift && newX >= MaxX)
-			{
-				SetPixelPosX(MaxX);
-			}
-			else if (MapX > m_pixelPos.GetX() && MapX < newX)
-			{
-				SetPixelPosX(MapX);
-			}
-			else
-			{
-				SetPixelPosX(newX);
-			}
-			break;
+			SetPixelPosX(GetPixelPosX() - (GetRectCollision().GetXInt() - curFullyMap.GetXInt()));
+			Util::DebugOut() << "向左贴合！" << GetRectCollision().GetXInt();
 		}
+		else //非临界任意移动
+		{
+			SetPixelPosX(GetPixelPosX() - move);
 		}
-		UpdateMapPos();
-		UpdateRectCollision(4, -2);
+		break;
+	}
+	case Role::E_Right:
+	{
+		int newX = GetRectCollision().GetX() + move;
+		if (newX > curFullyMap.GetXInt() && curFullyMap.GetXInt() > GetRectCollision().GetXInt()) //临界进行贴合
+		{
+			SetPixelPosX(GetPixelPosX() + (curFullyMap.GetXInt() - GetRectCollision().GetXInt()));
+			Util::DebugOut() << "向右贴合！" << GetRectCollision().GetXInt();
+		}
+		else //非临界任意移动
+		{
+			SetPixelPosX(GetPixelPosX() + move);
+		}
+		break;
+	}
+	default:
+		break;
+	}
+
+	UpdateMapPos();
+	UpdateRectCollision();
+
+	if (MapPosChanged())
+	{
+		SetStandOnBubble(false); //当位置改变，设置离开泡泡，避免放不出泡泡
+		if (map[MapPosX()][MapPosY()] == MapType::E_Prop) //判断脚下是否有道具
+		{
+			EatProp(static_cast<Prop*>(currentScene->GetGameObject(MapPosX(), MapPosY())));
+		}
 	}
 
 }
@@ -245,7 +359,15 @@ void Role::EatProp(Prop* prop)
 		m_pAbility->Crease(Ability::E_RunSpeed);
 		break;
 	}
+	default:
+	{
+		return;
 	}
+	}
+
+	PlayScene* currentScene = static_cast<PlayScene*>(g_pLGCenter->GetCurrentScene());
+	currentScene->DeleteObject(prop->GetObjID());
+	currentScene->ChangeMap(MapPosX(), MapPosY(), MapType::E_None);
 }
 
 void Role::StopWalk()
@@ -308,13 +430,31 @@ void Role::FullyArrive()
 	}
 }
 
-Point const& Role::GetCollsionPixelPos() const
+void Role::UpdateRectCollision(int offsetX /*= 0*/, int offsetY /*= 0*/, int offsetWidth /*= 0*/, int offsetHeight /*= 0*/)
 {
-	return m_CollsionPixelPos;
+	Object::UpdateRectCollision(4, 2, -8, -24); //设置角色碰撞体
 }
 
-void Role::SetCollsionPixelPos(Point val)
+void Role::RecoveDirect()
 {
-	m_CollsionPixelPos = val;
+	wstring roleState = static_cast<RoleState*>(GetStateMachine()->GetCurrentState())->GetRoleStateName();
+
+	if (roleState == L"WalkUp")
+	{
+		SetDirection(Role::E_Up);
+	}
+	else if (roleState == L"WalkDown")
+	{
+		SetDirection(Role::E_Down);
+	}
+	else if (roleState == L"WalkLeft")
+	{
+		SetDirection(Role::E_Left);
+	}
+	else if (roleState == L"WalkRight")
+	{
+		SetDirection(Role::E_Right);
+	}
+
 }
 

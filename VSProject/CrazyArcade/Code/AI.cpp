@@ -112,8 +112,8 @@ bool AI::StepToDest(int x, int y)
 			this->GetStateMachine()->ChangeState(WalkUp::Instance());
 	}
 	else if (
-	GetPixelPosX() - CalPixelPos(x, y).GetX() == 0
-		|| GetPixelPosY() - CalPixelPos(x, y).GetY() == 0
+	(GetRectCollision().GetXInt() - CalPixelPos(x, y).GetXInt() == 0
+		&& GetRectCollision().GetYInt() - CalPixelPos(x, y).GetYInt() == 0)
 		|| !this->GetCanMove()) //Åö×²Æ«²î
 	{
 		this->StopWalk();

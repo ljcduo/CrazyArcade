@@ -51,7 +51,9 @@ void PlayScene::Enter(LGCenter*)
 	}
 
 	//载入角色
-	m_pPlayer = new Role(L"Player", 13, 1, Role::E_RedBaby);
+	m_pPlayer = new Role(L"Player", 4, 7, Role::E_RedBaby);
+	m_pPlayer->GetAbility()->SetBubbleNum(4); // 提高能力方便进行AI测试
+	m_pPlayer->GetAbility()->SetRunSpeed(5); // 提高能力方便进行AI测试
 	m_pEnemy = new AI(L"Enemy", 13, 1, Role::E_BrownPirate);
 	InsertObject(m_pPlayer);
 	InsertObject(m_pEnemy);
@@ -61,7 +63,7 @@ void PlayScene::Execute(LGCenter* lgCenter, float deltaTime)
 {
 	KeyboardControl();
 	CollisionDetection(m_pPlayer, deltaTime);
-	CollisionDetection(m_pEnemy, deltaTime);
+	//CollisionDetection(m_pEnemy, deltaTime);
 	vector<Object*> tempVec = HaveAllObject();
 
 	for (vector<Object*>::const_iterator itr = tempVec.begin(); itr != tempVec.end();)
@@ -87,25 +89,43 @@ void PlayScene::Exit(LGCenter*)
 void PlayScene::CreateMapBlock()
 {
 
+	//int copyMap[XLENGTH][YLENGTH] = 
+	//{
+	//	0,0,0,5,4,5,5,5,4,5,0,0,0,
+	//	2,0,2,4,6,0,6,0,6,4,1,0,1,
+	//	4,5,4,5,4,9,4,9,4,5,4,5,4,
+	//	2,4,2,4,6,0,6,0,6,4,1,4,1,
+	//	4,5,4,6,9,0,0,0,9,6,4,5,4,
+	//	6,4,6,9,9,6,5,6,9,9,6,4,6,
+	//	0,0,9,9,6,4,7,4,6,9,9,0,0,
+	//	6,0,6,4,5,4,8,0,0,4,6,0,6,
+	//	0,0,9,9,6,4,10,0,0,0,9,0,0,
+	//	6,4,6,9,9,6,5,6,9,9,6,4,6,
+	//	4,5,4,6,9,0,0,0,9,6,4,5,4,
+	//	3,4,3,4,6,0,6,0,6,4,2,4,2,
+	//	4,5,4,5,4,9,4,9,4,5,4,5,4,
+	//	3,0,3,4,6,0,6,0,6,4,2,0,2,
+	//	0,0,0,5,4,5,5,5,4,5,0,0,0
+	//};
+
 	int copyMap[XLENGTH][YLENGTH] = 
 	{
-		0,0,0,5,4,5,5,5,4,5,0,0,0,
+		0,0,0,5,4,0,0,0,0,0,0,0,0,
 		2,0,2,4,6,0,6,0,6,4,1,0,1,
-		4,5,4,5,4,9,4,9,4,5,4,5,4,
-		2,4,2,4,6,0,6,0,6,4,1,4,1,
-		4,5,4,6,9,0,0,0,9,6,4,5,4,
-		6,4,6,9,9,6,5,6,9,9,6,4,6,
+		4,5,4,5,4,0,4,9,4,5,4,0,4,
+		2,4,2,4,6,0,6,0,6,4,1,0,1,
+		4,5,4,6,9,0,0,0,9,6,4,0,4,
+		6,4,6,9,9,6,5,6,9,9,6,0,6,
 		0,0,9,9,6,4,7,4,6,9,9,0,0,
 		6,0,6,4,5,4,8,0,0,4,6,0,6,
-		0,0,9,9,6,4,10,0,0,0,9,0,0,
-		6,4,6,9,9,6,5,6,9,9,6,4,6,
-		4,5,4,6,9,0,0,0,9,6,4,5,4,
-		3,4,3,4,6,0,6,0,6,4,2,4,2,
-		4,5,4,5,4,9,4,9,4,5,4,5,4,
+		0,0,0,0,6,4,10,0,0,0,0,0,0,
+		6,0,6,0,0,6,5,6,0,9,6,4,6,
+		4,0,4,6,0,0,0,0,0,6,4,5,4,
+		3,0,3,4,6,0,6,0,6,4,2,4,2,
+		4,0,4,5,4,9,4,9,4,5,4,5,4,
 		3,0,3,4,6,0,6,0,6,4,2,0,2,
 		0,0,0,5,4,5,5,5,4,5,0,0,0
 	};
-
 
 	for (int x = 0; x != XLENGTH; x++)
 	{
@@ -282,7 +302,6 @@ void PlayScene::KeyboardControl()
 					break;
 				}
 			}
-			m_pPlayer->SetCanMove(true);
 		}
 		else
 		{
@@ -323,225 +342,7 @@ void PlayScene::KeyboardControl()
 
 void PlayScene::CollisionDetection(Role* role, float deltaTime)
 {
-	LGRect RoleMoveRect = role->GetRectCollision();
-	
 
-	wstring roleState = static_cast<RoleState*>(role->GetStateMachine()->GetCurrentState())->GetRoleStateName();
-
-	if (roleState == L"WalkUp")
-	{
-		role->SetDirection(Role::E_Up);
-		RoleMoveRect.SetY(RoleMoveRect.GetY() + role->GetWalkSpeed() * deltaTime);
-	}
-	else if(roleState == L"WalkDown")
-	{
-		role->SetDirection(Role::E_Down);
-		RoleMoveRect.SetY(RoleMoveRect.GetY() - role->GetWalkSpeed() * deltaTime);
-	}
-	else if(roleState == L"WalkLeft")
-	{
-		role->SetDirection(Role::E_Left);
-		RoleMoveRect.SetX(RoleMoveRect.GetX() - role->GetWalkSpeed() * deltaTime);
-	}
-	else if(roleState == L"WalkRight")
-	{
-		role->SetDirection(Role::E_Right);
-		RoleMoveRect.SetX(RoleMoveRect.GetX() + role->GetWalkSpeed() * deltaTime);
-	}
-	
-	bool collision = false;
-	wstring standOnBubble = Util::CreateMapName(
-		role->GetStandOnBubble().GetXInt(),
-		role->GetStandOnBubble().GetYInt(),L"Bubble");
-
-
-	//检测是否撞墙
-	LGRect wall = LGRect(Util::ORIGINPIX.GetX(),Util::ORIGINPIX.GetY() - 6,
-		static_cast<float>(XLENGTH*Util::MAPPIECEPIX),
-		static_cast<float>(YLENGTH*Util::MAPPIECEPIX+6));
-
-	if( !Util::CollisionInsideRect(role->GetRectCollision(),wall) )
-	{
-		//如果卡在墙里，修正位置
-		if (role->GetRectCollision().GetX() < wall.GetX() )
-		{
-			role->SetDirection(Role::E_Right);
-		}
-
-		if (role->GetRectCollision().GetX() > wall.GetX() + wall.GetWidth() - Util::MAPPIECEPIX)
-		{
-			role->SetDirection(Role::E_Left);
-		}
-
-		if (role->GetRectCollision().GetY() > wall.GetY() + wall.GetHeight() - Util::MAPPIECEPIX )
-		{
-			role->SetDirection(Role::E_Down);
-		}
-
-		if (role->GetRectCollision().GetY() < wall.GetY() )
-		{
-			role->SetDirection(Role::E_Up);
-		}
-		return;
-	}
-
-	if( !Util::CollisionInsideRect(RoleMoveRect,wall) )
-	{
-		role->SetCanMove(false);
-		//role->SetCollsionPixelPos(Point());
-		return;
-	}
-
-	for (vector<Object*>::iterator itr = HaveAllObject().begin(); itr != HaveAllObject().end(); itr++)
-	{
-		
-		
-
-		//检测是否撞方块
-		if ( ((*itr)->GetObjectType() == ObjectType::E_ObjBlock || 
-			(*itr)->GetObjectType() == ObjectType::E_Bubble || 
-			(*itr)->GetObjectType() == ObjectType::E_Build )
-			&& Util::isCollsionWithRect(RoleMoveRect,(*itr)->GetRectCollision())
-			) 
-		{
-
-			
-			//发生碰撞
-			collision = true;
-
-			if((*itr)->GetObjectType() == ObjectType::E_Build)
-			{
-				role->SetCanMove(false);
-				break;
-			}
-
-			//踩在自己放的泡泡上，修正离开偏移
-			if (standOnBubble == (*itr)->GetObjName())
-			{
-
-
-				float xOffset = static_cast<float>(role->GetRectCollision().GetX() - (*itr)->GetPixelPosX());
-				float yOffset = static_cast<float>(role->GetRectCollision().GetY() - (*itr)->GetPixelPosY());
-				const int OFFSET = 35;
-				switch(role->GetDirection())
-				{
-				case Role::E_Up:
-					{
-						if (yOffset > OFFSET)
-						{
-							role->SetPixelPosY(static_cast<float>((*itr)->GetPixelPosY() + 2 + Util::MAPPIECEPIX));
-							role->SetStandOnBubble(false);
-
-						}
-						return;
-					}
-				case Role::E_Down:
-					{
-						if (yOffset < -OFFSET)
-						{
-							role->SetPixelPosY(static_cast<float>((*itr)->GetPixelPosY() + 2 - Util::MAPPIECEPIX));
-							role->SetStandOnBubble(false);
-
-						}
-						return;
-					}
-				case Role::E_Left:
-					{
-						if (xOffset < -OFFSET)
-						{
-							role->SetPixelPosX(static_cast<float>((*itr)->GetPixelPosX() - 4 - Util::MAPPIECEPIX));
-							role->SetStandOnBubble(false);
-
-						}
-						return;
-					}
-				case Role::E_Right:
-					{
-						if (xOffset > OFFSET)
-						{
-							role->SetPixelPosX(static_cast<float>((*itr)->GetPixelPosX() - 4 + Util::MAPPIECEPIX));
-							role->SetStandOnBubble(false);
-
-						}
-						return;
-					}
-				}
-			}
-			else //没有踩在自己放的泡泡上
-			{
-				//检查是否能够平移转弯
-
-				role->SetCollsionPixelPos(Point((*itr)->GetPixelPosX(),(*itr)->GetPixelPosY()));
-
-				float xOffset = static_cast<float>(role->GetPixelPosX() - (*itr)->GetPixelPosX());
-				float yOffset = static_cast<float>(role->GetPixelPosY() - (*itr)->GetPixelPosY());
-
-				const int OFFSET = 18;
-
-				switch(role->GetDirection())
-				{
-				case Role::E_Up:
-				case Role::E_Down:
-					{
-						if (xOffset <= -OFFSET)
-						{
-							role->SetDirection(Role::E_Left);
-							return;
-						}
-						else if (xOffset >= OFFSET)
-						{
-							role->SetDirection(Role::E_Right);
-							return;
-						}
-						break;
-					}
-				case Role::E_Left:
-				case Role::E_Right:
-					{
-						if (yOffset <= -OFFSET)
-						{
-							role->SetDirection(Role::E_Down);
-							return;
-						}
-						else if (yOffset >= OFFSET)
-						{
-							role->SetDirection(Role::E_Up);
-							return;
-						}
-						break;
-					}
-				}
-			
-
-			role->SetCanMove(false);
-			}
-			
-		}
-		
-		//检测是否吃道具
-		if((*itr)->GetObjectType() == ObjectType::E_Prop && Util::isCollsionWithRect(RoleMoveRect,(*itr)->GetRectCollision()))
-		{
-			Prop* prop = dynamic_cast<Prop*>(HavaObject(Util::CreateMapName(role->MapPosX(),role->MapPosY(),L"Prop")));
-			if (prop != NULL)
-			{
-				role->EatProp(prop);
-				DeleteObject(prop->GetObjID());
-				return;
-			}
-		}
-		
-		
-
-	}
-
-	if(collision)
-		return;
-
-	role->SetCollsionPixelPos(Point());
-	role->SetStandOnBubble(false);
-	role->SetCanMove(true);
-
-	
 }
 
 bool PlayScene::OnMessage(LGCenter* agent, const Telegram& msg)
@@ -602,7 +403,20 @@ void PlayScene::Explosion(int x, int y, int power)
 	}
 }
 
-bool PlayScene::DestoryMapPos(int x, int y, Bubble::E_StateType stateType,Bubble::E_Direction direction)
+GameObject* PlayScene::GetGameObject(int x, int y)
+{
+	for (vector<Object*>::const_iterator itr = HaveAllObject().begin(); itr != HaveAllObject().end(); ++itr)
+	{
+		GameObject* gameObj = static_cast<GameObject*>(*itr);
+		if (gameObj->MapPosX() == x && gameObj->MapPosY() == y)
+		{
+			return gameObj;
+		}
+	}
+	return NULL;
+}
+
+bool PlayScene::DestoryMapPos(int x, int y, Bubble::E_StateType stateType, Bubble::E_Direction direction)
 {
 	switch(m_MapBlock[x][y])
 	{
@@ -637,6 +451,8 @@ bool PlayScene::DestoryMapPos(int x, int y, Bubble::E_StateType stateType,Bubble
 		{
 			if(DeleteObject(Util::CreateMapName(x,y,L"Prop")))
 			{
+				Bubble *bubble = new Bubble(x, y, stateType, direction);
+				InsertObject(bubble);
 				m_MapBlock[x][y] = MapType::E_None;
 				return false;
 			}

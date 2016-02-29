@@ -116,7 +116,7 @@ Block::Block(int mapPosX, int mapPosY, MapType::E_MapType blockType) : GameObjec
 	{
 		std::wstring picPath;
 		Prop::E_PropType propType;
-		switch(rand() % 6)
+		switch(rand() % 5)
 		{
 		case Prop::E_Popo:
 			{

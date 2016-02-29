@@ -32,6 +32,7 @@ public:
 	Map2DVec MapBlock() const { return m_MapBlock; }
 	Role* Player() const { return m_pPlayer; }
 	void Player(Role* val) { m_pPlayer = val; }
+	GameObject* GetGameObject(int x, int y);
 private:
 	void CreateMapBlock();
 	void KeyboardControl();

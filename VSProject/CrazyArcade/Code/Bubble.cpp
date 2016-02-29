@@ -114,7 +114,6 @@ bool Bubble::UpdateAnimateFrame(float deltaTime, const int* frame /*= NULL*/, in
 			const int frame[] = {3,4,3,4,3,4,8,9,10,11,12,13};
 			if(Object::UpdateAnimateFrame(deltaTime,frame,ARRAYSIZE(frame)))
 			{
-				currentScene->ChangeMap(MapPosX(),MapPosY(),MapType::E_None);
 				currentScene->DeleteObject(this->GetObjID());
 				return true;
 			}
@@ -125,7 +124,6 @@ bool Bubble::UpdateAnimateFrame(float deltaTime, const int* frame /*= NULL*/, in
 			const int frame[] = {0,1,2,5,6,7,8,9,10,11,12,13};
 			if(Object::UpdateAnimateFrame(deltaTime,frame,ARRAYSIZE(frame)))
 			{
-				currentScene->ChangeMap(MapPosX(),MapPosY(),MapType::E_None);
 				currentScene->DeleteObject(this->GetObjID());
 				return true;
 			}

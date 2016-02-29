@@ -20,6 +20,8 @@ public:
 	void StopWalk();
 	bool IsFullyArrive();
 	void FullyArrive();
+	void UpdateRectCollision(int offsetX = 0, int offsetY = 0, int offsetWidth = 0, int offsetHeight = 0);
+	void RecoveDirect(); 
 	//————————————————————————GetAndSet
 	bool const& GetCanMove() const;
 	void SetCanMove(bool val);
@@ -39,14 +41,14 @@ public:
 	void SetStandOnBubble(bool val);
 	bool IsStandOnBubble();
 
-	Point const& GetCollsionPixelPos() const;
-	void SetCollsionPixelPos(Point val);
+	bool FullyEnter() const { return m_FullyEnter; }
+	void FullyEnter(bool val) { m_FullyEnter = val; }
 private:
 	float m_WalkSpeed;
 	StateMachine<Role>*  m_pStateMachine;
 	E_RoleDirection m_direction;
 	bool m_CanMove;		//如果遇到障碍物就不能移动
 	Ability* m_pAbility;
-	Point m_standOnBubble;
-	Point m_CollsionPixelPos;
+	static Point m_standOnBubble;
+	bool m_FullyEnter; //完全贴合
 };

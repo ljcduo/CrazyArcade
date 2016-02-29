@@ -14,7 +14,7 @@ void Ability::SetBubbleNum(int val)
 }
 
 Ability::Ability()
-	:m_bubbleNum(1),m_power(1),m_runSpeed(1)
+	:m_bubbleNum(1),m_power(5),m_runSpeed(1)
 {
 	
 }

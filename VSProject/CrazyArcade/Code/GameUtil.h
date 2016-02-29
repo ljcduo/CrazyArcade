@@ -6,7 +6,7 @@
 
 namespace Util
 {
-	const Point ORIGINPIX = Point(20,39);
+	const Point ORIGINPIX = Point(20,40);
 	const int MAPPIECEPIX = 40;
 	std::wstring CreateMapName(int x, int y, std::wstring Obj);
 }

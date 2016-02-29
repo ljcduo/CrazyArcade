@@ -41,7 +41,7 @@ public:
 	
 	virtual void Update(float deltaTime);
 	virtual bool UpdateAnimateFrame(float deltaTime, const int* frame = NULL, int frameCount = 0);	//当动画循环一遍，返回true
-	void UpdateRectCollision(int offsetX = 0, int offsetY = 0, int offsetWidth = 0, int offsetHeight = 0);
+	virtual void UpdateRectCollision(int offsetX = 0, int offsetY = 0, int offsetWidth = 0, int offsetHeight = 0);
 	void UpdateSpriteRect();
 
 	//-------------------------------脏矩形算法-begin------------------------------
